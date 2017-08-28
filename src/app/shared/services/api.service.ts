@@ -63,9 +63,9 @@ export class ApiService {
         throw error;
     }
 
-    public get(path: string, parametros = null): Observable<any> {
+    public get(path: string): Observable<any> {
         this.useJwt();
-        return this.http.get(`${this.baseURL}${path}`, {headers: this.headers, params: parametros})
+        return this.http.get(`${this.baseURL}${path}`, {headers: this.headers})
             .map(this.checkForError)
             .catch( err => {
                 this.check401(err);
@@ -158,7 +158,7 @@ export class ApiService {
             .map(this.getJson);
     }
 
-    public downloadPDF(path: string, parametros): Observable<any> {
+    public downloadPDF(path: string): Observable<any> {
         const user: User = JSON.parse(localStorage.getItem('currentUser'));
         const headers = new Headers({
             'Accept': 'application/pdf',
@@ -167,7 +167,7 @@ export class ApiService {
         return this.http
             .get(
                 `${this.baseURL}${path}`,
-                {headers: headers, responseType: ResponseContentType.Blob, params: parametros})
+                {headers: headers, responseType: ResponseContentType.Blob})
             .map(this.checkForError)
             .catch( err => {
                 this.check401(err);
@@ -196,7 +196,7 @@ export class ApiService {
     private refreshToken() {
         this.useJwt();
         if (!isNullOrUndefined(this.user)) {
-            this.http.post(this.baseURL + 'refreshToken', '', {headers: this.headers})
+            this.http.post(this.baseURL + 'refresh', '', {headers: this.headers})
                 .map(this.checkForError)
                 .catch( err => {
                     this.check401(err);

@@ -3,23 +3,25 @@
         <div class="col-md-4 push-md-4">
             <img src="assets/images/logo.png" width="150px" class="user-avatar" />
             <h1>Donde estaciono? - WEB</h1>
-            <form role="form" name="login-form" #f="ngForm" >
+            <form role="form" name="login-form" #f="ngForm" novalidate>
                 <div class="form-content">
-                    <div class="form-group">
+                    <div class="form-group" [ngClass]="{'has-danger': f.submitted && !email.valid}">
                         <input type="text" class="form-control input-underline input-lg" placeholder="Email" name="form-email"
-                               id="form-email" [(ngModel)]="usuario.email" #email="ngModel" required>
+                               id="form-email" [(ngModel)]="usuario.email" #email="ngModel" (change)="onInputChange()" required>
+                        <div *ngIf="this.submitted && !email.valid" class="has-danger">Ingrese su email</div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" [ngClass]="{'has-danger': f.submitted && !password.valid}">
                         <input type="password" class="form-control input-underline input-lg" placeholder="Password" name="form-password"
-                                id="form-password" [(ngModel)]="usuario.password" #password="ngModel" required>
+                                id="form-password" [(ngModel)]="usuario.password" #password="ngModel" (change)="onInputChange()" required>
+                        <div *ngIf="this.submitted && !password.valid" class="has-danger">Ingrese su contraseña</div>
                     </div>
                 </div>
                 <a class="btn rounded-btn" (click)="onLoggedin()"> Ingresar </a>
                 &nbsp;
                 <a class="btn rounded-btn" [routerLink]="['/signup']">Registrarse</a>
 
-                <div class="text-center" *ngIf="loading">
+                <div class="text-center" *ngIf="f.valid && this.submitted">
                     <i class="fa fa-spinner fa-spin fa-3x fa-fw" id="my-spinner"></i>
                 </div>
             </form>

@@ -15,18 +15,19 @@
     </div>
     <hr>
     <div class="row">
+        <!-- TODO cambiar links /login a donde corresponda -->
         <a class="col-xl-3 col-lg-6" [routerLink]="['/login']">
-            <app-stat [bgClass]="'card-success'" [icon]="'fa-shopping-cart'" [data]="'INGRESO VEHÍCULO'" ></app-stat>
+            <app-stat [bgClass]="'card-success'" [icon2]="'fa-car'" [icon]="'fa-sign-in'" [data]="'INGRESO VEHÍCULO'" ></app-stat>
         </a>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'card-danger'" [icon]="'fa-support'" [data]="'SALIDA VEHÍCULO'"></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'card-primary'" [icon]="'fa-comments'" [count]="4" [label]="'Nuevas reviews!'" [data]="'VER COMENTARIOS'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'card-info'" [icon]="'fa-tasks'" [data]="'ESTADÍSTICAS'" ></app-stat>
-        </div>
+        <a class="col-xl-3 col-lg-6" [routerLink]="['/login']">
+            <app-stat [bgClass]="'card-danger'" [icon]="'fa-car'" [icon2]="'fa-sign-out'" [data]="'SALIDA VEHÍCULO'"></app-stat>
+        </a>
+        <a class="col-xl-3 col-lg-6" [routerLink]="['/login']">
+            <app-stat [bgClass]="'card-primary'" [icon]="'fa-money'" [count]="4" [label]="'Nuevas reservas!'" [data]="'VER RESERVAS'" ></app-stat>
+        </a>
+        <a class="col-xl-3 col-lg-6" [routerLink]="['/login']">
+            <app-stat [bgClass]="'card-info'" [icon]="'fa-bar-chart'" [data]="'ESTADÍSTICAS'" ></app-stat>
+        </a>
     </div>
     <hr />
     <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>

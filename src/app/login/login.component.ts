@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
     usuario: User = new User();
     loading = false;
+    submitted = false;
 
     constructor(public router: Router,
                 private alertService: AlertService,
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
 
     onLoggedin() {
         this.loading = true;
+        this.submitted = true;
         // TODO mostrar un "Autenticando.." mas copado
         this.authenticationService.login(this.usuario)
             .then(() => {
@@ -36,6 +38,10 @@ export class LoginComponent implements OnInit {
                 this.alertService.error(error.json()['error']);
             });
         localStorage.setItem('isLoggedin', 'true');
+    }
+
+    onInputChange() {
+        this.submitted = false;
     }
 
 }
