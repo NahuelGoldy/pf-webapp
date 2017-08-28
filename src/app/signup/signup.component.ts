@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../router.animations';
+import {User} from '../shared/domain/usuario';
+import {Router} from '@angular/router';
+import {AlertService} from '../shared/services/alert.service';
+import {AuthenticationService} from '../shared/services/authentication.service';
 
 @Component({
     selector: 'app-signup',
@@ -9,7 +13,14 @@ import { routerTransition } from '../router.animations';
 })
 export class SignupComponent implements OnInit {
 
-    constructor() { }
+    usuario: User = new User();
+
+    constructor(public router: Router,
+                private alertService: AlertService,
+                private authenticationService: AuthenticationService) {
+    }
 
     ngOnInit() { }
+
+    onSubmitClicked() { }
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
+import {User} from '../shared/domain/usuario';
+import {AuthenticationService} from '../shared/services/authentication.service';
+import {AlertService} from '../shared/services/alert.service';
 
 @Component({
     selector: 'app-login',
@@ -10,13 +13,28 @@ import { routerTransition } from '../router.animations';
 })
 export class LoginComponent implements OnInit {
 
-    constructor(public router: Router) {
+    usuario: User = new User();
+    loading = false;
+
+    constructor(public router: Router,
+                private alertService: AlertService,
+                private authenticationService: AuthenticationService) {
     }
 
     ngOnInit() {
     }
 
     onLoggedin() {
+        this.loading = true;
+        // TODO mostrar un "Autenticando.." mas copado
+        this.authenticationService.login(this.usuario)
+            .then(() => {
+                this.loading = false;
+                this.router.navigate(['/dashboard']);
+            })
+            .catch(error => {
+                this.alertService.error(error.json()['error']);
+            });
         localStorage.setItem('isLoggedin', 'true');
     }
 
