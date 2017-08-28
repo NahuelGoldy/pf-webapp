@@ -15,17 +15,17 @@
     </div>
     <hr>
     <div class="row">
+        <a class="col-xl-3 col-lg-6" [routerLink]="['/login']">
+            <app-stat [bgClass]="'card-success'" [icon]="'fa-shopping-cart'" [data]="'INGRESO VEHÍCULO'" ></app-stat>
+        </a>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'card-primary'" [icon]="'fa-comments'" [count]="26" [label]="'New Comments!'" ></app-stat>
+            <app-stat [bgClass]="'card-danger'" [icon]="'fa-support'" [data]="'SALIDA VEHÍCULO'"></app-stat>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'card-info'" [icon]="'fa-tasks'" [count]="12" [label]="'New task!'" ></app-stat>
+            <app-stat [bgClass]="'card-primary'" [icon]="'fa-comments'" [count]="4" [label]="'Nuevas reviews!'" [data]="'VER COMENTARIOS'" ></app-stat>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'card-success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'New Orders!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'card-danger'" [icon]="'fa-support'" [count]="13" [label]="'New Tickets!'"></app-stat>
+            <app-stat [bgClass]="'card-info'" [icon]="'fa-tasks'" [data]="'ESTADÍSTICAS'" ></app-stat>
         </div>
     </div>
     <hr />
