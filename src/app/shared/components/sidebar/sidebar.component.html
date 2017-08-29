@@ -57,12 +57,12 @@
             <li class="nested" [class.expand]="showMenu === 'ingresos'">
                 <ul class="submenu">
                     <li>
-                        <a href="javascript:void(0)">
-                            <i class="fa fa-car"></i>&nbsp;{{ 'Ingreso vehículos' | translate }}
+                        <a [routerLink]="['/ingreso-egreso/ingreso']" [routerLinkActive]="['router-link-active']" >
+                            <i class="fa fa-car"></i> {{ 'Ingreso vehículos' | translate }}
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/ingreso-egreso/egreso']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-sign-out"></i>&nbsp;{{ 'Egreso vehículos' | translate }}
                         </a>
                     </li>
@@ -72,7 +72,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/ingreso-egreso/historial']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-bars"></i>&nbsp;{{ 'Historial' | translate }}
                         </a>
                     </li>

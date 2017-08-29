@@ -14,6 +14,10 @@ const routes: Routes = [
             { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
+            { path: 'ingreso-egreso/ingreso', loadChildren: './ingreso-vehiculos/ingreso-vehiculos.module#IngresoVehiculosModule' },
+            { path: 'ingreso-egreso/egreso', loadChildren: './egreso-vehiculos/egreso-vehiculos.module#EgresoVehiculosModule' },
+            { path: 'ingreso-egreso/historial',
+                loadChildren: './historial-ingresos-egresos/historial-ingresos-egresos.module#HistorialIngresosEgresosModule' },
         ]
     }
 ];
