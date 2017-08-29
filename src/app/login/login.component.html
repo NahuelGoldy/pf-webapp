@@ -13,7 +13,7 @@
 
                     <div class="form-group" [ngClass]="{'has-danger': f.submitted && !password.valid}">
                         <input type="password" class="form-control input-underline input-lg" placeholder="Password" name="form-password"
-                                id="form-password" [(ngModel)]="usuario.password" #password="ngModel" (change)="onInputChange()" required>
+                                id="form-password" [(ngModel)]="usuario.password" #password="ngModel" (change)="onInputChange()" (keyup.enter)="onLoggedin()" required>
                         <div *ngIf="this.submitted && !password.valid" class="has-danger">Ingrese su contraseña</div>
                     </div>
                 </div>

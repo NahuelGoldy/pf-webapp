@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
 
 @Component({
   selector: 'app-ingreso-vehiculos',
@@ -6,8 +7,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./ingreso-vehiculos.component.scss']
 })
 export class IngresoVehiculosComponent implements OnInit {
-    // TODO cambiar esto, por un "objeto" (agregar al domain)
-    patente: string;
+    ingreso: IngresoVehiculo = new IngresoVehiculo();
     submitted = false;
 
   constructor() { }
