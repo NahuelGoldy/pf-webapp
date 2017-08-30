@@ -5,13 +5,15 @@ import { PageHeaderModule } from './../../shared';
 import {IngresoVehiculosRoutingModule} from './ingreso-vehiculos-routing.module';
 import {IngresoVehiculosComponent} from './ingreso-vehiculos.component';
 import {FormsModule} from '@angular/forms';
+import {NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     imports: [
         CommonModule,
         PageHeaderModule,
         IngresoVehiculosRoutingModule,
-        FormsModule
+        FormsModule,
+        NgbAlertModule.forRoot()
     ],
     declarations: [IngresoVehiculosComponent]
 })

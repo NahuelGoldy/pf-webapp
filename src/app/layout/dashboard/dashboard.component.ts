@@ -10,6 +10,7 @@ import { routerTransition } from '../../router.animations';
 export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
+    public nombre: string;
 
     constructor() {
         this.sliders.push({
@@ -40,8 +41,7 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {    }
 
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);

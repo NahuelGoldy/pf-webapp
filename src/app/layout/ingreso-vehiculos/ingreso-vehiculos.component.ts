@@ -9,6 +9,7 @@ import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
 export class IngresoVehiculosComponent implements OnInit {
     ingreso: IngresoVehiculo = new IngresoVehiculo();
     submitted = false;
+    submittedExitoso = true;
 
   constructor() { }
 
