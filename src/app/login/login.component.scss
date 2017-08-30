@@ -2,6 +2,7 @@ $topnav-background-color: #222;
 :host {
     display: block;
 }
+
 .login-page {
     position: absolute;
     top: 0;
@@ -9,10 +10,19 @@ $topnav-background-color: #222;
     right: 0;
     bottom: 0;
     overflow: auto;
-    background: $topnav-background-color;
+    //background-color: $topnav-background-color;
+    background-image: url('/assets/images/cover2.jpg');
+    background-size: cover;
     text-align: center;
     color: #fff;
     padding: 3em;
+
+    .login-page-content {
+        background-color: rgba(0,0,0,0.7);
+        padding: 2%;
+        border-radius: 10%;
+    }
+
     .col-lg-4{
         padding :0;
     }
@@ -89,10 +99,10 @@ $topnav-background-color: #222;
     }
 
     #my-spinner {
-        margin-top: 10%;
+        margin-top: 7%;
     }
 
     .has-danger{
-        color: crimson;
+        color: #ff0000;
     }
 }
