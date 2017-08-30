@@ -7,6 +7,8 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent, SidebarComponent } from '../shared';
 import {FormsModule} from '@angular/forms';
+import {ApiService} from '../shared/services/api.service';
+import {AlertService} from '../shared/services/alert.service';
 
 @NgModule({
     imports: [
@@ -20,6 +22,10 @@ import {FormsModule} from '@angular/forms';
         LayoutComponent,
         HeaderComponent,
         SidebarComponent,
+    ],
+    providers: [
+        AlertService,
+        ApiService,
     ]
 })
 export class LayoutModule { }

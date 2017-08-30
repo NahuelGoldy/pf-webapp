@@ -18,6 +18,7 @@ const routes: Routes = [
             { path: 'ingreso-egreso/egreso', loadChildren: './egreso-vehiculos/egreso-vehiculos.module#EgresoVehiculosModule' },
             { path: 'ingreso-egreso/historial',
                 loadChildren: './historial-ingresos-egresos/historial-ingresos-egresos.module#HistorialIngresosEgresosModule' },
+            { path: 'settings', loadChildren: './settings/settings.module#SettingsModule' },
         ]
     }
 ];
