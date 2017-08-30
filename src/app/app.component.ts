@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
     constructor(private translate: TranslateService, public router: Router) {
         translate.addLangs(['en', 'fr', 'ur', 'es', 'fa']);
-        translate.setDefaultLang('en');
+        translate.setDefaultLang('es');
         const browserLang = translate.getBrowserLang();
-        translate.use(browserLang.match(/en|fr|ur|es|fa/) ? browserLang : 'en');
+        translate.use(browserLang.match(/en|fr|ur|es|fa/) ? browserLang : 'es');
     }
 
     ngOnInit() {

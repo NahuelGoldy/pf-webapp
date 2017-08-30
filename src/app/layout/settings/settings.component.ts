@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
 
 @Component({
   selector: 'app-settings',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+    parqueEstacionamientoActual: ParqueEstacionamiento = new ParqueEstacionamiento();
+
+  constructor() {
+      this.parqueEstacionamientoActual = JSON.parse(localStorage.getItem('currentParking'));
+  }
 
   ngOnInit() {
   }

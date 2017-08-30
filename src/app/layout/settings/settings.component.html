@@ -1,3 +1,65 @@
-<p>
-  settings works!
-</p>
+<app-page-header [heading]="'Ajustes'" [icon]="'fa-cogs'"></app-page-header>
+
+<div class="card mb-3">
+    <div class="card-header">Datos del Parque</div>
+    <div class="card-block">
+        <form class="form-horizontal" #f="ngForm">
+
+            <div class="form-group row">
+                <label for="parque-nombre" class="col-sm-2 control-label text-center">Nombre</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control has-feedback" id="parque-nombre" [(ngModel)]="parqueEstacionamientoActual.nombreEstacionamiento" name="nombre" placeholder="Nombre" >
+                </div>
+
+                <label for="parque-direccion" class="col-sm-2 control-label text-center">Dirección</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control has-feedback" id="parque-direccion" [(ngModel)]="parqueEstacionamientoActual.direccionEstacionamiento" name="direccion" placeholder="Dirección" >
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="parque-telefono" class="col-sm-2 control-label text-center">Teléfono</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control has-feedback" id="parque-telefono" [(ngModel)]="parqueEstacionamientoActual.telefono" name="telefono" placeholder="Teléfono" >
+                </div>
+
+                <label for="parque-horarios" class="col-sm-2 control-label text-center">Horarios</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control has-feedback" id="parque-horarios" [(ngModel)]="parqueEstacionamientoActual.horarios" name="horarios" placeholder="Horarios" >
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="parque-cuadro-tarifario" class="col-sm-2 control-label text-center">Cuadro tarifario</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control has-feedback" id="parque-cuadro-tarifario" [(ngModel)]="parqueEstacionamientoActual.cuadroTarifario" name="cuadroTarifario" placeholder="Cuadro tarifario" >
+                </div>
+
+                <label for="parque-precio-hora" class="col-sm-2 control-label text-center">Precio por hora</label>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control has-feedback" id="parque-precio-hora" [(ngModel)]="parqueEstacionamientoActual.precioPorHora" name="precioPorHora" placeholder="30" >
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="parque-capacidad" class="col-sm-2 control-label text-center">Capacidad</label>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control has-feedback" id="parque-capacidad" [(ngModel)]="parqueEstacionamientoActual.capacidad" name="capacidad" placeholder="75" >
+                </div>
+
+                <label for="parque-techado" class="col-sm-2 control-label checkbox-inline text-right">Es techado? </label>
+                <div class="col-sm-2">
+                    <input type="checkbox" class="form-control has-feedback" id="parque-techado" [(ngModel)]="parqueEstacionamientoActual.esTechado" name="techado" >
+                </div>
+
+                <label for="parque-tarjeta" class="col-sm-2 control-label checkbox-inline text-right">Acepta tarjeta? </label>
+                <div class="col-sm-2">
+                    <input type="checkbox" class="form-control has-feedback" id="parque-tarjeta" [(ngModel)]="parqueEstacionamientoActual.aceptaTarjetas" name="tarjeta" >
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+

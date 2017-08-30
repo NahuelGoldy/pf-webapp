@@ -16,6 +16,10 @@
                                 id="form-password" [(ngModel)]="usuario.password" #password="ngModel" (change)="onInputChange()" (keyup.enter)="onLoggedin()" required>
                         <div *ngIf="this.submitted && !password.valid" class="has-danger">Ingrese su contraseña</div>
                     </div>
+
+                    <div class="form-group" [ngClass]="{'has-danger': datosIncorrectos}">
+                        <div *ngIf="datosIncorrectos" class="has-danger">Los datos ingresados son incorrectos</div>
+                    </div>
                 </div>
                 <a class="btn rounded-btn" (click)="onLoggedin()"> Ingresar </a>
                 &nbsp;

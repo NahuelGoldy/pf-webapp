@@ -12,10 +12,11 @@ export class LayoutComponent implements OnInit {
     constructor(public router: Router,
                 public apiService: ApiService) {
         const user = JSON.parse(localStorage.getItem('currentUser'));
-        this.apiService.get('parques/admin/' + user.idUsuario).subscribe( json =>
-            // TODO guardar/setear/mostrar la info del parque actual (viene en el json)
-            console.log(json)
-        );
+        this.apiService.get('parques/admin/' + user.idUsuario).subscribe( json => {
+                // TODO guardar/setear/mostrar la info del parque actual (viene en el json)
+                localStorage.setItem('currentParking', JSON.stringify(json));
+                console.log(json);
+            });
     }
 
     ngOnInit() {

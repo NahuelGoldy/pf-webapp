@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
     usuario: User = new User();
     loading = false;
     submitted = false;
+    datosIncorrectos = false;
 
     constructor(public router: Router,
                 private alertService: AlertService,
@@ -28,20 +29,25 @@ export class LoginComponent implements OnInit {
     onLoggedin() {
         this.loading = true;
         this.submitted = true;
+        this.datosIncorrectos = false;
         // TODO mostrar un "Autenticando.." mas copado
         this.authenticationService.login(this.usuario)
             .then(() => {
                 this.loading = false;
+                localStorage.setItem('isLoggedin', 'true');
                 this.router.navigate(['/dashboard']);
             })
             .catch(error => {
                 this.alertService.error(error.json()['error']);
+                this.loading = false;
+                this.submitted = false;
+                this.datosIncorrectos = true;
             });
-        localStorage.setItem('isLoggedin', 'true');
     }
 
     onInputChange() {
         this.submitted = false;
+        this.datosIncorrectos = false;
     }
 
 }
