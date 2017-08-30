@@ -2,8 +2,9 @@ export class User {
     email: string;
     password: string;
     repassword: string;
-    firstName: string;
-    lastName: string;
+    nombre: string;
+    apellido: string;
     token?: string;
-    id: number;
+    idUsuario: number;
+    nroTelefono: string;
 }
