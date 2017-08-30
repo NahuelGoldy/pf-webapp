@@ -36,11 +36,11 @@ export class LoginComponent implements OnInit {
                 this.loading = false;
                 localStorage.setItem('isLoggedin', 'true');
                 this.router.navigate(['/dashboard']);
+                this.submitted = false;
             })
             .catch(error => {
                 this.alertService.error(error.json()['error']);
                 this.loading = false;
-                this.submitted = false;
                 this.datosIncorrectos = true;
             });
     }
