@@ -5,8 +5,11 @@
         <h3 class="col-sm-12 text-center" >Datos Obligatorios</h3>
         <hr>
 
-        <ngb-alert type="success" *ngIf="submittedExitoso" >
+        <ngb-alert type="success" (close)="closeAlert = true" *ngIf="submittedExitoso && !closeAlert" >
             <strong>Ingreso Exitoso!</strong> El ingreso del vehiculo patente {{patente}} fue marcado exitosamente.
+        </ngb-alert>
+        <ngb-alert type="danger" (close)="closeAlert = true" *ngIf="!submittedExitoso && !closeAlert" >
+            <strong>Ingreso Fallido!</strong> El ingreso del vehiculo patente {{patente}} fallo.
         </ngb-alert>
 
         <div class="form-group row">
@@ -75,7 +78,7 @@
                 <div class="form-group row">
                     <label class="col-sm-3 required control-label text-center">Telefono</label>
                     <div class="col-sm-9">
-                        <input class="form-control" type="number" placeholder="Telefono del Cliente">
+                        <input class="form-control" placeholder="Telefono del Cliente">
                     </div>
                 </div>
 
@@ -84,7 +87,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Aceptar</button>
+            <button type="submit" (click)="onSubmitClicked()" class="btn btn-primary">Aceptar</button>
         </div>
     </div>
 </form>

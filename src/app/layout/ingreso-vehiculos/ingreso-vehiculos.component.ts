@@ -9,7 +9,8 @@ import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
 export class IngresoVehiculosComponent implements OnInit {
     ingreso: IngresoVehiculo = new IngresoVehiculo();
     submitted = false;
-    submittedExitoso = true;
+    submittedExitoso = false;
+    closeAlert = false;
 
   constructor() { }
 
@@ -18,6 +19,8 @@ export class IngresoVehiculosComponent implements OnInit {
 
   onSubmitClicked() {
       this.submitted = true;
+      this.submittedExitoso = true;
+      this.closeAlert = false;
   }
 
 }
