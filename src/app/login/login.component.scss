@@ -11,7 +11,7 @@ $topnav-background-color: #222;
     bottom: 0;
     overflow: auto;
     //background-color: $topnav-background-color;
-    background-image: url('/assets/images/cover2.jpg');
+    background-image: url('/assets/images/cover1.jpg');
     background-size: cover;
     text-align: center;
     color: #fff;
@@ -20,7 +20,7 @@ $topnav-background-color: #222;
     .login-page-content {
         background-color: rgba(0,0,0,0.7);
         padding: 2%;
-        border-radius: 10%;
+        border-radius: 3%;
     }
 
     .col-lg-4{
@@ -90,7 +90,7 @@ $topnav-background-color: #222;
         }
     }
     .form-content {
-        padding: 40px 0;
+        padding: 4% 0;
     }
     .user-avatar {
         -webkit-border-radius: 50%;

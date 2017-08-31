@@ -2,89 +2,88 @@
 <form class="form-horizontal" #f="ngForm">
     <div class="modal-body">
 
-        <h3 class="col-sm-12 text-center" >Datos Obligatorios</h3>
-        <hr>
-
         <ngb-alert type="success" *ngIf="submittedExitoso" >
-            <strong>Ingreso Exitoso!</strong> El ingreso del vehiculo patente {{patente}} fue marcado exitosamente.
+            <strong>Ingreso Exitoso!</strong> El ingreso del vehiculo con patente {{patente}} fue marcado exitosamente.
         </ngb-alert>
 
-        <div class="form-group row">
-            <label for="ingreso-patente" class="col-sm-3 required control-label text-center">Patente</label>
-            <div class="col-sm-7"
-                 [ngClass]="{'has-danger': !patente.valid && (!patente.pristine || patente.touched || submitted),
+        <div class="card mb-3 form-group">
+            <div class="card-header">Datos obligatorios</div>
+            <div class="card-block row">
+                <label for="ingreso-patente" class="col-sm-3 required control-label text-center">Patente</label>
+                <div class="col-sm-6"
+                     [ngClass]="{'has-danger': !patente.valid && (!patente.pristine || patente.touched || submitted),
                 'has-success': patente.valid}">
-                <input type="text" class="form-control has-feedback" id="ingreso-patente" name="patente" (ngModel)="ingreso.nroPatente" #patente="ngModel" required [maxLength]="191" placeholder="Patente">
-                <span *ngIf="patente.valid" class="form-control-feedback"></span>
-                <span *ngIf="patente.errors !== null && (!patente.pristine || patente.touched || submitted)" class="form-control-feedback"></span>
-                <div *ngIf="!patente.valid && (!patente.pristine || patente.touched || submitted)" class="has-danger form-control-feedback"> *Ingrese la patente</div>
+                    <input type="text" class="form-control has-feedback" id="ingreso-patente" name="patente" (ngModel)="ingreso.nroPatente" #patente="ngModel" required [maxLength]="191" placeholder="Patente">
+                    <span *ngIf="patente.valid" class="form-control-feedback"></span>
+                    <span *ngIf="patente.errors !== null && (!patente.pristine || patente.touched || submitted)" class="form-control-feedback"></span>
+                    <div *ngIf="!patente.valid && (!patente.pristine || patente.touched || submitted)" class="has-danger form-control-feedback"> *Ingrese la patente</div>
+                </div>
             </div>
         </div>
 
-        <br> <!-- Brake (no me gusta pero no encontre otra) -->
+        <div class="card mb-3 form-group">
+            <div class="card-header">Datos adicionales</div>
+            <div class="card-block row">
+                <div class="col-lg-6">
+                    <h5 class="col-sm-12 text-center" >Datos del Vehiculo</h5>
+                    <hr>
 
-        <h3 class="col-sm-12 text-center" >Datos Adicionales</h3>
-        <hr>
+                    <div class="form-group row">
+                        <label class="col-sm-3 required control-label text-center">Modelo</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" placeholder="Modelo del Vehiculo">
+                        </div>
+                    </div>
 
-        <div class="row">
-            <div class="col-lg-6">
-                <h4 class="col-sm-12 text-center" >Datos del Vehiculo</h4>
-                <hr>
+                    <div class="form-group row">
+                        <label class="col-sm-3 required control-label text-center">Color</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" placeholder="Color del Vehiculo">
+                        </div>
+                    </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-3 required control-label text-center">Modelo</label>
-                    <div class="col-sm-9">
-                        <input class="form-control" placeholder="Modelo del Vehiculo">
+                    <div class="form-group row">
+
+                    </div>
+
+                    <div class="form-group row">
+
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-3 required control-label text-center">Color</label>
-                    <div class="col-sm-9">
-                        <input class="form-control" placeholder="Color del Vehiculo">
+                <div class="col-lg-6">
+                    <h5 class="col-sm-12 text-center" >Datos del Cliente</h5>
+                    <hr>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 required control-label text-center">Nombre</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" placeholder="Nombre del Cliente">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
+                    <div class="form-group row">
+                        <label class="col-sm-3 required control-label text-center">Apellido</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" placeholder="Apellido del Cliente">
+                        </div>
+                    </div>
 
-                </div>
-
-                <div class="form-group row">
+                    <div class="form-group row">
+                        <label class="col-sm-3 required control-label text-center">Telefono</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" type="number" placeholder="Telefono del Cliente">
+                        </div>
+                    </div>
 
                 </div>
             </div>
-
-            <div class="col-lg-6">
-                <h4 class="col-sm-12 text-center" >Datos del Cliente</h4>
-                <hr>
-
-                <div class="form-group row">
-                    <label class="col-sm-3 required control-label text-center">Nombre</label>
-                    <div class="col-sm-9">
-                        <input class="form-control" placeholder="Nombre del Cliente">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-3 required control-label text-center">Apellido</label>
-                    <div class="col-sm-9">
-                        <input class="form-control" placeholder="Apellido del Cliente">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-3 required control-label text-center">Telefono</label>
-                    <div class="col-sm-9">
-                        <input class="form-control" type="number" placeholder="Telefono del Cliente">
-                    </div>
-                </div>
-
-            </div>
-
         </div>
+
+
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Aceptar</button>
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>-->
+            <button type="submit" class="btn btn-primary btn-submit" (click)="onSubmitClicked()">Guardar</button>
         </div>
     </div>
 </form>
