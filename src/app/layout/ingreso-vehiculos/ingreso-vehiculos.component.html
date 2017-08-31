@@ -2,8 +2,11 @@
 <form class="form-horizontal" #f="ngForm">
     <div class="modal-body">
 
-        <ngb-alert type="success" *ngIf="submittedExitoso" >
+        <ngb-alert type="success" (close)="close = true" *ngIf="submittedExitoso && !close" >
             <strong>Ingreso Exitoso!</strong> El ingreso del vehiculo con patente {{patente}} fue marcado exitosamente.
+        </ngb-alert>
+        <ngb-alert type="danger" (close)="close = true" *ngIf="submittedExitoso && !close" >
+            <strong>Ingreso Fallido!</strong> El ingreso del vehiculo con patente {{patente}} fallo.
         </ngb-alert>
 
         <div class="card mb-3 form-group">
