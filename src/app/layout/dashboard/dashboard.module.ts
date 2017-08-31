@@ -9,11 +9,11 @@ import {
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import {
-    TimelineComponent,
     NotificationComponent,
-    ChatComponent
+    ChartComponent
 } from './components';
 import { StatModule } from '../../shared';
+import { ChartsModule as Ng2Charts } from 'ng2-charts';
 
 @NgModule({
     imports: [
@@ -22,12 +22,12 @@ import { StatModule } from '../../shared';
         NgbAlertModule.forRoot(),
         DashboardRoutingModule,
         StatModule,
+        Ng2Charts,
     ],
     declarations: [
         DashboardComponent,
-        TimelineComponent,
         NotificationComponent,
-        ChatComponent
+        ChartComponent
     ]
 })
 export class DashboardModule { }

@@ -31,33 +31,115 @@
     <hr />
     <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
     <hr />
+
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-6">
+            <app-chart></app-chart>
+        </div>
+        <div class="col-lg-6 notif-div">
             <div class="card card-default">
                 <div class="card-header">
-                    <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
+                    <i class="fa fa-bell fa-fw"></i> Notificaciones
                 </div>
-                <!-- /.card-header -->
-                <app-timeline></app-timeline>
-                <!-- /.card-body -->
+                <app-notification></app-notification>
             </div>
-            <!-- /.card -->
         </div>
-        <!-- /.col-lg-8 -->
+    </div>
+
+    <div class="row">
         <div class="col-lg-4">
             <div class="card card-default">
                 <div class="card-header">
-                    <i class="fa fa-bell fa-fw"></i> Notifications card
+                    <i class="fa fa-sign-in fa-car"></i> Últimos ingresos
                 </div>
-                <!-- /.card-header -->
-                <app-notification></app-notification>
-                <!-- /.card-body -->
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Patente</th>
+                        <th>Hora ingreso</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>AAA-123</td>
+                        <td>30/08/2017 09:17:46</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>BBB-123</td>
+                        <td>30/08/2017 09:12:32</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>CCC-123</td>
+                        <td>30/08/2017 08:59:03</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-            <!-- /.card -->
-
-            <app-chat></app-chat>
-            <!-- /.card .chat-card -->
         </div>
-        <!-- /.col-lg-4 -->
+
+        <div class="col-lg-4">
+            <div class="card card-default">
+                <div class="card-header">
+                    <i class="fa fa-dollar"></i> Últimos egresos
+                </div>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Patente</th>
+                        <th>Tiempo estadía</th>
+                        <th>Monto</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>AAA-657</td>
+                        <td>1 hs</td>
+                        <td>$35</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>TTT-765</td>
+                        <td>2 hs</td>
+                        <td>$70</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>HIJ-567</td>
+                        <td>1 hs</td>
+                        <td>$35</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card card-default">
+                <div class="card-header">
+                    <i class="fa fa-info-circle"></i> Información general
+                </div>
+                <div class="card-block">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td>Vehículos ahora: 35</td>
+                        </tr>
+                        <tr>
+                            <td>Capacidad: 51%</td>
+                        </tr>
+                        <tr>
+                            <td>Reservas activas: 3</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

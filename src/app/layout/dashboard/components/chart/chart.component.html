@@ -1,0 +1,24 @@
+<div>
+    <div class="card mb-3">
+        <div class="card-header">
+            Gráfico de líneas
+        </div>
+        <div class="card-block">
+            <canvas baseChart height="127" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            </canvas>
+        </div>
+    </div>
+</div>
+
+<!--ESTE ES UN GRAFICO TIPO ANILLO (CON COLORES)-->
+<!--<div>-->
+    <!--<div class="card mb-3">-->
+        <!--<div class="card-header">-->
+            <!--Doughnut Chart-->
+        <!--</div>-->
+        <!--<div class="card-block">-->
+            <!--<canvas baseChart height="180px" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">-->
+            <!--</canvas>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
