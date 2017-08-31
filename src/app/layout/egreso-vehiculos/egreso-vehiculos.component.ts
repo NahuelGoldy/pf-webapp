@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./egreso-vehiculos.component.scss']
 })
 export class EgresoVehiculosComponent implements OnInit {
-
+    closeAlert = false;
+    submittedExitoso = false;
+    submitted = false;
+    nroPatente;
   constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
+
+    onSubmitClicked() {
+        this.closeAlert = false;
+        this.submittedExitoso = true;
+        this.submitted = true;
+    }
 
 }

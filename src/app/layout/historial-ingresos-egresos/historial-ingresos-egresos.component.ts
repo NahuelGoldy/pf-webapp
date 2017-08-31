@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistorialIngresosEgresosComponent implements OnInit {
 
+    historial: Array<any> = [];
   constructor() { }
 
   ngOnInit() {
