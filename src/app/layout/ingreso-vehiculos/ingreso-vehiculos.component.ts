@@ -12,6 +12,7 @@ export class IngresoVehiculosComponent implements OnInit {
     ingreso: IngresoVehiculo = new IngresoVehiculo();
     vehiculo: Vehiculo = new Vehiculo();
     parque: ParqueEstacionamiento;
+    showOptional = false;
     submitted = false;
     submittedExitoso = false;
 
@@ -21,6 +22,15 @@ export class IngresoVehiculosComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  toggleShowOptional() {
+      this.showOptional = !this.showOptional;
+  }
+
+    onCleanClicked() {
+        this.ingreso = new IngresoVehiculo();
+        this.vehiculo = new Vehiculo();
+    }
 
   onSubmitClicked() {
       this.submitted = true;
