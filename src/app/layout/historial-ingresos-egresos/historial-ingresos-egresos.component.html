@@ -2,18 +2,23 @@
     <thead class="thead-inverse">
         <tr>
             <th>#</th>
-            <th>Nombre del Cliente</th>
             <th>Patente</th>
+            <th>Monto abonado</th>
             <th>Horas estacionadas</th>
+            <th>Fecha de estadia</th>
+            <th>Nombre del Cliente</th>
+            <th>Telefono del Cliente</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+        <tr *ngFor="let historia of historial; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{historia.nroPatente}}</td>
+            <td>{{historia.montoAbonado}}</td>
+            <td>{{historia.horasEstacionadas}}</td>
+            <td>{{historia.fechaEstadia}}</td>
+            <td>{{historia.nombreCliente}}</td>
+            <td>{{historia.telefonoCliente}}</td>
         </tr>
-
     </tbody>
 </table>

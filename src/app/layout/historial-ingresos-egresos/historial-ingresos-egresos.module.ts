@@ -13,4 +13,6 @@ import {HistorialIngresosEgresosRoutingModule} from './historial-ingresos-egreso
     ],
     declarations: [HistorialIngresosEgresosComponent]
 })
-export class HistorialIngresosEgresosModule { }
+export class HistorialIngresosEgresosModule {
+
+}
