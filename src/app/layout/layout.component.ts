@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {ApiService} from '../shared/services/api.service';
+import {IngresoVehiculo} from '../shared/domain/ingresoVehiculo';
 
 @Component({
     selector: 'app-layout',
@@ -8,6 +9,7 @@ import {ApiService} from '../shared/services/api.service';
     styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
+    ingreso: IngresoVehiculo = new IngresoVehiculo();
 
     constructor(public router: Router,
                 public apiService: ApiService) {
@@ -15,7 +17,7 @@ export class LayoutComponent implements OnInit {
         this.apiService.get('parques/admin/' + user.idUsuario).subscribe( json => {
                 // TODO guardar/setear/mostrar la info del parque actual (viene en el json)
                 localStorage.setItem('currentParking', JSON.stringify(json));
-                console.log(json);
+                // console.log(json);
             });
     }
 

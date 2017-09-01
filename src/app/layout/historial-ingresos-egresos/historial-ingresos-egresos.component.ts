@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ApiService} from '../../shared/services/api.service';
+import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
 
 @Component({
   selector: 'app-historial-ingresos-egresos',
@@ -7,47 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistorialIngresosEgresosComponent implements OnInit {
 
-    historial: [{
-        nroPatente: string,
-        montoAbonado: string,
-        horasEstacionadas: string,
-        fechaEstadia: string,
-        nombreCliente: string,
-        telefonoCliente: string
-    }];
-  constructor() {
-      this.historial = [{
-          nroPatente: 'AAA555',
-          montoAbonado: '54$',
-          horasEstacionadas: '2Hs',
-          fechaEstadia: '30/12/1874',
-          nombreCliente: 'Pedro',
-          telefonoCliente: '434343434'
-      },
-          {
-              nroPatente: 'AAA556',
-              montoAbonado: '54$',
-              horasEstacionadas: '2Hs',
-              fechaEstadia: '30/12/1874',
-              nombreCliente: 'Pedro2',
-              telefonoCliente: '434343434'
-          },
-          {
-              nroPatente: 'AAA557',
-              montoAbonado: '54$',
-              horasEstacionadas: '2Hs',
-              fechaEstadia: '30/12/1874',
-              nombreCliente: 'Pedro3',
-              telefonoCliente: '434343434'
-          },
-          {
-              nroPatente: 'AAA558',
-              montoAbonado: '54$',
-              horasEstacionadas: '2Hs',
-              fechaEstadia: '30/12/1874',
-              nombreCliente: 'Pedro4',
-              telefonoCliente: '434343434'
-          }];
+    ingreso: IngresoVehiculo = new IngresoVehiculo();
+    historial: IngresoVehiculo[] = [];
+
+  constructor(public apiService: ApiService) {
+      // TODO IMPORTANTISIMO!!! Mandar el id del parque de estacionamiento! (descomentar y borrar la linea en uso actual)
+      const id = JSON.parse(localStorage.getItem('currentParking')).idEstacionamiento;
+      // this.apiService.get('ingreso/' + id).subscribe( json => {
+      this.apiService.get('ingreso/13').subscribe( json => {
+          json.forEach(i => this.historial.push(i));
+      });
   }
 
   ngOnInit() {

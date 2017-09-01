@@ -4,21 +4,21 @@
             <th>#</th>
             <th>Patente</th>
             <th>Monto abonado</th>
-            <th>Horas estacionadas</th>
-            <th>Fecha de estadia</th>
+            <th>Fecha y Hora ingreso</th>
+            <th>Fecha y Hora egreso</th>
             <th>Nombre del Cliente</th>
             <th>Telefono del Cliente</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let historia of historial; let i = index">
-            <td>{{i+1}}</td>
-            <td>{{historia.nroPatente}}</td>
-            <td>{{historia.montoAbonado}}</td>
-            <td>{{historia.horasEstacionadas}}</td>
-            <td>{{historia.fechaEstadia}}</td>
-            <td>{{historia.nombreCliente}}</td>
-            <td>{{historia.telefonoCliente}}</td>
+        <tr *ngFor="let transaccion of historial; let i = index">
+            <td>{{historial.length - i}}</td>
+            <td>{{transaccion.vehiculoEstacionado.patente}}</td>
+            <td>$35</td>
+            <td>{{transaccion.fechaIngreso}}</td>
+            <td>{{transaccion.fechaEgreso}}</td>
+            <td>{{transaccion.marcoSalidaDelParque? 'Egreso' : 'Ingreso'}}</td>
+            <td>{{transaccion.vehiculoEstacionado.ownerVehiculo.nroTelefono}}</td>
         </tr>
     </tbody>
 </table>

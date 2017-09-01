@@ -34,10 +34,10 @@ export class ApiService {
     constructor(private http: Http,
                 private router: Router,
                 private alertService: AlertService) {
-        this.user = JSON.parse(localStorage.getItem('currentUser'));
-        if (!isNullOrUndefined(this.user)) {
-            this.startRefresh(true);
-        }
+        // this.user = JSON.parse(localStorage.getItem('currentUser'));
+        // if (!isNullOrUndefined(this.user)) {
+        //     this.startRefresh(true);
+        // }
     }
 
     private getJson(response: Response) {
@@ -196,7 +196,7 @@ export class ApiService {
     private refreshToken() {
         this.useJwt();
         if (!isNullOrUndefined(this.user)) {
-            this.http.post(this.baseURL + 'refresh', '', {headers: this.headers})
+            this.http.get(this.baseURL + 'refresh', {headers: this.headers})
                 .map(this.checkForError)
                 .catch( err => {
                     this.check401(err);
@@ -204,8 +204,8 @@ export class ApiService {
                     return Observable.throw(err);
                 })
                 .subscribe( (response: Response) => {
-                    this.user.token = response.json()['token'];
-                    localStorage.setItem('currentUser', JSON.stringify(this.user));
+                    // this.user.token = response.json()['token'];
+                    // localStorage.setItem('currentUser', JSON.stringify(this.user));
                 });
         }
     }
@@ -217,8 +217,8 @@ export class ApiService {
         if (startInmediately) {
             this.refreshToken();
         }
-        // refrescar el token cada 50 mins mientras la aplicación esté activa
-        this.timer = Observable.timer(1000 * 60 * 50, 1000 * 60 * 50);
+        // refrescar el token cada 25 mins mientras la aplicación esté activa
+        this.timer = Observable.timer(1000 * 60 * 25, 1000 * 60 * 25);
         this.timerSubscription = this.timer.subscribe(() => {
             this.refreshToken();
         });

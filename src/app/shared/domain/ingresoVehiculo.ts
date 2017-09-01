@@ -1,11 +1,10 @@
+import {ParqueEstacionamiento} from './parqueEstacionamiento';
+import {Vehiculo} from './vehiculo';
 export class IngresoVehiculo {
-    nombreCliente: string;
-    apellidoCliente: string;
-    nroCliente: string;
-    mailCliente: string;
-    modeloVehiculo: string;
-    marcaVehiculo: string;
-    colorVehiculo: string;
-    nroPatente: string;
-    idEstacionamiento: number;
+    fechaIngreso: string;
+    fechaEgreso: string;
+    idIngresoVehiculo: number;
+    marcoSalidaDelParque: boolean;
+    parqueEstacionamiento: ParqueEstacionamiento;
+    vehiculoEstacionado: Vehiculo;
 }
