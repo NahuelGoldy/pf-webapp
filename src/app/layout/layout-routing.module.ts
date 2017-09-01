@@ -19,6 +19,7 @@ const routes: Routes = [
             { path: 'ingreso-egreso/historial',
                 loadChildren: './historial-ingresos-egresos/historial-ingresos-egresos.module#HistorialIngresosEgresosModule' },
             { path: 'settings', loadChildren: './settings/settings.module#SettingsModule' },
+            { path: 'admin-panel', loadChildren: './admin-panel/admin-panel.module#AdminPanelModule' },
         ]
     }
 ];
