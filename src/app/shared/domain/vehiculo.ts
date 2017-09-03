@@ -1,7 +1,7 @@
 import {User} from './usuario';
 export class Vehiculo {
     id: number;
-    colorVechiulo: string;
+    colorVehiculo: string;
     modelo: string;
     anio: string;
     patente: string;

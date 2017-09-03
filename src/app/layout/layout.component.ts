@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {ApiService} from '../shared/services/api.service';
-import {IngresoVehiculo} from '../shared/domain/ingresoVehiculo';
 
 @Component({
     selector: 'app-layout',
@@ -9,7 +8,6 @@ import {IngresoVehiculo} from '../shared/domain/ingresoVehiculo';
     styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-    ingreso: IngresoVehiculo = new IngresoVehiculo();
 
     constructor(public router: Router,
                 public apiService: ApiService) {

@@ -1,7 +1,7 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "project": {
-        "name": "sb-admin-angular4-bootstrap4"
+        "name": "donde-estaciono-web"
     },
     "apps": [
         {
@@ -21,10 +21,16 @@
             "prefix": "app",
             "styles": [
                 "../node_modules/font-awesome/css/font-awesome.css",
-                "styles/app.scss"
+                "styles/app.scss",
+                "../node_modules/datatables.net-bs/css/dataTables.bootstrap.css",
+                "../node_modules/datatables.net-buttons-bs/css/buttons.bootstrap.css"
             ],
             "scripts": [
-                "../node_modules/chart.js/dist/Chart.js"
+                "../node_modules/chart.js/dist/Chart.js",
+                "../node_modules/datatables.net/js/jquery.dataTables.js",
+                "../node_modules/datatables.net-bs/js/dataTables.bootstrap.js",
+                "../node_modules/datatables.net-buttons/js/dataTables.buttons.js",
+                "../node_modules/datatables.net-buttons-bs/js/buttons.bootstrap.js"
             ],
             "environmentSource": "environments/environment.ts",
             "environments": {

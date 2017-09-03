@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
-import {Vehiculo} from '../../shared/domain/vehiculo';
 import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
+import {ApiService} from '../../shared/services/api.service';
+import {Ingreso} from '../../shared/domain/ingreso';
 
 @Component({
   selector: 'app-ingreso-vehiculos',
@@ -9,14 +9,13 @@ import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
   styleUrls: ['./ingreso-vehiculos.component.scss']
 })
 export class IngresoVehiculosComponent implements OnInit {
-    ingreso: IngresoVehiculo = new IngresoVehiculo();
-    vehiculo: Vehiculo = new Vehiculo();
+    ing: Ingreso = new Ingreso();
     parque: ParqueEstacionamiento;
     showOptional = false;
     submitted = false;
     submittedExitoso = false;
 
-  constructor() {
+  constructor(public apiService: ApiService) {
       this.parque = JSON.parse(localStorage.getItem('currentParking'));
   }
 
@@ -28,8 +27,7 @@ export class IngresoVehiculosComponent implements OnInit {
   }
 
     onCleanClicked() {
-        this.ingreso = new IngresoVehiculo();
-        this.vehiculo = new Vehiculo();
+        // TODO limpiar campos
     }
 
   onSubmitClicked() {
@@ -37,7 +35,18 @@ export class IngresoVehiculosComponent implements OnInit {
       // TODO borrar esta linea
       this.submittedExitoso = !this.submittedExitoso;
 
-      // TODO setear parque y vehiculo en Ingreso antes de mandalo a la API
+      this.ing.nroPatente = this.ing.nroPatente.toUpperCase();
+      const now = new Date();
+      const nowString = now.getFullYear() + '-' + ('0' + now.getMonth()).slice(-2) + '-' + ('0' + now.getDay()).slice(-2) + ' ' +
+          ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2) + ':' + ('0' + now.getSeconds()).slice(-2);
+
+      this.ing.idEstacionamiento = this.parque.idEstacionamiento;
+
+      // TODO llamar a la API
+      this.apiService.post('ingreso/ingresoVehiculo/' + this.parque.idEstacionamiento, this.ing)
+          .subscribe( json => {
+              this.onCleanClicked();
+          });
   }
 
 }

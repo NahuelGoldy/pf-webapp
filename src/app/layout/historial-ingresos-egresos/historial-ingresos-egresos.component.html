@@ -1,4 +1,10 @@
-<table class="table">
+<div class="progress" *ngIf="ocultarTabla">
+    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+        <span>Cargando<span class="dotdotdot"></span></span>
+    </div>
+</div>
+
+<table datatable class="row-border hover table" id="table" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" [hidden]="ocultarTabla">
     <thead class="thead-inverse">
         <tr>
             <th>#</th>
@@ -6,8 +12,9 @@
             <th>Monto abonado</th>
             <th>Fecha y Hora ingreso</th>
             <th>Fecha y Hora egreso</th>
-            <th>Nombre del Cliente</th>
-            <th>Telefono del Cliente</th>
+            <th>Tipo</th>
+            <th>Email del Cliente</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -18,7 +25,11 @@
             <td>{{transaccion.fechaIngreso}}</td>
             <td>{{transaccion.fechaEgreso}}</td>
             <td>{{transaccion.marcoSalidaDelParque? 'Egreso' : 'Ingreso'}}</td>
-            <td>{{transaccion.vehiculoEstacionado.ownerVehiculo.nroTelefono}}</td>
+            <td>{{transaccion.vehiculoEstacionado.ownerVehiculo?.email}}</td>
+            <td>
+                <button class="fa fa-pencil blue"></button >
+                <button class="fa fa-times red"></button >
+            </td>
         </tr>
     </tbody>
 </table>

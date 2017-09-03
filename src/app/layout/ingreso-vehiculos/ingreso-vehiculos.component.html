@@ -3,10 +3,10 @@
     <div class="modal-body">
 
         <ngb-alert type="success" (close)="close = true" *ngIf="submittedExitoso && !close" >
-            <strong>Ingreso Exitoso!</strong> El ingreso del vehiculo con patente {{patente}} fue marcado exitosamente.
+            <strong>Ingreso Exitoso!</strong> El ingreso del vehículo con patente {{patente}} fue marcado exitosamente.
         </ngb-alert>
         <ngb-alert type="danger" (close)="close = true" *ngIf="submittedExitoso && !close" >
-            <strong>Ingreso Fallido!</strong> El ingreso del vehiculo con patente {{patente}} fallo.
+            <strong>Ingreso Fallido!</strong> El ingreso del vehículo con patente {{patente}} falló.
         </ngb-alert>
 
         <div class="card mb-3 form-group">
@@ -16,10 +16,13 @@
                 <div class="col-sm-6"
                      [ngClass]="{'has-danger': !patente.valid && (!patente.pristine || patente.touched || submitted),
                 'has-success': patente.valid}">
-                    <input type="text" class="form-control has-feedback" id="ingreso-patente" name="patente" [(ngModel)]="vehiculo.patente" #patente="ngModel" required [maxLength]="191" placeholder="Patente">
+                    <input type="text" class="form-control has-feedback" id="ingreso-patente" name="patente"
+                           [(ngModel)]="ing.nroPatente" #patente="ngModel" required [maxLength]="191" placeholder="Patente">
                     <span *ngIf="patente.valid" class="form-control-feedback"></span>
-                    <span *ngIf="patente.errors !== null && (!patente.pristine || patente.touched || submitted)" class="form-control-feedback"></span>
-                    <div *ngIf="!patente.valid && (!patente.pristine || patente.touched || submitted)" class="has-danger form-control-feedback"> *Ingrese la patente</div>
+                    <span *ngIf="patente.errors !== null && (!patente.pristine || patente.touched || submitted)"
+                          class="form-control-feedback"></span>
+                    <div *ngIf="!patente.valid && (!patente.pristine || patente.touched || submitted)"
+                         class="has-danger form-control-feedback"> *Ingrese la patente</div>
                 </div>
             </div>
         </div>
@@ -35,25 +38,27 @@
                     <hr>
 
                     <div class="form-group row">
-                        <label class="col-sm-3 required control-label text-center">Modelo</label>
+                        <label for="ingreso-modelo" class="col-sm-3 required control-label text-center">Modelo</label>
                         <div class="col-sm-9">
-                            <input class="form-control" placeholder="Modelo del Vehiculo">
+                            <input class="form-control has-feedback" id="ingreso-modelo" name="modelo" [(ngModel)]="ing.modeloVehiculo"
+                                   #modelo="ngModel"  placeholder="Modelo del vehículo">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-3 required control-label text-center">Color</label>
+                        <label for="ingreso-aniovehiculo" class="col-sm-3 required control-label text-center">Color</label>
                         <div class="col-sm-9">
-                            <input class="form-control" placeholder="Color del Vehiculo">
+                            <input class="form-control has-feedback" id="ingreso-aniovehiculo" name="aniovehiculo" [(ngModel)]="ing.anioVehiculo"
+                                   #aniovehiculo="ngModel" placeholder="Año del vehículo">
                         </div>
                     </div>
 
                     <div class="form-group row">
-
-                    </div>
-
-                    <div class="form-group row">
-
+                        <label for="ingreso-color" class="col-sm-3 required control-label text-center">Color</label>
+                        <div class="col-sm-9">
+                            <input class="form-control has-feedback" id="ingreso-color" name="color" [(ngModel)]="ing.colorVehiculo"
+                                   #color="ngModel" placeholder="Color del vehículo">
+                        </div>
                     </div>
                 </div>
 
@@ -62,23 +67,26 @@
                     <hr>
 
                     <div class="form-group row">
-                        <label class="col-sm-3 required control-label text-center">Nombre</label>
+                        <label for="ingreso-nombrecliente" class="col-sm-3 required control-label text-center">Nombre</label>
                         <div class="col-sm-9">
-                            <input class="form-control" placeholder="Nombre del Cliente">
+                            <input class="form-control has-feedback" id="ingreso-nombrecliente" name="nombrecliente" [(ngModel)]="ing.nombreCliente"
+                                   #nombrecliente="ngModel" placeholder="Nombre del cliente">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-3 required control-label text-center">Apellido</label>
+                        <label for="ingreso-apellidocliente" class="col-sm-3 required control-label text-center">Apellido</label>
                         <div class="col-sm-9">
-                            <input class="form-control" placeholder="Apellido del Cliente">
+                            <input class="form-control has-feedback" id="ingreso-apellidocliente" name="apellidocliente" [(ngModel)]="ing.apellidoCliente"
+                                   #apellidocliente="ngModel" placeholder="Apellido del cliente">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-3 required control-label text-center">Telefono</label>
+                        <label for="ingreso-emailcliente" class="col-sm-3 required control-label text-center">Email</label>
                         <div class="col-sm-9">
-                            <input class="form-control" type="number" placeholder="Telefono del Cliente">
+                            <input class="form-control has-feedback" id="ingreso-emailcliente" name="emailcliente" [(ngModel)]="ing.mailCliente"
+                                   #emailcliente="ngModel" placeholder="Email del cliente">
                         </div>
                     </div>
 
