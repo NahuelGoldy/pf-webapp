@@ -1,13 +1,11 @@
-app-ingreso-vehiculos {
+.btn-submit {
+    align-self: center;
+}
 
-    .btn-submit {
-        align-self: center;
-    }
-
-    .opt-data-header {
-        display: block;
-        height: 100%;
-        width: 100%;
-        text-decoration: none;
-    }
+.opt-data-header {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    cursor: pointer;
 }
