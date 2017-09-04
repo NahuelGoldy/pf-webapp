@@ -21,9 +21,9 @@
         <tr *ngFor="let transaccion of historial; let i = index">
             <td>{{historial.length - i}}</td>
             <td>{{transaccion.vehiculoEstacionado.patente}}</td>
-            <td>$35</td>
+            <td>{{transaccion.marcoSalidaDelParque? '$35' : 'NA'}}</td>
             <td>{{transaccion.fechaIngreso}}</td>
-            <td>{{transaccion.fechaEgreso}}</td>
+            <td>{{transaccion.marcoSalidaDelParque? transaccion.fechaEgreso : 'NA'}}</td>
             <td>{{transaccion.marcoSalidaDelParque? 'Egreso' : 'Ingreso'}}</td>
             <td>{{transaccion.vehiculoEstacionado.ownerVehiculo?.email}}</td>
             <td>
