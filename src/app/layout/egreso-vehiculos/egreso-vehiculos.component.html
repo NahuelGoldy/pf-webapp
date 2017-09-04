@@ -17,7 +17,7 @@
             <div class="col-sm-7"
                  [ngClass]="{'has-danger': !patente.valid && (!patente.pristine || patente.touched || submitted),
                 'has-success': patente.valid}">
-                <input type="text" class="form-control has-feedback" id="ingreso-patente" name="patente" [(ngModel)]="nroPatente" #patente="ngModel" (change)="onPatenteChange()" required [maxLength]="191" placeholder="Patente">
+                <input type="text" class="form-control has-feedback" id="ingreso-patente" name="patente" [(ngModel)]="nroPatente" #patente="ngModel" (keyup)="onPatenteChange()" required [maxLength]="191" placeholder="Patente">
                 <span *ngIf="patente.valid" class="form-control-feedback"></span>
                 <span *ngIf="patente.errors !== null && (!patente.pristine || patente.touched || submitted)" class="form-control-feedback"></span>
                 <div *ngIf="!patente.valid && (!patente.pristine || patente.touched || submitted)" class="has-danger form-control-feedback"> *Ingrese la patente</div>
