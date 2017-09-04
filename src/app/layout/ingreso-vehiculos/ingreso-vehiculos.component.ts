@@ -14,6 +14,8 @@ export class IngresoVehiculosComponent implements OnInit {
     showOptional = false;
     submitted = false;
     submittedExitoso = false;
+    submittedFallido = false;
+    patenteREGEX = /[A-Z]{3}[0-9]{3}|[A-Z]{2}[0-9]{3}[A-Z]{2}/;
 
   constructor(public apiService: ApiService) {
       this.parque = JSON.parse(localStorage.getItem('currentParking'));
@@ -27,7 +29,7 @@ export class IngresoVehiculosComponent implements OnInit {
   }
 
     onCleanClicked() {
-        // TODO limpiar campos
+        this.ing = new Ingreso();
     }
 
   onSubmitClicked() {
@@ -42,11 +44,12 @@ export class IngresoVehiculosComponent implements OnInit {
 
       this.ing.idEstacionamiento = this.parque.idEstacionamiento;
 
-      // TODO llamar a la API
       this.apiService.post('ingreso/ingresoVehiculo/' + this.parque.idEstacionamiento, this.ing)
           .subscribe( json => {
+              this.submittedExitoso = true;
               this.onCleanClicked();
           });
+      // TODO manejar si la response trae error (setear submittedFallido = true)
   }
 
 }

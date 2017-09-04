@@ -5,27 +5,27 @@
 </div>
 
 <table datatable class="row-border hover table" id="table" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" [hidden]="ocultarTabla">
-    <thead class="thead-inverse">
+    <thead class="inverse-custom">
         <tr>
             <th>#</th>
             <th>Patente</th>
             <th>Monto abonado</th>
             <th>Fecha y Hora ingreso</th>
             <th>Fecha y Hora egreso</th>
-            <th>Tipo</th>
+            <th>Marcó salida?</th>
             <th>Email del Cliente</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let transaccion of historial; let i = index">
+        <tr *ngFor="let transaccion of historial; let i = index" style="text-align: center;">
             <td>{{historial.length - i}}</td>
             <td>{{transaccion.vehiculoEstacionado.patente}}</td>
-            <td>{{transaccion.marcoSalidaDelParque? '$35' : 'NA'}}</td>
+            <td>{{transaccion.marcoSalidaDelParque? '$35' : '-'}}</td>
             <td>{{transaccion.fechaIngreso}}</td>
-            <td>{{transaccion.marcoSalidaDelParque? transaccion.fechaEgreso : 'NA'}}</td>
-            <td>{{transaccion.marcoSalidaDelParque? 'Egreso' : 'Ingreso'}}</td>
-            <td>{{transaccion.vehiculoEstacionado.ownerVehiculo?.email}}</td>
+            <td>{{transaccion.marcoSalidaDelParque? transaccion.fechaEgreso : '-'}}</td>
+            <td>{{transaccion.marcoSalidaDelParque? 'Salió' : 'En parque'}}</td>
+            <td>{{transaccion.vehiculoEstacionado.ownerVehiculo?.email? transaccion.vehiculoEstacionado.ownerVehiculo.email : '-'}}</td>
             <td>
                 <button class="fa fa-pencil blue"></button >
                 <button class="fa fa-times red"></button >

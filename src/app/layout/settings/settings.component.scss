@@ -1,5 +1,9 @@
-app-settings{
-    .control-label, .checkbox {
-        vertical-align: middle;
-    }
+.control-label, .checkbox {
+    vertical-align: middle;
+}
+
+.custom-card-header-main {
+    background-color: #256ab0;
+    color: white;
+    font-weight: bold;
 }

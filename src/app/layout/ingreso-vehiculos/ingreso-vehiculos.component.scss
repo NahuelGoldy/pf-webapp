@@ -1,5 +1,13 @@
-.btn-submit {
-    align-self: center;
+.custom-modal-footer {
+    justify-content: center;
+}
+
+.custom-btn{
+    height: 5em;
+    width: 12em;
+    font-size: 1.2em;
+    text-align: center;
+    display: inline-block;
 }
 
 .opt-data-header {
@@ -8,4 +16,15 @@
     width: 100%;
     text-decoration: none;
     cursor: pointer;
+}
+
+.custom-card-header-main {
+    background-color: #256ab0;
+    color: white;
+    font-weight: bold;
+}
+
+.custom-card-header-opt {
+    color: #256ab0;
+    font-weight: bold;
 }
