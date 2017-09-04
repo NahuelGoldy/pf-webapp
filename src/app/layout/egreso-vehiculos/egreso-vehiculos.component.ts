@@ -16,7 +16,7 @@ export class EgresoVehiculosComponent implements OnInit {
     submittedExitoso = false;
     submitted = false;
     nroPatente;
-    patenteREGEX = /[a-z]{3}[0-9]{3}|[a-z]{2}[0-9]{3}[a-z]{2}/;
+    patenteREGEX = /[A-Z]{3}[0-9]{3}|[A-Z]{2}[0-9]{3}[A-Z]{2}/;
 
   constructor(public apiService: ApiService) {
       this.parque = JSON.parse(localStorage.getItem('currentParking'));
