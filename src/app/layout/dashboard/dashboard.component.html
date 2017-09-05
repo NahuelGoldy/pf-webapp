@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <ngb-carousel>
                 <ng-template ngbSlide *ngFor="let slider of sliders">
-                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="First slide" width="100%">
                     <div class="carousel-caption">
                         <h3>{{slider.label}}</h3>
                     </div>
@@ -38,7 +38,7 @@
         </div>
         <div class="col-lg-6 notif-div">
             <div class="card card-default">
-                <div class="card-header">
+                <div class="card-header card-primary">
                     <i class="fa fa-bell fa-fw"></i> Notificaciones
                 </div>
                 <app-notification></app-notification>
@@ -49,7 +49,7 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="card card-default">
-                <div class="card-header">
+                <div class="card-header card-success">
                     <i class="fa fa-sign-in fa-car"></i> Últimos ingresos
                 </div>
                 <div *ngIf="ocultarTablaUltIngresos" class="text-center spinner-dashboard-tables">
@@ -76,7 +76,7 @@
 
         <div class="col-lg-4">
             <div class="card card-default">
-                <div class="card-header">
+                <div class="card-header card-danger">
                     <i class="fa fa-dollar"></i> Últimos egresos
                 </div>
                 <div *ngIf="ocultarTablaUltEgresos" class="text-center spinner-dashboard-tables">
@@ -105,21 +105,27 @@
 
         <div class="col-lg-4">
             <div class="card card-default">
-                <div class="card-header">
+                <div class="card-header card-info">
                     <i class="fa fa-info-circle"></i> Información general
                 </div>
                 <div class="card-block">
-                    <table class="table table-bordered">
+                    <div *ngIf="ocultarTablaUltIngresos" class="text-center spinner-dashboard-tables">
+                        <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                    </div>
+                    <table *ngIf="!ocultarTablaUltIngresos" class="table table-sm">
                         <tbody>
-                        <tr>
-                            <td>Vehículos ahora: 35</td>
-                        </tr>
-                        <tr>
-                            <td>Capacidad: 51%</td>
-                        </tr>
-                        <tr>
-                            <td>Reservas activas: 3</td>
-                        </tr>
+                            <tr>
+                                <td>Vehículos ahora: <span class="stats-content">{{ingresadosActivos}}</span></td>
+                            </tr>
+                            <tr>
+                                <td>Capacidad: <span class="stats-content">{{(ingresadosActivos / parque.capacidad) * 100}}%</span></td>
+                            </tr>
+                            <tr>
+                                <td>Reservas activas: <span class="stats-content">3</span></td>
+                            </tr>
+                            <tr>
+                                <td>Ultimo ingreso: <span class="stats-content">{{ultimosIngresos[0].fechaIngreso.slice(10, ultimosIngresos[0].fechaIngreso.length)}}</span></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

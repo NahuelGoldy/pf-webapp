@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
     ultimosEgresos: Egreso[] = [];
     ocultarTablaUltIngresos = true;
     ocultarTablaUltEgresos = true;
+    ingresadosActivos = 0;
 
     constructor(private apiService: ApiService) {
         this.sliders.push({
@@ -53,6 +54,7 @@ export class DashboardComponent implements OnInit {
                     this.ultimosEgresosTemp.push(i);
                 } else {
                     this.ultimosIngresos.push(i);
+                    this.ingresadosActivos++;
                 }
             });
             // (TODO REVISAR): sólo muestro los ultimos 5 ingresos/egresos
