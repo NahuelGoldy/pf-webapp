@@ -5,5 +5,5 @@ export class Vehiculo {
     modelo: string;
     anio: string;
     patente: string;
-    ownerVehiculo: User;
+    ownerVehiculo?: User;
 }

@@ -52,30 +52,23 @@
                 <div class="card-header">
                     <i class="fa fa-sign-in fa-car"></i> Últimos ingresos
                 </div>
-                <table class="table table-bordered table-striped">
+                <div *ngIf="ocultarTablaUltIngresos" class="text-center spinner-dashboard-tables">
+                    <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                </div>
+                <table *ngIf="!ocultarTablaUltIngresos" class="table table-bordered table-striped">
                     <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Patente</th>
-                        <th>Hora ingreso</th>
-                    </tr>
+                        <tr>
+                            <th style="text-align: center;">#</th>
+                            <th style="text-align: center;">Patente</th>
+                            <th style="text-align: center;">Hora ingreso</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>AAA-123</td>
-                        <td>30/08/2017 09:17:46</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>BBB-123</td>
-                        <td>30/08/2017 09:12:32</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>CCC-123</td>
-                        <td>30/08/2017 08:59:03</td>
-                    </tr>
+                        <tr *ngFor="let ingreso of ultimosIngresos; let i = index" style="text-align: center;">
+                            <th scope="row">{{ultimosIngresos.length - i}}</th>
+                            <td>{{ingreso.vehiculoEstacionado.patente}}</td>
+                            <td>{{ingreso.fechaIngreso}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -86,34 +79,25 @@
                 <div class="card-header">
                     <i class="fa fa-dollar"></i> Últimos egresos
                 </div>
-                <table class="table table-bordered table-striped">
+                <div *ngIf="ocultarTablaUltEgresos" class="text-center spinner-dashboard-tables">
+                    <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                </div>
+                <table *ngIf="!ocultarTablaUltEgresos" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Patente</th>
-                        <th>Tiempo estadía</th>
-                        <th>Monto</th>
+                        <th style="text-align: center;">#</th>
+                        <th style="text-align: center;">Patente</th>
+                        <th style="text-align: center;">Tiempo estadía</th>
+                        <th style="text-align: center;">Monto</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>AAA-657</td>
-                        <td>1 hs</td>
-                        <td>$35</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>TTT-765</td>
-                        <td>2 hs</td>
-                        <td>$70</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>HIJ-567</td>
-                        <td>1 hs</td>
-                        <td>$35</td>
-                    </tr>
+                        <tr *ngFor="let egreso of ultimosEgresos; let i = index" style="text-align: center;">
+                            <td>{{ultimosEgresos.length - i}}</td>
+                            <td>{{egreso.nroPatente}}</td>
+                            <td>{{egreso.tiempoPermanencia}}</td>
+                            <td>${{egreso.costoPermanencia}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
