@@ -7,4 +7,6 @@ export class IngresoVehiculo {
     marcoSalidaDelParque: boolean;
     parqueEstacionamiento: ParqueEstacionamiento;
     vehiculoEstacionado: Vehiculo;
+    monto: number;
+    tiempoEstadia: string;
 }

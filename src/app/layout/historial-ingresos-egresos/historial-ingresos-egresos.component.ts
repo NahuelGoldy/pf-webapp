@@ -3,6 +3,9 @@ import {ApiService} from '../../shared/services/api.service';
 import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
 import {Subject} from 'rxjs/Subject';
 import {DataTableDirective} from 'angular-datatables';
+import {Egreso} from '../../shared/domain/egreso';
+import {isNullOrUndefined} from 'util';
+import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
 
 @Component({
   selector: 'app-historial-ingresos-egresos',
@@ -18,15 +21,24 @@ export class HistorialIngresosEgresosComponent implements OnInit, AfterViewCheck
     dtElement: DataTableDirective;
     dtOptions: any = {};
     dtTrigger: Subject<any> = new Subject();
+    ultimosEgresos: Egreso[] = [];
+    parque: ParqueEstacionamiento;
 
   constructor(private cdRef: ChangeDetectorRef, public apiService: ApiService) {
       const id = JSON.parse(localStorage.getItem('currentParking')).idEstacionamiento;
        this.apiService.get('ingreso/' + id).subscribe( json => {
            json.reverse();
-           json.forEach(i => this.historial.push(i));
+           json.forEach(i => {
+               if (i.marcoSalidaDelParque) {
+                   this.procesarEgreso(i);
+               }
+               this.historial.push(i);
+           });
            this.ocultarTabla = false;
            this.dtTrigger.next();
       });
+
+      this.parque = JSON.parse(localStorage.getItem('currentParking'));
   }
 
     ngAfterViewChecked() {
@@ -94,4 +106,29 @@ export class HistorialIngresosEgresosComponent implements OnInit, AfterViewCheck
         });
     }
 
+    private procesarEgreso(e: IngresoVehiculo) {
+        e.tiempoEstadia = this.calcularTiempoEstadia(e);
+        e.monto = this.calcularCosto(e);
+    }
+
+    private calcularCosto(egreso: IngresoVehiculo): number {
+        const re = '-/g';
+        const fechaIngreso = egreso.fechaIngreso.replace(re, '/');
+        const fechaEgreso = egreso.fechaEgreso.replace(re, '/');
+        const cantHoras = (Math.ceil((new Date(fechaEgreso).getTime() - new Date(fechaIngreso).getTime()) / (60 * 60 * 1000)));
+        return (cantHoras * this.parque.precioPorHora);
+    }
+
+    private calcularTiempoEstadia(egreso: IngresoVehiculo): string {
+        const re = '-/g';
+        const fechaIngreso = egreso.fechaIngreso.replace(re, '/');
+        const fechaEgreso = egreso.fechaEgreso.replace(re, '/');
+        const diffMillis = new Date(fechaEgreso).getTime() - new Date(fechaIngreso).getTime();
+        let seconds = diffMillis / 1000;
+        let minutes = seconds / 60;
+        seconds %= 60;
+        const hours = minutes / 60;
+        minutes %= 60;
+        return Math.round(hours) + ':' + Math.round(minutes) + ':' + Math.round(seconds);
+    }
 }

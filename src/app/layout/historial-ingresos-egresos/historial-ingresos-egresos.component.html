@@ -16,7 +16,8 @@
             <th>Fecha y Hora ingreso</th>
             <th>Fecha y Hora egreso</th>
             <th>Marcó salida?</th>
-            <th>Monto abonado</th>
+            <th>Tiempo estadía</th>
+            <th>Monto</th>
             <th>Email del Cliente</th>
             <th>Acciones</th>
         </tr>
@@ -28,7 +29,8 @@
             <td>{{transaccion.fechaIngreso}}</td>
             <td>{{transaccion.marcoSalidaDelParque? transaccion.fechaEgreso : '-'}}</td>
             <td>{{transaccion.marcoSalidaDelParque? 'Salió' : 'En parque'}}</td>
-            <td>{{transaccion.marcoSalidaDelParque? '$35' : '-'}}</td>
+            <td>{{transaccion.marcoSalidaDelParque? transaccion.tiempoEstadia : '-'}}</td>
+            <td>{{transaccion.marcoSalidaDelParque? '$'+transaccion.monto : '-'}}</td>
             <td>{{transaccion.vehiculoEstacionado.ownerVehiculo?.email? transaccion.vehiculoEstacionado.ownerVehiculo.email : '-'}}</td>
             <td>
                 <button class="fa fa-pencil blue"></button >
