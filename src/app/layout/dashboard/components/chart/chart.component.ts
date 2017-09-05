@@ -15,7 +15,7 @@ export class ChartComponent implements OnInit {
     // lineChart
     public lineChartData: Array<any> = [
         // TODO (harcodeado para estetica), refactorizar
-        { data: [5, 5, 21, 87, 61, 40, 55, 23, 0], label: 'Ocupación (últimas 24 hs)' }
+        { data: [5, 5, 21, 87, 61, 40, 55, 23, 0], label: 'Ocupación' }
     ];
     public lineChartLabels: Array<any> = ['00:00', '03:00', '06:00', '9:00', '12:00', '15:00', '18:00', '21:00', '00:00'];
     public lineChartOptions: any = {
@@ -23,11 +23,11 @@ export class ChartComponent implements OnInit {
     };
     public lineChartColors: Array<any> = [
         {
-            backgroundColor: 'rgba(25,0,255,0.3)',
+            backgroundColor: 'rgba(77,83,96,0.2)',
             borderColor: 'rgba(77,83,96,1)',
             pointBackgroundColor: 'rgba(77,83,96,1)',
-            pointBorderColor: 'rgba(0,0,0,0.5)',
-            pointHoverBackgroundColor: '#270fff',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgba(77,83,96,1)'
         }
     ];
