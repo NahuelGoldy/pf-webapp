@@ -15,9 +15,10 @@ export class ChartComponent implements OnInit {
     // lineChart
     public lineChartData: Array<any> = [
         // TODO (harcodeado para estetica), refactorizar
-        { data: [5, 5, 21, 87, 61, 40, 55, 23, 0], label: 'Ocupación' }
+        { data: [87, 61, 40, 55, 23, 0, 5, 5, 64], label: 'Ocupación' }
     ];
-    public lineChartLabels: Array<any> = ['00:00', '03:00', '06:00', '9:00', '12:00', '15:00', '18:00', '21:00', '00:00'];
+    public chartLabels: Array<any> = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'];
+    public lineChartLabels: Array<any> = [];
     public lineChartOptions: any = {
         responsive: true
     };
@@ -47,5 +48,25 @@ export class ChartComponent implements OnInit {
     }
 
     ngOnInit() {
+        // Busco y ordeno los labels (Horas del gráfico) según la hora actual, para mostrar las últimas 24hs
+        const horaActual = (('0' + (new Date().getHours() - (new Date().getHours() % 3))).slice(-2) + ':00');
+        const anteriores = [];
+        const posteriores = [];
+        this.chartLabels.forEach( lab => {
+            switch (lab.localeCompare(horaActual)) {
+                case -1: {
+                    anteriores.push(lab);
+                    break;
+                }
+                case 1: {
+                    posteriores.push(lab);
+                    break;
+                }
+            }
+        });
+        this.lineChartLabels.push(horaActual);
+        posteriores.forEach( x => this.lineChartLabels.push(x));
+        anteriores.forEach( x => this.lineChartLabels.push(x));
+        this.lineChartLabels.push(horaActual);
     }
 }
