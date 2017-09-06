@@ -59,13 +59,13 @@ export class DashboardComponent implements OnInit {
             });
             // (TODO REVISAR): sólo muestro los ultimos 5 ingresos/egresos
             if (this.ultimosIngresos.length > 5) {
-                this.ultimosIngresos.slice(0, 5);
+                this.ultimosIngresos.splice(5, this.ultimosIngresos.length - 5);
             }
             this.ocultarTablaUltIngresos = false;
 
             this.procesarEgresos();
             if (this.ultimosEgresos.length > 5) {
-                this.ultimosEgresos.slice(0, 5);
+                this.ultimosEgresos.splice(5, this.ultimosEgresos.length - 5);
             }
             this.ocultarTablaUltEgresos = false;
         });

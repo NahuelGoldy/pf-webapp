@@ -128,6 +128,6 @@ export class HistorialIngresosEgresosComponent implements OnInit, AfterViewCheck
         seconds %= 60;
         const hours = minutes / 60;
         minutes %= 60;
-        return Math.round(hours) + ':' + Math.round(minutes) + ':' + Math.round(seconds);
+        return Math.round(hours) + ':' + ('0' + Math.round(minutes)).slice(-2) + ':' + ('0' + Math.round(seconds)).slice(-2);
     }
 }

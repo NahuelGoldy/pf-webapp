@@ -4,7 +4,7 @@ export class Ingreso {
     nroCliente: string;
     mailCliente: string;
     modeloVehiculo: string;
-    anioVehiculo = 2017;
+    anioVehiculo: string;
     colorVehiculo: string;
     nroPatente: string;
     idEstacionamiento: number;
