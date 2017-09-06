@@ -211,7 +211,6 @@ export class ApiService {
     }
 
     private startRefresh(startInmediately: Boolean = false) {
-        console.log(this.headers);
         if (!isNullOrUndefined(this.timerSubscription)) {
             this.timerSubscription.unsubscribe();
         }

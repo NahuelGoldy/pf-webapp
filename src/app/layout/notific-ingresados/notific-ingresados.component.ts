@@ -40,7 +40,7 @@ export class NotificIngresadosComponent implements OnInit, AfterViewChecked {
           pagingType: 'full_numbers',
           autoWidth: true,
           paging : false,
-          aaSorting: [0, 'DESC'],
+          aaSorting: [0, 'ASC'],
           language: {
               'processing':     'Procesando...',
               'lengthMenu':     'Mostrar _MENU_ registros',
