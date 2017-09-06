@@ -25,8 +25,8 @@ export class HistorialIngresosEgresosComponent implements OnInit, AfterViewCheck
     parque: ParqueEstacionamiento;
 
   constructor(private cdRef: ChangeDetectorRef, public apiService: ApiService) {
-      const id = JSON.parse(localStorage.getItem('currentParking')).idEstacionamiento;
-       this.apiService.get('ingreso/' + id).subscribe( json => {
+      this.parque = JSON.parse(localStorage.getItem('currentParking'));
+      this.apiService.get('ingreso/' + this.parque.idEstacionamiento).subscribe( json => {
            json.reverse();
            json.forEach(i => {
                if (i.marcoSalidaDelParque) {
@@ -38,7 +38,6 @@ export class HistorialIngresosEgresosComponent implements OnInit, AfterViewCheck
            this.dtTrigger.next();
       });
 
-      this.parque = JSON.parse(localStorage.getItem('currentParking'));
   }
 
     ngAfterViewChecked() {

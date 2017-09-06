@@ -204,13 +204,14 @@ export class ApiService {
                     return Observable.throw(err);
                 })
                 .subscribe( (response: Response) => {
-                    // this.user.token = response.json()['token'];
-                    // localStorage.setItem('currentUser', JSON.stringify(this.user));
+                    this.user.token = response.json()['token'];
+                    localStorage.setItem('currentUser', JSON.stringify(this.user));
                 });
         }
     }
 
     private startRefresh(startInmediately: Boolean = false) {
+        console.log(this.headers);
         if (!isNullOrUndefined(this.timerSubscription)) {
             this.timerSubscription.unsubscribe();
         }
