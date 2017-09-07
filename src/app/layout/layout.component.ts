@@ -23,8 +23,7 @@ export class LayoutComponent implements OnInit {
 
     ngOnInit() {
         if (this.router.url === '/') {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/admin-panel']);
         }
     }
-
 }
