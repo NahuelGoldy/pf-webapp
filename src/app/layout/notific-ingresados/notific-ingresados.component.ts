@@ -9,6 +9,7 @@ import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
 import {ApiService} from '../../shared/services/api.service';
 import {routerTransition} from '../../router.animations';
 import {NotifDialogComponent} from './notif-dialog/notif-dialog.component';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-notific-ingresados',
@@ -19,6 +20,7 @@ import {NotifDialogComponent} from './notif-dialog/notif-dialog.component';
 export class NotificIngresadosComponent implements OnInit, AfterViewChecked {
 
     ingresosActivos: IngresoVehiculo[] = [];
+    emailAddresses: String[] = [];
     ocultarTabla = true;
     @ViewChild(DataTableDirective)
     dtElement: DataTableDirective;
@@ -33,7 +35,8 @@ export class NotificIngresadosComponent implements OnInit, AfterViewChecked {
       this.apiService.get('ingreso/' + this.parque.idEstacionamiento)
           .subscribe( json => {
               json.forEach(x => {
-                  if (!x.marcoSalidaDelParque) {
+                  // sólo agrego a los ingresos activos en este momento, que tengan un usuario, y cuyo usuario tenga una direccion de email registrada
+                  if (!x.marcoSalidaDelParque && !isNullOrUndefined(x.vehiculoEstacionado.ownerVehiculo) && !isNullOrUndefined(x.vehiculoEstacionado.ownerVehiculo.email)) {
                       this.ingresosActivos.push(x);
                   }
               });
@@ -94,6 +97,16 @@ export class NotificIngresadosComponent implements OnInit, AfterViewChecked {
     ngAfterViewChecked() {
         // explicit change detection to avoid "expression-has-changed-after-it-was-checked-error"
         this.cdRef.detectChanges();
+    }
+
+    toggleMail(ingreso: IngresoVehiculo) {
+        const mail = ingreso.vehiculoEstacionado.ownerVehiculo.email;
+        const indx = this.emailAddresses.indexOf(mail)
+        if (indx === -1) {
+            this.emailAddresses.push(mail);
+        } else {
+            this.emailAddresses.splice(indx, 1);
+        }
     }
 
 }

@@ -9,6 +9,7 @@ import {ApiService} from '../../../shared/services/api.service';
 export class NotifDialogComponent implements OnInit {
 
     @Input() parque_id;
+    @Input() emails_list;
 
     submitted = false;
 
@@ -27,11 +28,20 @@ export class NotifDialogComponent implements OnInit {
 
     public sendEmails() {
         this.submitted = true;
-        this.apiService.get('parques/' + this.parque_id + '/clientes/notificaciones')
-            .subscribe( json => {
-                // hacer algo con la response?
+        if (this.emails_list.length > 0) {
+            try {
+                this.apiService.post('parques/' + this.parque_id + '/clientes/notificaciones', this.emails_list)
+                    .subscribe( json => {
+                        // hacer algo con la response?
+                        this.submitted = false;
+                        NotifDialogComponent.cerrarModal();
+                    });
+            } catch (e) {
+                // hacer algo con el error?
                 this.submitted = false;
-            });
+                NotifDialogComponent.cerrarModal();
+            }
+        }
     }
 
     public close() {

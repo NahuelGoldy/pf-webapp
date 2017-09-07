@@ -11,7 +11,7 @@
     </div>
 
     <!-- Este es el modal, queda croto el codigo embebido, si se puede refactorizar como subcomponente -->
-    <app-notif-dialog [parque_id]="parque.idEstacionamiento"></app-notif-dialog>
+    <app-notif-dialog [parque_id]="parque.idEstacionamiento" [emails_list]="emailAddresses"></app-notif-dialog>
 
     <table datatable class="row-border hover table" id="table" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" [hidden]="ocultarTabla">
         <thead class="inverse-custom">
@@ -34,7 +34,7 @@
             <td>{{ingreso.vehiculoEstacionado.ownerVehiculo?.apellido? ingreso.vehiculoEstacionado.ownerVehiculo.apellido : '-'}}</td>
             <td>{{ingreso.vehiculoEstacionado.ownerVehiculo?.email? ingreso.vehiculoEstacionado.ownerVehiculo.email : '-'}}</td>
             <td>
-                <input type="checkbox" class="form-control has-feedback" >
+                <input type="checkbox" class="form-control has-feedback" (click)="toggleMail(ingreso)">
             </td>
         </tr>
         </tbody>

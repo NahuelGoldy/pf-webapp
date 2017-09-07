@@ -8,12 +8,14 @@
                 </div>
 
                 <div class="modal-body" *ngIf="!submitted">
-                    <p>Está seguro que desea enviar la notificación a X usuarios?</p>
+                    <p>Está seguro que desea enviar la notificación a sus usuarios?</p>
                 </div>
 
                 <div class="text-center" *ngIf="submitted">
                     <i class="fa fa-spinner fa-spin fa-3x fa-fw" id="my-spinner"></i>
+                    <p class="processing">Procesando, por favor aguarde un momento...</p>
                 </div>
+
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" (click)="close()">Cancelar</button>
