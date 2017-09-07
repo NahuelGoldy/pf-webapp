@@ -1,0 +1,17 @@
+.fade.in {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.5)
+}
+.modal.in .modal-dialog {
+    opacity: 1;
+    -webkit-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+.modal-backdrop.in {
+    opacity: 0.5;
+}
+
+#my-spinner {
+    margin: 7%;
+}

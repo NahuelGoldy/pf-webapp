@@ -1,103 +1,105 @@
 <app-page-header [heading]="'Ingresar un Vehículo'" [icon]="'fa-car'"></app-page-header>
-<form class="form-horizontal" #f="ngForm">
-    <div class="modal-body">
+<div [@routerTransition]>
+    <form class="form-horizontal" #f="ngForm">
+        <div class="modal-body">
 
-        <ngb-alert type="success" (close)="close = true" *ngIf="submittedExitoso && !close" >
-            <strong>Ingreso Exitoso!</strong> El ingreso del vehículo fue marcado exitosamente.
-        </ngb-alert>
-        <ngb-alert type="danger" (close)="close = true" *ngIf="submittedFallido && !close" >
-            <strong>Ingreso Fallido!</strong> El ingreso del vehículo falló.
-        </ngb-alert>
+            <ngb-alert type="success" (close)="close = true" *ngIf="submittedExitoso && !close" >
+                <strong>Ingreso Exitoso!</strong> El ingreso del vehículo fue marcado exitosamente.
+            </ngb-alert>
+            <ngb-alert type="danger" (close)="close = true" *ngIf="submittedFallido && !close" >
+                <strong>Ingreso Fallido!</strong> El ingreso del vehículo falló.
+            </ngb-alert>
 
-        <div class="card mb-3 form-group">
-            <div class="card-header custom-card-header-main">Datos obligatorios</div>
-            <div class="card-block row">
-                <label for="ingreso-patente" class="col-sm-3 required control-label text-right"><h3>Patente </h3></label>
-                <div class="col-sm-6"
-                     [ngClass]="{'has-danger': !patente.valid && (!patente.pristine || patente.touched || submitted),
+            <div class="card mb-3 form-group">
+                <div class="card-header custom-card-header-main">Datos obligatorios</div>
+                <div class="card-block row">
+                    <label for="ingreso-patente" class="col-sm-3 required control-label text-right"><h3>Patente </h3></label>
+                    <div class="col-sm-6"
+                         [ngClass]="{'has-danger': !patente.valid && (!patente.pristine || patente.touched || submitted),
                 'has-success': patente.valid}">
-                    <input type="text" class="form-control has-feedback" id="ingreso-patente" name="patente"
-                           [(ngModel)]="ing.nroPatente" #patente="ngModel" required [maxLength]="191" placeholder="Patente">
-                    <span *ngIf="patente.valid" class="form-control-feedback"></span>
-                    <span *ngIf="patente.errors !== null && (!patente.pristine || patente.touched || submitted)"
-                          class="form-control-feedback"></span>
-                    <div *ngIf="!patente.valid && (!patente.pristine || patente.touched || submitted)"
-                         class="has-danger form-control-feedback"> *Ingrese la patente</div>
+                        <input type="text" class="form-control has-feedback" id="ingreso-patente" name="patente"
+                               [(ngModel)]="ing.nroPatente" #patente="ngModel" pattern="([A-Z]{3}|[a-z]{3})[0-9]{3}|[A-Z]{2}[0-9]{3}[A-Z]{2}" required [maxLength]="191" placeholder="Ej: AAA123">
+                        <span *ngIf="patente.valid" class="form-control-feedback"></span>
+                        <span *ngIf="patente.errors !== null && (!patente.pristine || patente.touched || submitted)"
+                              class="form-control-feedback"></span>
+                        <div *ngIf="!patente.valid && (!patente.pristine || patente.touched || submitted)"
+                             class="has-danger form-control-feedback"> *Ingrese la patente</div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card mb-3 form-group">
+            <div class="card mb-3 form-group">
 
-            <!--TODO: agregar algun efecto -->
-            <a class="opt-data-header" (click)="toggleShowOptional()"><div class="card-header custom-card-header-opt">Datos adicionales</div></a>
+                <!--TODO: agregar algun efecto -->
+                <a class="opt-data-header" (click)="toggleShowOptional()"><div class="card-header custom-card-header-opt">Datos adicionales</div></a>
 
-            <div [hidden]="!showOptional" class="card-block row">
-                <div class="col-lg-6">
-                    <h5 class="col-sm-12 text-center" >Datos del Vehiculo</h5>
-                    <hr>
+                <div [hidden]="!showOptional" class="card-block row">
+                    <div class="col-lg-6">
+                        <h5 class="col-sm-12 text-center" >Datos del Vehiculo</h5>
+                        <hr>
 
-                    <div class="form-group row">
-                        <label for="ingreso-modelo" class="col-sm-3 required control-label text-center">Modelo</label>
-                        <div class="col-sm-9">
-                            <input class="form-control has-feedback" id="ingreso-modelo" name="modelo" [(ngModel)]="ing.modeloVehiculo"
-                                   #modelo="ngModel"  placeholder="Modelo del vehículo">
+                        <div class="form-group row">
+                            <label for="ingreso-modelo" class="col-sm-3 required control-label text-center">Modelo</label>
+                            <div class="col-sm-9">
+                                <input class="form-control has-feedback" id="ingreso-modelo" name="modelo" [(ngModel)]="ing.modeloVehiculo"
+                                       #modelo="ngModel"  placeholder="Modelo del vehículo">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="ingreso-aniovehiculo" class="col-sm-3 required control-label text-center">Año</label>
+                            <div class="col-sm-9">
+                                <input class="form-control has-feedback" id="ingreso-aniovehiculo" name="aniovehiculo" [(ngModel)]="ing.anioVehiculo"
+                                       #aniovehiculo="ngModel" placeholder="Año del vehículo">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="ingreso-color" class="col-sm-3 required control-label text-center">Color</label>
+                            <div class="col-sm-9">
+                                <input class="form-control has-feedback" id="ingreso-color" name="color" [(ngModel)]="ing.colorVehiculo"
+                                       #color="ngModel" placeholder="Color del vehículo">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="ingreso-aniovehiculo" class="col-sm-3 required control-label text-center">Año</label>
-                        <div class="col-sm-9">
-                            <input class="form-control has-feedback" id="ingreso-aniovehiculo" name="aniovehiculo" [(ngModel)]="ing.anioVehiculo"
-                                   #aniovehiculo="ngModel" placeholder="Año del vehículo">
+                    <div class="col-lg-6">
+                        <h5 class="col-sm-12 text-center" >Datos del Cliente</h5>
+                        <hr>
+
+                        <div class="form-group row">
+                            <label for="ingreso-nombrecliente" class="col-sm-3 required control-label text-center">Nombre</label>
+                            <div class="col-sm-9">
+                                <input class="form-control has-feedback" id="ingreso-nombrecliente" name="nombrecliente" [(ngModel)]="ing.nombreCliente"
+                                       #nombrecliente="ngModel" placeholder="Nombre del cliente">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <label for="ingreso-color" class="col-sm-3 required control-label text-center">Color</label>
-                        <div class="col-sm-9">
-                            <input class="form-control has-feedback" id="ingreso-color" name="color" [(ngModel)]="ing.colorVehiculo"
-                                   #color="ngModel" placeholder="Color del vehículo">
+                        <div class="form-group row">
+                            <label for="ingreso-apellidocliente" class="col-sm-3 required control-label text-center">Apellido</label>
+                            <div class="col-sm-9">
+                                <input class="form-control has-feedback" id="ingreso-apellidocliente" name="apellidocliente" [(ngModel)]="ing.apellidoCliente"
+                                       #apellidocliente="ngModel" placeholder="Apellido del cliente">
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="col-lg-6">
-                    <h5 class="col-sm-12 text-center" >Datos del Cliente</h5>
-                    <hr>
-
-                    <div class="form-group row">
-                        <label for="ingreso-nombrecliente" class="col-sm-3 required control-label text-center">Nombre</label>
-                        <div class="col-sm-9">
-                            <input class="form-control has-feedback" id="ingreso-nombrecliente" name="nombrecliente" [(ngModel)]="ing.nombreCliente"
-                                   #nombrecliente="ngModel" placeholder="Nombre del cliente">
+                        <div class="form-group row">
+                            <label for="ingreso-emailcliente" class="col-sm-3 required control-label text-center">Email</label>
+                            <div class="col-sm-9">
+                                <input class="form-control has-feedback" id="ingreso-emailcliente" name="emailcliente" [(ngModel)]="ing.mailCliente"
+                                       #emailcliente="ngModel" placeholder="Email del cliente">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <label for="ingreso-apellidocliente" class="col-sm-3 required control-label text-center">Apellido</label>
-                        <div class="col-sm-9">
-                            <input class="form-control has-feedback" id="ingreso-apellidocliente" name="apellidocliente" [(ngModel)]="ing.apellidoCliente"
-                                   #apellidocliente="ngModel" placeholder="Apellido del cliente">
-                        </div>
                     </div>
-
-                    <div class="form-group row">
-                        <label for="ingreso-emailcliente" class="col-sm-3 required control-label text-center">Email</label>
-                        <div class="col-sm-9">
-                            <input class="form-control has-feedback" id="ingreso-emailcliente" name="emailcliente" [(ngModel)]="ing.mailCliente"
-                                   #emailcliente="ngModel" placeholder="Email del cliente">
-                        </div>
-                    </div>
-
                 </div>
             </div>
-        </div>
 
 
-        <div class="modal-footer custom-modal-footer">
-            <button type="button" class="btn custom-btn btn-default" (click)="onCleanClicked()">LIMPIAR</button>
-            <button type="submit" class="btn custom-btn btn-primary btn-success" (click)="onSubmitClicked()">GUARDAR</button>
+            <div class="modal-footer custom-modal-footer">
+                <button type="button" class="btn custom-btn btn-default" (click)="onCleanClicked()">LIMPIAR</button>
+                <button type="submit" class="btn custom-btn btn-primary btn-success" (click)="onSubmitClicked()">GUARDAR</button>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>

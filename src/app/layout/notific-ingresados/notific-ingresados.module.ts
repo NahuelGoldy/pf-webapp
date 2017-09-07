@@ -5,6 +5,7 @@ import { PageHeaderModule } from './../../shared';
 import {NotificIngresadosRoutingModule} from './notific-ingresados-routing.module';
 import {NotificIngresadosComponent} from './notific-ingresados.component';
 import {DataTablesModule} from 'angular-datatables';
+import {NotifDialogComponent} from './notif-dialog/notif-dialog.component';
 
 @NgModule({
     imports: [
@@ -13,6 +14,9 @@ import {DataTablesModule} from 'angular-datatables';
         NotificIngresadosRoutingModule,
         DataTablesModule,
     ],
-    declarations: [NotificIngresadosComponent]
+    declarations: [
+        NotificIngresadosComponent,
+        NotifDialogComponent
+    ]
 })
 export class NotificIngresadosModule { }

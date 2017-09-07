@@ -1,14 +1,20 @@
-import {AfterViewChecked, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {
+    AfterViewChecked, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit,
+    ViewChild
+} from '@angular/core';
 import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
 import {Subject} from 'rxjs/Subject';
 import {DataTableDirective} from 'angular-datatables';
 import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
 import {ApiService} from '../../shared/services/api.service';
+import {routerTransition} from '../../router.animations';
+import {NotifDialogComponent} from './notif-dialog/notif-dialog.component';
 
 @Component({
   selector: 'app-notific-ingresados',
   templateUrl: './notific-ingresados.component.html',
-  styleUrls: ['./notific-ingresados.component.scss']
+  styleUrls: ['./notific-ingresados.component.scss'],
+  animations: [routerTransition()]
 })
 export class NotificIngresadosComponent implements OnInit, AfterViewChecked {
 
@@ -19,6 +25,7 @@ export class NotificIngresadosComponent implements OnInit, AfterViewChecked {
     dtOptions: any = {};
     dtTrigger: Subject<any> = new Subject();
     parque: ParqueEstacionamiento;
+    showModal = false;
 
   constructor(private cdRef: ChangeDetectorRef, public apiService: ApiService) {
       this.parque = JSON.parse(localStorage.getItem('currentParking'));
@@ -77,7 +84,7 @@ export class NotificIngresadosComponent implements OnInit, AfterViewChecked {
                   key: '1',
                   className: 'btn btn-success a-override',
                   action: () => {
-                      this.sendEmails();
+                      NotifDialogComponent.mostrarModal();
                   }
               }
           ]
@@ -87,13 +94,6 @@ export class NotificIngresadosComponent implements OnInit, AfterViewChecked {
     ngAfterViewChecked() {
         // explicit change detection to avoid "expression-has-changed-after-it-was-checked-error"
         this.cdRef.detectChanges();
-    }
-
-    public sendEmails() {
-        this.apiService.get('parques/' + this.parque.idEstacionamiento + '/clientes/notificaciones')
-            .subscribe( json => {
-                // hacer algo con la response?
-            });
     }
 
 }

@@ -1,36 +1,43 @@
-<div class="progress" *ngIf="ocultarTabla">
-    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-        <span>Cargando<span class="dotdotdot"></span></span>
+<app-page-header [heading]="'Notificar a Usuarios'" [icon]="'fa-bell'"></app-page-header>
+<div [@routerTransition]>
+    <div class="progress" *ngIf="ocultarTabla">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            <span>Cargando<span class="dotdotdot"></span></span>
+        </div>
     </div>
-</div>
 
-<div>
-    <!--TODO aca poner un div con todos los filtros (DatePickers, checkbox, input...)-->
-</div>
+    <div>
+        <!--TODO aca poner un div con todos los filtros (DatePickers, checkbox, input...)-->
+    </div>
 
-<table datatable class="row-border hover table" id="table" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" [hidden]="ocultarTabla">
-    <thead class="inverse-custom">
-    <tr>
-        <th>#</th>
-        <th>Patente</th>
-        <th>Modelo</th>
-        <th>Color</th>
-        <th>Apellido del Cliente</th>
-        <th>Email del Cliente</th>
-        <th>Notificar</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let ingreso of ingresosActivos; let i = index" style="text-align: center;">
-        <td>{{i + 1}}</td>
-        <td>{{ingreso.vehiculoEstacionado.patente}}</td>
-        <td>{{ingreso.vehiculoEstacionado.modelo? ingreso.vehiculoEstacionado.modelo : '-'}}</td>
-        <td>{{ingreso.vehiculoEstacionado.colorVehiculo? ingreso.vehiculoEstacionado.colorVehiculo : '-'}}</td>
-        <td>{{ingreso.vehiculoEstacionado.ownerVehiculo?.apellido? ingreso.vehiculoEstacionado.ownerVehiculo.apellido : '-'}}</td>
-        <td>{{ingreso.vehiculoEstacionado.ownerVehiculo?.email? ingreso.vehiculoEstacionado.ownerVehiculo.email : '-'}}</td>
-        <td>
-            <input type="checkbox" class="form-control has-feedback" >
-        </td>
-    </tr>
-    </tbody>
-</table>
+    <!-- Este es el modal, queda croto el codigo embebido, si se puede refactorizar como subcomponente -->
+    <app-notif-dialog [parque_id]="parque.idEstacionamiento"></app-notif-dialog>
+
+    <table datatable class="row-border hover table" id="table" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" [hidden]="ocultarTabla">
+        <thead class="inverse-custom">
+        <tr>
+            <th>#</th>
+            <th>Patente</th>
+            <th>Modelo</th>
+            <th>Color</th>
+            <th>Apellido del Cliente</th>
+            <th>Email del Cliente</th>
+            <th>Notificar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let ingreso of ingresosActivos; let i = index" style="text-align: center;">
+            <td>{{i + 1}}</td>
+            <td>{{ingreso.vehiculoEstacionado.patente}}</td>
+            <td>{{ingreso.vehiculoEstacionado.modelo? ingreso.vehiculoEstacionado.modelo : '-'}}</td>
+            <td>{{ingreso.vehiculoEstacionado.colorVehiculo? ingreso.vehiculoEstacionado.colorVehiculo : '-'}}</td>
+            <td>{{ingreso.vehiculoEstacionado.ownerVehiculo?.apellido? ingreso.vehiculoEstacionado.ownerVehiculo.apellido : '-'}}</td>
+            <td>{{ingreso.vehiculoEstacionado.ownerVehiculo?.email? ingreso.vehiculoEstacionado.ownerVehiculo.email : '-'}}</td>
+            <td>
+                <input type="checkbox" class="form-control has-feedback" >
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

@@ -6,11 +6,13 @@ import {DataTableDirective} from 'angular-datatables';
 import {Egreso} from '../../shared/domain/egreso';
 import {isNullOrUndefined} from 'util';
 import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
+import {routerTransition} from '../../router.animations';
 
 @Component({
   selector: 'app-historial-ingresos-egresos',
   templateUrl: './historial-ingresos-egresos.component.html',
-  styleUrls: ['./historial-ingresos-egresos.component.scss']
+  styleUrls: ['./historial-ingresos-egresos.component.scss'],
+  animations: [routerTransition()]
 })
 export class HistorialIngresosEgresosComponent implements OnInit, AfterViewChecked {
 

@@ -1,15 +1,18 @@
+<app-page-header [heading]="'Historial de Ingresos/Egresos'" [icon]="'fa-bars'"></app-page-header>
+
 <div class="progress" *ngIf="ocultarTabla">
     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
         <span>Cargando<span class="dotdotdot"></span></span>
     </div>
 </div>
 
-<div>
-    <!--TODO aca poner un div con todos los filtros (DatePickers, checkbox, input...)-->
-</div>
+<div [@routerTransition]>
+    <div>
+        <!--TODO aca poner un div con todos los filtros (DatePickers, checkbox, input...)-->
+    </div>
 
-<table datatable class="row-border hover table" id="table" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" [hidden]="ocultarTabla">
-    <thead class="inverse-custom">
+    <table datatable class="row-border hover table" id="table" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" [hidden]="ocultarTabla">
+        <thead class="inverse-custom">
         <tr>
             <th>#</th>
             <th>Patente</th>
@@ -21,8 +24,8 @@
             <th>Email del Cliente</th>
             <th>Acciones</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         <tr *ngFor="let transaccion of historial; let i = index" style="text-align: center;">
             <td>{{historial.length - i}}</td>
             <td>{{transaccion.vehiculoEstacionado.patente}}</td>
@@ -37,5 +40,8 @@
                 <button class="fa fa-times red"></button >
             </td>
         </tr>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+
+</div>
+

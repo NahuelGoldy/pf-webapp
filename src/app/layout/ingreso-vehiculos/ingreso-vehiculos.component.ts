@@ -2,11 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
 import {ApiService} from '../../shared/services/api.service';
 import {Ingreso} from '../../shared/domain/ingreso';
+import {routerTransition} from '../../router.animations';
 
 @Component({
   selector: 'app-ingreso-vehiculos',
   templateUrl: './ingreso-vehiculos.component.html',
-  styleUrls: ['./ingreso-vehiculos.component.scss']
+  styleUrls: ['./ingreso-vehiculos.component.scss'],
+  animations: [routerTransition()]
 })
 export class IngresoVehiculosComponent implements OnInit {
     ing: Ingreso = new Ingreso();
@@ -15,7 +17,7 @@ export class IngresoVehiculosComponent implements OnInit {
     submitted = false;
     submittedExitoso = false;
     submittedFallido = false;
-    patenteREGEX = /[A-Z]{3}[0-9]{3}|[A-Z]{2}[0-9]{3}[A-Z]{2}/;
+    patenteREGEX = /([A-Z]{3}|[a-z]{3})[0-9]{3}|[A-Z]{2}[0-9]{3}[A-Z]{2}/;
 
   constructor(public apiService: ApiService) {
       this.parque = JSON.parse(localStorage.getItem('currentParking'));
