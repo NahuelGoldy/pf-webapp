@@ -6,13 +6,13 @@
             <ngb-alert type="success" (close)="closeAlert = true" *ngIf="submittedExitoso && !closeAlert" >
                 <strong>Egreso Exitoso!</strong> El egreso del vehiculo patente {{patente}} fue marcado exitosamente.
             </ngb-alert>
-            <ngb-alert type="danger" (close)="closeAlert = true" *ngIf="!submittedExitoso && !closeAlert" >
+            <ngb-alert type="danger" (close)="closeAlert = true" *ngIf="submittedFallido && !closeAlert" >
                 <strong>Egreso Fallido!</strong> El egreso del vehiculo patente {{patente}} fallo.
             </ngb-alert>
 
             <div class="form-group row">
-                <label for="ingreso-patente" class="col-sm-3 required control-label text-center">Patente</label>
-                <div class="col-sm-7"
+                <label for="ingreso-patente" class="col-sm-3 required control-label text-right"><h4>Patente </h4></label>
+                <div class="col-sm-6"
                      [ngClass]="{'has-danger': !patente.valid && (!patente.pristine || patente.touched || submitted),
                 'has-success': patente.valid}">
                     <input type="text" class="form-control has-feedback" id="ingreso-patente" name="patente" [(ngModel)]="nroPatente" #patente="ngModel"
@@ -26,8 +26,54 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="submit" (click)="onSubmitClicked()" class="btn btn-primary">Aceptar</button>
+            <button type="submit" (click)="onSubmitClicked(f)" class="btn btn-primary">Aceptar</button>
         </div>
 
     </form>
+
+    <div class="card mb-3" *ngIf="submittedExitoso">
+        <div class="card-header custom-card-header-main">Datos de la transacción</div>
+        <div class="card-block">
+            <div class="form-group row">
+                <label for="patent" class="col-sm-3 required control-label text-center">Patente</label>
+                <div class="col-sm-9">
+                    <input class="form-control has-feedback" id="patent" name="patent" [(ngModel)]="this.egreso.nroPatente"
+                           #patent="ngModel" placeholder="Patente">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="tmingreso" class="col-sm-3 required control-label text-center">Hora ingreso</label>
+                <div class="col-sm-9">
+                    <input class="form-control has-feedback" id="tmingreso" name="tmingreso" [(ngModel)]="this.egreso.horaIngresoVehiculo"
+                           #tmingreso="ngModel" placeholder="Ingreso">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="tmegreso" class="col-sm-3 required control-label text-center">Hora egreso</label>
+                <div class="col-sm-9">
+                    <input class="form-control has-feedback" id="tmegreso" name="tmegreso" [(ngModel)]="this.egreso.horaEgresoVehiculo"
+                           #tmegreso="ngModel" placeholder="Egreso">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="tmtotal" class="col-sm-3 required control-label text-center">Tiempo estadía</label>
+                <div class="col-sm-9">
+                    <input class="form-control has-feedback" id="tmtotal" name="tmtotal" [(ngModel)]="this.egreso.tiempoPermanencia"
+                           #tmtotal="ngModel" placeholder="Tiempo estadía">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="monto" class="col-sm-3 required control-label text-center">Monto</label>
+                <div class="col-sm-9">
+                    <input class="form-control has-feedback" id="monto" name="monto" [(ngModel)]="'$' + this.egreso.costoPermanencia"
+                           #monto="ngModel" placeholder="Monto">
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

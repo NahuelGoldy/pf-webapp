@@ -30,14 +30,13 @@ export class IngresoVehiculosComponent implements OnInit {
       this.showOptional = !this.showOptional;
   }
 
-    onCleanClicked() {
+    onCleanClicked(f) {
         this.ing = new Ingreso();
+        f.form.reset();
     }
 
-  onSubmitClicked() {
+  onSubmitClicked(f) {
       this.submitted = true;
-      // TODO borrar esta linea
-      this.submittedExitoso = !this.submittedExitoso;
 
       this.ing.nroPatente = this.ing.nroPatente.toUpperCase();
       const now = new Date();
@@ -46,12 +45,19 @@ export class IngresoVehiculosComponent implements OnInit {
 
       this.ing.idEstacionamiento = this.parque.idEstacionamiento;
 
-      this.apiService.post('ingreso/ingresoVehiculo/' + this.parque.idEstacionamiento, this.ing)
-          .subscribe( json => {
-              this.submittedExitoso = true;
-              this.onCleanClicked();
-          });
-      // TODO manejar si la response trae error (setear submittedFallido = true)
+      try {
+          this.apiService.post('ingreso/ingresoVehiculo/' + this.parque.idEstacionamiento, this.ing)
+              .subscribe( () => {
+                  this.submittedExitoso = true;
+                  this.submittedFallido = false;
+              });
+      } catch (e) {
+          this.submittedFallido = true;
+          this.submittedExitoso = false;
+      } finally {
+          this.onCleanClicked(f);
+          this.submitted = false;
+      }
   }
 
 }
