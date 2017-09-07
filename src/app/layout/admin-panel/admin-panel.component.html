@@ -1,11 +1,9 @@
-<div class="card mb-3 form-group">
+<app-page-header [heading]="'Admin Panel'" [icon]="'fa-cogs'"></app-page-header>
 
-    <!--TODO: agregar algun efecto -->
-    <a class="opt-data-header" (click)="toggleShowOptional()"><div class="card-header custom-card-header-opt">Crear Parque</div></a>
-
-    <div [hidden]="!showOptional" class="card-block row">
+<div [@routerTransition]>
+    <div class="card-block row">
         <div class="card mb-3 form-group">
-            <div class="card-header">
+            <div class="card-header custom-card-header-opt">
                 <h5 class="col-sm-12 text-center" >Datos del Estacionamiento</h5>
             </div>
             <div class="card-block row">
@@ -88,11 +86,11 @@
                             <input type="checkbox" class="form-control has-feedback" id="parque-tarjeta" [(ngModel)]="parque.aceptaTarjetas" name="tarjeta" >
                         </div>
                     </div>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="card md-3 form-group">
-            <div class="card-header">
+        <div class="card mb-3 form-group card-fix">
+            <div class="card-header custom-card-header-opt">
                 <h5 class="col-sm-12 text-center" >Datos del Usuario</h5>
             </div>
             <div class="card-block row">
@@ -121,26 +119,25 @@
                                    #telefonoUser="ngModel" placeholder="Telefono del Usuario">
                         </div>
                     </div>
-
                 </div>
 
-                <div class="col-lg-6">
-                    <div class="form-group row">
-                        <label for="emailUser" class="col-sm-3 required control-label text-center">Email del Usuario</label>
-                        <div class="col-sm-9">
-                            <input class="form-control has-feedback" id="emailUser" name="emailUser" [(ngModel)]="usuario.email"
-                                   #emailUser="ngModel" placeholder="Email del Usuario">
-                        </div>
-                    </div>
+               <div class="col-lg-6">
+                   <div class="form-group row">
+                       <label for="emailUser" class="col-sm-3 required control-label text-center">Email del Usuario</label>
+                       <div class="col-sm-9">
+                           <input class="form-control has-feedback" id="emailUser" name="emailUser" [(ngModel)]="usuario.email"
+                                  #emailUser="ngModel" placeholder="Email del Usuario">
+                       </div>
+                   </div>
 
-                    <div class="form-group row">
-                        <label for="passUser" class="col-sm-3 required control-label text-center">Password del Usuario</label>
-                        <div class="col-sm-9">
-                            <input class="form-control has-feedback" id="passUser" name="passUser" [(ngModel)]="usuario.password"
-                                   #passUser="ngModel" placeholder="Password del Usuario">
-                        </div>
-                    </div>
-                </div>
+                   <div class="form-group row">
+                       <label for="passUser" class="col-sm-3 required control-label text-center">Password del Usuario</label>
+                       <div class="col-sm-9">
+                           <input class="form-control has-feedback" id="passUser" name="passUser" [(ngModel)]="usuario.password"
+                                  #passUser="ngModel" placeholder="Password del Usuario">
+                       </div>
+                   </div>
+               </div>
 
             </div>
         </div>
@@ -149,4 +146,5 @@
         <button type="button" class="btn custom-btn btn-default" (click)="onCleanClicked()">LIMPIAR</button>
         <button type="submit" class="btn custom-btn btn-primary btn-success" (click)="onSubmitClicked()">GUARDAR</button>
     </div>
+
 </div>

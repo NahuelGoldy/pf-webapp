@@ -13,7 +13,6 @@ import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
     animations: [routerTransition()]
 })
 export class DashboardComponent implements OnInit {
-    public alerts: Array<any> = [];
     public sliders: Array<any> = [];
     public nombre: string;
     parque: ParqueEstacionamiento;
@@ -34,16 +33,6 @@ export class DashboardComponent implements OnInit {
         }, {
             imagePath: 'assets/images/parking-banner3.jpg',
             label: 'Incrementa tus ganancias!'
-        });
-
-        this.alerts.push({
-            id: 1,
-            type: 'success',
-            message: `Este es un alert de éxito`
-        }, {
-            id: 2,
-            type: 'warning',
-            message: `Este es un alert de warning`
         });
 
         const id = JSON.parse(localStorage.getItem('currentParking')).idEstacionamiento;
@@ -74,11 +63,6 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {}
-
-    public closeAlert(alert: any) {
-        const index: number = this.alerts.indexOf(alert);
-        this.alerts.splice(index, 1);
-    }
 
     private procesarEgresos() {
         this.ultimosEgresosTemp.forEach(e => {
