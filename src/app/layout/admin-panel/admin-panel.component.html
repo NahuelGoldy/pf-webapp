@@ -1,3 +1,152 @@
-<p>
-  admin-panel works!
-</p>
+<div class="card mb-3 form-group">
+
+    <!--TODO: agregar algun efecto -->
+    <a class="opt-data-header" (click)="toggleShowOptional()"><div class="card-header custom-card-header-opt">Crear Parque</div></a>
+
+    <div [hidden]="!showOptional" class="card-block row">
+        <div class="card mb-3 form-group">
+            <div class="card-header">
+                <h5 class="col-sm-12 text-center" >Datos del Estacionamiento</h5>
+            </div>
+            <div class="card-block row">
+                <div class="col-lg-6">
+
+                    <div class="form-group row has-warning">
+                        <label for="id-parque" class="col-sm-3 required control-label text-center">Nombre</label>
+                        <div class="col-sm-9">
+                            <input class="form-control has-feedback" id="id-parque" name="nombre" [(ngModel)]="parque.idEstacionamiento"
+                                   #nombre="ngModel"  placeholder="ID del Parque">
+                            <span class="form-control-feedback has-warning">Solo ingrese ID para editar un parque existente</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="nombre-parque" class="col-sm-3 required control-label text-center">Nombre</label>
+                        <div class="col-sm-9">
+                            <input class="form-control has-feedback" id="nombre-parque" name="nombre" [(ngModel)]="parque.nombreEstacionamiento"
+                                   #nombre="ngModel"  placeholder="Nombre del Parque">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="direccion-parque" class="col-sm-3 required control-label text-center">Dirección</label>
+                        <div class="col-sm-9">
+                            <input class="form-control has-feedback" id="direccion-parque" name="direccion" [(ngModel)]="parque.direccionEstacionamiento"
+                                   #direccion="ngModel" placeholder="Dirección del Parque">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="telefono-parque" class="col-sm-3 required control-label text-center">Telefono</label>
+                        <div class="col-sm-9">
+                            <input class="form-control has-feedback" id="telefono-parque" name="telefono" [(ngModel)]="parque.telefono"
+                                   #telefono="ngModel" placeholder="Telefono del Parque">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group row">
+                        <label for="horarios-parque" class="col-sm-3 required control-label text-center">Horarios</label>
+
+
+                        <div class="col-sm-9">
+                            <input class="form-control has-feedback" id="horarios-parque" name="horario" [(ngModel)]="parque.horarios"
+                                   #horario="ngModel" placeholder="Horario del Parque">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="horarios-parque" class="col-sm-3 required control-label text-center">Cuadro Tarifario</label>
+                        <div class="col-sm-9">
+                            <input class="form-control has-feedback" id="cuadro-tarifario-parque" name="tarifario" [(ngModel)]="parque.cuadroTarifario"
+                                   #tarifario="ngModel" placeholder="Cuadro tarifario del Parque">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="preciohora-parque" class="col-sm-3 required control-label text-center">Precio Hora</label>
+                        <div class="col-sm-9">
+                            <input class="form-control has-feedback" id="preciohora-parque" name="preciohora" [(ngModel)]="parque.precioPorHora"
+                                   #preciohora="ngModel" placeholder="Precio hora del Parque">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label for="parque-capacidad" class="col-sm-2 control-label text-center">Capacidad</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control has-feedback" id="parque-capacidad" [(ngModel)]="parque.capacidad" name="capacidad" placeholder="75" >
+                        </div>
+
+                        <label for="parque-techado" class="col-sm-2 control-label checkbox-inline text-right">Es techado? </label>
+                        <div class="col-sm-2">
+                            <input type="checkbox" class="form-control has-feedback" id="parque-techado" [(ngModel)]="parque.esTechado" name="techado" >
+                        </div>
+
+                        <label for="parque-tarjeta" class="col-sm-2 control-label checkbox-inline text-right">Acepta tarjeta? </label>
+                        <div class="col-sm-2">
+                            <input type="checkbox" class="form-control has-feedback" id="parque-tarjeta" [(ngModel)]="parque.aceptaTarjetas" name="tarjeta" >
+                        </div>
+                    </div>
+            </div>
+        </div>
+        </div>
+        <div class="card md-3 form-group">
+            <div class="card-header">
+                <h5 class="col-sm-12 text-center" >Datos del Usuario</h5>
+            </div>
+            <div class="card-block row">
+
+                <div class="col-lg-6">
+                    <div class="form-group row">
+                        <label for="nombreUser" class="col-sm-3 required control-label text-center">Nombre del Usuario</label>
+                        <div class="col-sm-9">
+                            <input class="form-control has-feedback" id="nombreUser" name="nombreUser" [(ngModel)]="usuario.nombre"
+                                   #nombreUser="ngModel" placeholder="Nombre del Usuario">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="apellidoUser" class="col-sm-3 required control-label text-center">Apellido del Usuario</label>
+                        <div class="col-sm-9">
+                            <input class="form-control has-feedback" id="apellidoUser" name="apellidoUser" [(ngModel)]="usuario.apellido"
+                                   #apellidoUser="ngModel" placeholder="Nombre del Usuario">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="telefonoUser" class="col-sm-3 required control-label text-center">Telefono del Usuario</label>
+                        <div class="col-sm-9">
+                            <input class="form-control has-feedback" id="telefonoUser" name="telefonoUser" [(ngModel)]="usuario.nroTelefono"
+                                   #telefonoUser="ngModel" placeholder="Telefono del Usuario">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group row">
+                        <label for="emailUser" class="col-sm-3 required control-label text-center">Email del Usuario</label>
+                        <div class="col-sm-9">
+                            <input class="form-control has-feedback" id="emailUser" name="emailUser" [(ngModel)]="usuario.email"
+                                   #emailUser="ngModel" placeholder="Email del Usuario">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="passUser" class="col-sm-3 required control-label text-center">Password del Usuario</label>
+                        <div class="col-sm-9">
+                            <input class="form-control has-feedback" id="passUser" name="passUser" [(ngModel)]="usuario.password"
+                                   #passUser="ngModel" placeholder="Password del Usuario">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn custom-btn btn-default" (click)="onCleanClicked()">LIMPIAR</button>
+        <button type="submit" class="btn custom-btn btn-primary btn-success" (click)="onSubmitClicked()">GUARDAR</button>
+    </div>
+</div>
