@@ -7,6 +7,7 @@
         "start": "ng serve",
         "build": "ng build",
         "gitbuild": "ng build --prod --base /start-angular/SB-Admin-BS4-Angular-4/master/dist/",
+        "deploy": "ng build --prod --base-href https://nahuelgoldy.github.io/pf-webapp/ && angular-cli-ghpages --branch gh-pages",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e"
