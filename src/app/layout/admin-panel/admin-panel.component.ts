@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
 import {User} from '../../shared/domain/usuario';
+import {ApiService} from '../../shared/services/api.service';
 import {routerTransition} from '../../router.animations';
 
 @Component({
@@ -13,7 +14,7 @@ export class AdminPanelComponent implements OnInit {
     parque: ParqueEstacionamiento = new ParqueEstacionamiento();
     showOptional = false;
     usuario: User = new User();
-  constructor() {
+  constructor(public apiService: ApiService) {
   }
 
   ngOnInit() {
@@ -25,4 +26,11 @@ export class AdminPanelComponent implements OnInit {
         this.parque = new ParqueEstacionamiento();
     }
     onSubmitClicked() {    }
+    buscarPorId() {
+        console.log('###########################');
+        this.apiService.get('parques/' + this.parque.idEstacionamiento).subscribe( json => {
+            console.log(json);
+            this.parque = json;
+        });
+    }
 }
