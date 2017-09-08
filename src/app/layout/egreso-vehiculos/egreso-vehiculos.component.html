@@ -10,23 +10,26 @@
                 <strong>Egreso Fallido!</strong> El egreso del vehiculo patente {{patente}} fallo.
             </ngb-alert>
 
-            <div class="form-group row">
-                <label for="ingreso-patente" class="col-sm-3 required control-label text-right"><h4>Patente </h4></label>
-                <div class="col-sm-6"
-                     [ngClass]="{'has-danger': !patente.valid && (!patente.pristine || patente.touched || submitted),
-                'has-success': patente.valid}">
-                    <input type="text" class="form-control has-feedback" id="ingreso-patente" name="patente" [(ngModel)]="nroPatente" #patente="ngModel"
-                           (keyup)="onPatenteChange()" pattern="([A-Z]{3}|[a-z]{3})[0-9]{3}|[A-Z]{2}[0-9]{3}[A-Z]{2}" required [maxLength]="191" placeholder="Ej: AAA123">
-                    <span *ngIf="patente.valid" class="form-control-feedback"></span>
-                    <span *ngIf="patente.errors !== null && (!patente.pristine || patente.touched || submitted)" class="form-control-feedback"></span>
-                    <div *ngIf="!patente.valid && (!patente.pristine || patente.touched || submitted)" class="has-danger form-control-feedback"> *Ingrese la patente</div>
+            <div class="card mb-3 form-group">
+                <div class="card-header custom-card-header-main">Datos obligatorios</div>
+                <div class="card-block row">
+                    <label for="ingreso-patente" class="col-sm-3 required control-label text-right"><h4>Patente </h4></label>
+                    <div class="col-sm-6"
+                         [ngClass]="{'has-danger': !patente.valid && (!patente.pristine || patente.touched || submitted),
+                    'has-success': patente.valid}">
+                        <input type="text" class="form-control has-feedback" id="ingreso-patente" name="patente" [(ngModel)]="nroPatente" #patente="ngModel"
+                               (keyup)="onPatenteChange()" pattern="([A-Z]{3}|[a-z]{3})[0-9]{3}|[A-Z]{2}[0-9]{3}[A-Z]{2}" required [maxLength]="191" placeholder="Ej: AAA123">
+                        <span *ngIf="patente.valid" class="form-control-feedback"></span>
+                        <span *ngIf="patente.errors !== null && (!patente.pristine || patente.touched || submitted)" class="form-control-feedback"></span>
+                        <div *ngIf="!patente.valid && (!patente.pristine || patente.touched || submitted)" class="has-danger form-control-feedback"> *Ingrese la patente</div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="modal-footer custom-modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="submit" (click)="onSubmitClicked(f)" class="btn btn-primary">Aceptar</button>
+            <button type="button" class="btn btn-default custom-btn" data-dismiss="modal">Cancelar</button>
+            <button type="submit" (click)="onSubmitClicked(f)" class="btn btn-primary custom-btn">Aceptar</button>
         </div>
 
     </form>

@@ -4,7 +4,6 @@ import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
 import {Subject} from 'rxjs/Subject';
 import {DataTableDirective} from 'angular-datatables';
 import {Egreso} from '../../shared/domain/egreso';
-import {isNullOrUndefined} from 'util';
 import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
 import {routerTransition} from '../../router.animations';
 
