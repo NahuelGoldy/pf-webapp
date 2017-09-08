@@ -14,7 +14,8 @@ export class AdminPanelComponent implements OnInit {
     parque: ParqueEstacionamiento = new ParqueEstacionamiento();
     showOptional = false;
     usuario: User = new User();
-  constructor(public apiService: ApiService) {  }
+  constructor(public apiService: ApiService) {
+  }
 
   ngOnInit() {
   }
@@ -26,9 +27,10 @@ export class AdminPanelComponent implements OnInit {
     }
     onSubmitClicked() {    }
     buscarPorId() {
+        console.log('###########################');
         this.apiService.get('parques/' + this.parque.idEstacionamiento).subscribe( json => {
-            json.reverse();
-            this.parque = json.body.parque;
+            console.log(json);
+            this.parque = json;
         });
     }
 }

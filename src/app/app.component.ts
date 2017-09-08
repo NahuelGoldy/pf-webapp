@@ -16,6 +16,6 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.router.navigate(['/admin-panel']);
+        this.router.navigate(['/login']);
     }
 }

@@ -13,7 +13,7 @@
                         <label for="id-parque" class="col-sm-3 required control-label text-center">Nombre</label>
                         <div class="col-sm-9">
                             <input class="form-control has-feedback" id="id-parque" name="nombre" (ngModel)="parque.idEstacionamiento"
-                                   #nombre="ngModel"  placeholder="ID del Parque" (keypress)="buscarPorId()">
+                                   #nombre="ngModel"  placeholder="ID del Parque" (keydown)="buscarPorId()">
                             <span class="form-control-feedback has-warning">Solo ingrese ID para editar un parque existente</span>
                         </div>
                     </div>
