@@ -32,6 +32,7 @@ export class EgresoVehiculosComponent implements OnInit {
 
     onPatenteChange() {
       if (this.patenteREGEX.test(this.nroPatente)) {
+          this.nroPatente = this.nroPatente.toUpperCase();
           this.apiService.get('ingreso/' + this.parque.idEstacionamiento + '/vehiculo/' + this.nroPatente)
               .subscribe(json => {
                   this.ingreso = json;
@@ -42,6 +43,7 @@ export class EgresoVehiculosComponent implements OnInit {
     onSubmitClicked(f) {
         this.closeAlert = false;
         this.submitted = true;
+        this.nroPatente = this.nroPatente.toUpperCase();
 
         try {
             this.apiService.put('ingreso/' + this.parque.idEstacionamiento + '/egresoVehiculo/' + this.nroPatente, null)
