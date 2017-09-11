@@ -1,4 +1,4 @@
-import { SbAdminCliUpdatePage } from './app.po';
+import { SbAdminCliUpdatePage } from '../page-objects/app.po';
 
 describe('sb-admin-cli-update App', () => {
   let page: SbAdminCliUpdatePage;
