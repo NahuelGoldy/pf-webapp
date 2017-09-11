@@ -12,5 +12,5 @@ export class ParqueEstacionamiento {
     esTechado: boolean;
     aceptaTarjetas: boolean;
     eliminado: boolean;
-    idDueño: number;
+    duenio_id: number;
 }
