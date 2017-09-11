@@ -13,6 +13,8 @@ import {User} from '../domain/usuario';
 export class ApiService {
     // server URL
     private baseURL = 'http://dondeestacionop.cloudapp.net:8080/';
+    // URL para deploy a GITHUB pages
+    // private baseURL = 'https://cors-anywhere.herokuapp.com/http://dondeestacionop.cloudapp.net:8080/';
     private user: User;
     private timer: Observable<number>;
     private timerSubscription: Subscription;
