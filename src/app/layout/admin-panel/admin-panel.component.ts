@@ -29,7 +29,8 @@ export class AdminPanelComponent implements OnInit {
     onSubmitClicked() {
     }
 
-    buscarPorId() {
+    buscarPorId(event: Event) {
+      this.parque.idEstacionamiento = (<HTMLInputElement> event.target).valueAsNumber;
         this.apiService.get('parques/' + this.parque.idEstacionamiento).subscribe( json => {
             console.log(json);
             this.parque = json;
