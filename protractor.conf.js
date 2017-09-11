@@ -21,7 +21,7 @@ exports.config = {
   },
     beforeLaunch: function() {
         require('ts-node').register({
-            project: 'test/e2e/tsconfig.e2e.json'
+            project: 'e2e/tsconfig.e2e.json'
         });
     },
     onPrepare() {
