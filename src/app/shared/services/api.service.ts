@@ -36,10 +36,10 @@ export class ApiService {
     constructor(private http: Http,
                 private router: Router,
                 private alertService: AlertService) {
-        // this.user = JSON.parse(localStorage.getItem('currentUser'));
-        // if (!isNullOrUndefined(this.user)) {
-        //     this.startRefresh(true);
-        // }
+        this.user = JSON.parse(localStorage.getItem('currentUser'));
+        if (!isNullOrUndefined(this.user)) {
+            this.startRefresh(true);
+        }
     }
 
     private getJson(response: Response) {
