@@ -28,6 +28,21 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 Before running the tests make sure you are serving the app via `ng serve`.
 
+### How to setup Protractor
+
+```bash
+$ npm install -g protractor
+$ webdriver-manager update
+$ webdriver-manager start
+```
+
+En el IDE:
+Run -> Edit config
+⦁	+ Protractor -> configuration file = ...\WebstormProjects\pf-webapp\protractor.conf.js
+⦁	+ Node.js -> 
+    - JavaScript file = ~\AppData\Roaming\npm\node_modules\protractor\built\cli.js
+    - Application parameters = protractor.conf.js
+
 ### How to deploy to Github Pages
 
 ```bash
