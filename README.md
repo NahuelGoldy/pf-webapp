@@ -37,11 +37,14 @@ $ webdriver-manager start
 ```
 
 En el IDE:
+
 Run -> Edit config
+```bash
 ⦁	+ Protractor -> configuration file = ...\WebstormProjects\pf-webapp\protractor.conf.js
 ⦁	+ Node.js -> 
     - JavaScript file = ~\AppData\Roaming\npm\node_modules\protractor\built\cli.js
     - Application parameters = protractor.conf.js
+```
 
 ### How to deploy to Github Pages
 
