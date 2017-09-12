@@ -15,7 +15,7 @@ export class ChartComponent implements OnInit {
     // lineChart
     public lineChartData: Array<any> = [
         // TODO (harcodeado para estetica), refactorizar
-        { data: [87, 61, 40, 55, 23, 0, 5, 5, 64], label: 'Ocupación' }
+        { data: [87, 61, 40, 55, 23, 0, 5, 5, 64], label: '% ocupación' }
     ];
     public chartLabels: Array<any> = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'];
     public lineChartLabels: Array<any> = [];
