@@ -11,14 +11,14 @@ $topnav-background-color: #222;
     bottom: 0;
     overflow: auto;
     //background-color: $topnav-background-color;
-    background-image: url('/assets/images/cover1.jpg');
+    background-image: url('/assets/images/cover2.jpg');
     background-size: cover;
     text-align: center;
     color: #fff;
     padding: 3em;
 
     .login-page-content {
-        background-color: rgba(0,0,0,0.7);
+        background-color: rgba(0,0,0,0.5);
         padding: 2%;
         border-radius: 3%;
     }
