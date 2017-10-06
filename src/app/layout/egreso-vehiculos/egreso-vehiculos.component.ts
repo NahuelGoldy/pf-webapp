@@ -32,6 +32,7 @@ export class EgresoVehiculosComponent implements OnInit {
 
     onPatenteChange() {
       if (this.patenteREGEX.test(this.nroPatente)) {
+          this.nroPatente = this.nroPatente.toUpperCase();
           this.apiService.get('ingreso/' + this.parque.idEstacionamiento + '/vehiculo/' + this.nroPatente)
               .subscribe(json => {
                   this.ingreso = json;
@@ -42,6 +43,7 @@ export class EgresoVehiculosComponent implements OnInit {
     onSubmitClicked(f) {
         this.closeAlert = false;
         this.submitted = true;
+        this.nroPatente = this.nroPatente.toUpperCase();
 
         try {
             this.apiService.put('ingreso/' + this.parque.idEstacionamiento + '/egresoVehiculo/' + this.nroPatente, null)
@@ -76,7 +78,7 @@ export class EgresoVehiculosComponent implements OnInit {
         seconds %= 60;
         const hours = minutes / 60;
         minutes %= 60;
-        return Math.round(hours) + ':' + ('0' + Math.round(minutes)).slice(-2) + ':' + ('0' + Math.round(seconds)).slice(-2);
+        return Math.floor(hours) + ':' + ('0' + Math.floor(minutes)).slice(-2) + ':' + ('0' + Math.floor(seconds)).slice(-2);
     }
 
     private calcularCosto(cantHoras): number {

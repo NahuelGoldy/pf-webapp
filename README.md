@@ -1,27 +1,4 @@
-# SB Admin rewritten in Angular4 and Bootstrap 4
-
-Simple Dashboard Admin App built using Angular 4 and Bootstrap 4
-
-This project is a port of the famous Free Admin Bootstrap Theme [SB Admin v4.0](http://startbootstrap.com/template-overviews/sb-admin-2/) to Angular4 Theme.
-
-Powered by [StartAngular](http://startangular.com/) & [StrapUI](http://strapui.com/)
-
-## [Demo](http://rawgit.com/start-angular/SB-Admin-BS4-Angular-4/master/dist/)
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
-
-### Introduction
-Provides fast, reliable and extensible starter for the development of Angular projects.
-
-`sb-admin-bs4-angular4` provides the following features:
-- Developed using boostrap-v4.0.0-alpha.6
-- angular-v4.2.4
-- angular/cli-v1.1.3
-- Following the best practices.
-- Ahead-of-Time compilation support.
-- Official Angular i18n support.
-- Production and development builds.
-- Tree-Shaking production builds.
+# Dónde estaciono? - WEB
 
 ### How to start
 **Note** that this seed project requires  **node >=v6.9.0 and npm >=3**.
@@ -29,7 +6,7 @@ Provides fast, reliable and extensible starter for the development of Angular pr
 In order to start the project use:
 ```bash
 $ git clone https://github.com/NahuelGoldy/pf-webapp.git
-$ cd SB-Admin-BS4-Angular-4
+$ cd pf-webapp
 # install the project's dependencies
 $ npm install
 # install CLI dependencies
@@ -50,6 +27,31 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 Before running the tests make sure you are serving the app via `ng serve`.
+
+### How to setup Protractor
+
+```bash
+$ npm install -g protractor
+$ webdriver-manager update
+$ webdriver-manager start
+```
+
+En el IDE:
+
+Run -> Edit config
+```bash
+⦁	+ Protractor -> configuration file = ...\WebstormProjects\pf-webapp\protractor.conf.js
+⦁	+ Node.js -> 
+    - JavaScript file = ~\AppData\Roaming\npm\node_modules\protractor\built\cli.js
+    - Application parameters = protractor.conf.js
+```
+
+### How to deploy to Github Pages
+
+```bash
+$ ng build --prod --base-href https://nahuelgoldy.github.io/pf-webapp/ --aot=false
+$ ngh
+```
 
 ### Further help
 

@@ -1,8 +1,11 @@
 <div class="login-page" [@routerTransition]>
     <div class="row">
         <div class="col-md-4 push-md-4 login-page-content">
-            <img src="assets/images/logo.png" width="150px" class="user-avatar" />
-            <h1>Donde estaciono? - WEB</h1>
+            <br>
+            <img src="assets/images/logo.png" height="40px" />
+            <h1 hidden>¿Donde estaciono?</h1>
+            <br>
+            <br>
             <form role="form" name="login-form" #f="ngForm" novalidate>
                 <div class="form-content">
                     <div class="form-group" [ngClass]="{'has-danger': f.submitted && !email.valid}">

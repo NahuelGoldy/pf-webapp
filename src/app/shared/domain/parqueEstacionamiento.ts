@@ -12,4 +12,5 @@ export class ParqueEstacionamiento {
     esTechado: boolean;
     aceptaTarjetas: boolean;
     eliminado: boolean;
+    duenio_id: number;
 }

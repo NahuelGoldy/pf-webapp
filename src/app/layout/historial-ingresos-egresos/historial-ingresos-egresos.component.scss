@@ -82,3 +82,8 @@ table.dataTable thead > tr > td.sorting {
 table tr td {
     font-size: 0.9em;
 }
+
+#mytable {
+    overflow-x: scroll;
+    display: block;
+}

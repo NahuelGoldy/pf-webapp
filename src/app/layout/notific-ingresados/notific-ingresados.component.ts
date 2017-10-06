@@ -50,6 +50,7 @@ export class NotificIngresadosComponent implements OnInit, AfterViewChecked {
           pagingType: 'full_numbers',
           autoWidth: true,
           paging : false,
+          sScrollX: '100%',
           // aaSorting: [0, 'ASC'],
           language: {
               'processing':     'Procesando...',

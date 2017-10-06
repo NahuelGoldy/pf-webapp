@@ -1,11 +1,11 @@
 import { browser, by, element } from 'protractor';
 
-export class SbAdminCliUpdatePage {
+export class LandingPage {
   navigateTo() {
     return browser.get('/');
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.xpath('/html/body/app-root/app-login/div/div/div/h1')).getText();
   }
 }

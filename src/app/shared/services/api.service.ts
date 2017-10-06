@@ -13,6 +13,8 @@ import {User} from '../domain/usuario';
 export class ApiService {
     // server URL
     private baseURL = 'http://dondeestacionop.cloudapp.net:8080/';
+    // URL para deploy a GITHUB pages
+    // private baseURL = 'https://cors-anywhere.herokuapp.com/http://dondeestacionop.cloudapp.net:8080/';
     private user: User;
     private timer: Observable<number>;
     private timerSubscription: Subscription;
@@ -34,10 +36,10 @@ export class ApiService {
     constructor(private http: Http,
                 private router: Router,
                 private alertService: AlertService) {
-        // this.user = JSON.parse(localStorage.getItem('currentUser'));
-        // if (!isNullOrUndefined(this.user)) {
-        //     this.startRefresh(true);
-        // }
+        this.user = JSON.parse(localStorage.getItem('currentUser'));
+        if (!isNullOrUndefined(this.user)) {
+            this.startRefresh(true);
+        }
     }
 
     private getJson(response: Response) {

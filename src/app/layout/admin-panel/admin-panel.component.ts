@@ -24,10 +24,12 @@ export class AdminPanelComponent implements OnInit {
     }
     onCleanClicked() {
         this.parque = new ParqueEstacionamiento();
+        this.usuario = new User();
     }
-    onSubmitClicked() {    }
+    onSubmitClicked() {
+    }
+
     buscarPorId() {
-        console.log('###########################');
         this.apiService.get('parques/' + this.parque.idEstacionamiento).subscribe( json => {
             console.log(json);
             this.parque = json;
