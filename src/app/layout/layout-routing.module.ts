@@ -21,6 +21,8 @@ const routes: Routes = [
                 loadChildren: './historial-ingresos-egresos/historial-ingresos-egresos.module#HistorialIngresosEgresosModule' },
             { path: 'settings', loadChildren: './settings/settings.module#SettingsModule' },
             { path: 'admin-panel', loadChildren: './admin-panel/admin-panel.module#AdminPanelModule' },
+            { path: 'reportes/reporte-anual', loadChildren: './reporte-1/reporte-1.module#Reporte1Module' },
+            { path: 'reportes/reporte-semanal', loadChildren: './reporte-2/reporte-2.module#Reporte2Module' },
         ]
     }
 ];

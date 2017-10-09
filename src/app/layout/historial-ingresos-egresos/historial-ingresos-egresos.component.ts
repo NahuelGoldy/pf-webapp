@@ -52,6 +52,7 @@ export class HistorialIngresosEgresosComponent implements OnInit, AfterViewCheck
           autoWidth: true,
           paging : false,
           aaSorting: [0, 'DESC'],
+          sScrollX: '100%',
           language: {
               'processing':     'Procesando...',
               'lengthMenu':     'Mostrar _MENU_ registros',

@@ -105,13 +105,13 @@
             <li class="nested" [class.expand]="showMenu === 'estadisticas'">
                 <ul class="submenu">
                     <li>
-                        <a href="javascript:void(0)">
-                            <i class="fa fa-pie-chart"></i>&nbsp;{{ 'Reporte 1' | translate }}
+                        <a [routerLink]="['/reportes/reporte-anual']" [routerLinkActive]="['router-link-active']">
+                            <i class="fa fa-pie-chart"></i>&nbsp;{{ 'Reporte Anual' | translate }}
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
-                            <i class="fa fa-line-chart"></i>&nbsp;{{ 'Reporte 2' | translate }}
+                        <a [routerLink]="['/reportes/reporte-semanal']" [routerLinkActive]="['router-link-active']">
+                            <i class="fa fa-line-chart"></i>&nbsp;{{ 'Reporte Semanal' | translate }}
                         </a>
                     </li>
                 </ul>
