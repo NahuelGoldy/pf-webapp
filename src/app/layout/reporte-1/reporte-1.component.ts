@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiService} from "../../shared/services/api.service";
-import {IngresoVehiculo} from "../../shared/domain/ingresoVehiculo";
-import {ParametroReporte} from "../../shared/domain/parametroReporte";
-import {ParqueEstacionamiento} from "../../shared/domain/parqueEstacionamiento";
+import {ApiService} from '../../shared/services/api.service';
+import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
+import {ParametroReporte} from '../../shared/domain/parametroReporte';
+import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
 
 @Component({
   selector: 'app-reporte-1',
@@ -12,7 +12,13 @@ import {ParqueEstacionamiento} from "../../shared/domain/parqueEstacionamiento";
 export class Reporte1Component implements OnInit {
     modelDesde: any;
     modelHasta: any;
-    modelIntervalo: string;
+    modelIntervalo: string = 'Horas';
+    disableAnos = true;
+    disableMes = false;
+    disableHoras = false;
+    disableDias = false;
+    disableSemanas = false;
+
     ingresos: IngresoVehiculo[];
 
     // lineChart
@@ -41,6 +47,7 @@ export class Reporte1Component implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+
   }
 
     chartHovered(event: Event) {
@@ -49,6 +56,16 @@ export class Reporte1Component implements OnInit {
 
     chartClicked(event: Event ) {
 
+    }
+    onChanceDesde(fecha) {
+        console.log(fecha);
+    }
+    onChanceHasta(fecha) {
+        console.log(fecha);
+    }
+
+    onSelectClick(value) {
+      this.modelIntervalo = value;
     }
 
     onGenerateClick() {
@@ -66,7 +83,7 @@ export class Reporte1Component implements OnInit {
       parametro.fechaInicial = fechaDesde;
       parque =  JSON.parse(localStorage.getItem('currentParking'));
       parametro.idEstacionamiento = parque.idEstacionamiento;
-      console.log(localStorage.getItem('currentParking'));
+
       this.apiService.post('ingreso/ingresoVehiculo/allByFechas', parametro).subscribe(
           (data) => {
               this.ingresos = data;

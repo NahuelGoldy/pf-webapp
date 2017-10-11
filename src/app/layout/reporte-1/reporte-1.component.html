@@ -11,8 +11,10 @@
         <form class="form-inline mb-3">
             <div class="form-group">
                 <div class="input-group">
-                    <input class="form-control" placeholder="dd-mm-yyyy"
-                           name="desde" [(ngModel)]="modelDesde" ngbDatepicker #desde="ngbDatepicker">
+                    <input class="form-control" placeholder="Seleccione una fecha"
+                           name="desde" [(ngModel)]="modelDesde" ngbDatepicker
+                           (change)="onChanceDesde($event.target.value)"
+                           #desde="ngbDatepicker">
                     <div class="input-group-addon" (click)="desde.toggle()" >
                         <span class="fa fa-calendar"></span>
                     </div>
@@ -25,8 +27,9 @@
         <form class="form-inline mb-3">
             <div class="form-group">
                 <div class="input-group">
-                    <input class="form-control" placeholder="dd-mm-yyyy"
-                           name="hasta" [(ngModel)]="modelHasta" ngbDatepicker #hasta="ngbDatepicker">
+                    <input class="form-control" placeholder="Seleccione una fecha"
+                           name="hasta" [(ngModel)]="modelHasta" ngbDatepicker
+                           (change)="onChanceHasta($event.target.value)" #hasta="ngbDatepicker">
                     <div class="input-group-addon" (click)="hasta.toggle()">
                         <span class="fa fa-calendar"></span>
                     </div>
@@ -37,11 +40,12 @@
     <div class="col-md-2">
         <label class="control-label">Intervalo</label>
         <div class="form-group">
-            <select [(ngModel)]="modelIntervalo" class="form-control alineado">
-                <option class="active">Horas</option>
-                <option>Dias</option>
-                <option>Meses</option>
-                <option>Años</option>
+            <select [(ngModel)]="modelIntervalo" class="form-control" (change)="onSelectClick($event.target.value)">
+                <option [disabled]="disableHoras" class="active">Horas</option>
+                <option [disabled]="disableDias" >Dias</option>
+                <option [disabled]="disableSemanas" >Semanas</option>
+                <option [disabled]="disableMes" >Meses</option>
+                <option [disabled]="disableAnos" >Años</option>
             </select>
         </div>
     </div>
