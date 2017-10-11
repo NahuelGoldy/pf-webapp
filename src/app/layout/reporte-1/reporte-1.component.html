@@ -25,7 +25,7 @@
     <div class="col-md-2">
         <label class="control-label">Intervalo</label>
         <div class="form-group">
-            <select [(ngModel)]="modelIntervalo" class="form-control" (change)="onSelectClick($event.target.value)">
+            <select [(ngModel)]="modelIntervalo" class="form-control" (click)="onSelectClick($event.target.value)">
                 <option [disabled]="disableHoras" class="active">Horas</option>
                 <option [disabled]="disableDias" >Dias</option>
                 <option [disabled]="disableSemanas" >Semanas</option>

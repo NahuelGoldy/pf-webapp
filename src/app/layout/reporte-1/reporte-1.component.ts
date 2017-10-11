@@ -3,7 +3,8 @@ import {ApiService} from '../../shared/services/api.service';
 import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
 import {ParametroReporte} from '../../shared/domain/parametroReporte';
 import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
-import {IMyDpOptions} from "mydatepicker";
+import {IMyDpOptions} from 'mydatepicker';
+import {DateserviceService} from "../../shared/services/dateservice.service";
 
 @Component({
   selector: 'app-reporte-1',
@@ -13,12 +14,12 @@ import {IMyDpOptions} from "mydatepicker";
 export class Reporte1Component implements OnInit {
     modelDesde: any;
     modelHasta: any;
-    modelIntervalo: string = 'Horas';
+    modelIntervalo = 'Horas';
     disableAnos = true;
-    disableMes = false;
-    disableHoras = false;
-    disableDias = false;
-    disableSemanas = false;
+    disableMes = true;
+    disableHoras = true;
+    disableDias = true;
+    disableSemanas = true;
 
     ingresos: IngresoVehiculo[];
     myDatePickerOptions: IMyDpOptions;
@@ -47,7 +48,7 @@ export class Reporte1Component implements OnInit {
     public lineChartType = 'line';
     public today = new Date();
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private dateService: DateserviceService) { }
 
   ngOnInit() {
       this.myDatePickerOptions = {
@@ -81,16 +82,42 @@ export class Reporte1Component implements OnInit {
     }
 
     chartClicked(event: Event ) {
-
     }
     onChanceDesde() {
 
     }
     onChanceHasta() {
+
     }
 
     onSelectClick(value) {
-      this.modelIntervalo = value;
+        const difDays = this.dateService.dateDif(this.modelDesde, this.modelHasta);
+        console.log(difDays);
+        if (difDays < 32 && difDays > 7) {
+            this.disableHoras = true;
+            this.disableDias = false;
+            this.modelIntervalo = 'Dias';
+            this.disableSemanas = true;
+            this.disableMes = true;
+        } else if (difDays > 32 && difDays < 128) {
+            this.disableHoras = true;
+            this.disableDias = true;
+            this.disableSemanas = false;
+            this.modelIntervalo = 'Semanas';
+            this.disableMes = false;
+        } else if (difDays > 128) {
+            this.disableMes = false;
+            this.modelIntervalo = 'Mes';
+            this.disableHoras = true;
+            this.disableDias = true;
+            this.disableSemanas = true;
+        } else {
+            this.disableHoras = false;
+            this.modelIntervalo = 'Horas';
+            this.disableDias = true;
+            this.disableSemanas = true;
+            this.disableMes = true;
+        }
     }
 
     onGenerateClick() {
