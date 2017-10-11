@@ -6,35 +6,20 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <label class="control-label">Desde</label>
         <form class="form-inline mb-3">
-            <div class="form-group">
-                <div class="input-group">
-                    <input class="form-control" placeholder="Seleccione una fecha"
-                           name="desde" [(ngModel)]="modelDesde" ngbDatepicker
-                           (change)="onChanceDesde($event.target.value)"
-                           #desde="ngbDatepicker">
-                    <div class="input-group-addon" (click)="desde.toggle()" >
-                        <span class="fa fa-calendar"></span>
-                    </div>
-                </div>
-            </div>
+            <my-date-picker name="mydateDesde" [options]="myDatePickerOptions"
+                            (dateChanged) ="onChanceDesde()"
+                            [(ngModel)]="modelDesde" required></my-date-picker>
         </form>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <label class="control-label">Hasta</label>
         <form class="form-inline mb-3">
-            <div class="form-group">
-                <div class="input-group">
-                    <input class="form-control" placeholder="Seleccione una fecha"
-                           name="hasta" [(ngModel)]="modelHasta" ngbDatepicker
-                           (change)="onChanceHasta($event.target.value)" #hasta="ngbDatepicker">
-                    <div class="input-group-addon" (click)="hasta.toggle()">
-                        <span class="fa fa-calendar"></span>
-                    </div>
-                </div>
-            </div>
+            <my-date-picker name="mydateHasta" [options]="myDatePickerOptions"
+                            (dateChanged) ="onChanceHasta()"
+                            [(ngModel)]="modelHasta" required></my-date-picker>
         </form>
     </div>
     <div class="col-md-2">
@@ -49,8 +34,8 @@
             </select>
         </div>
     </div>
-    <div class="col-md-12">
-        <button (click)="onGenerateClick()" class="btn btn-success" style="vertical-align: bottom; float: right">Generar Grafico</button>
+    <div class="col-md-2">
+        <button (click)="onGenerateClick()" class="btn btn-success" >Generar Grafico</button>
     </div>
     <br>
     <br>

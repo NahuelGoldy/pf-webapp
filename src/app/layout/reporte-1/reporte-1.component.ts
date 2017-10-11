@@ -3,6 +3,7 @@ import {ApiService} from '../../shared/services/api.service';
 import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
 import {ParametroReporte} from '../../shared/domain/parametroReporte';
 import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
+import {IMyDpOptions} from "mydatepicker";
 
 @Component({
   selector: 'app-reporte-1',
@@ -20,6 +21,7 @@ export class Reporte1Component implements OnInit {
     disableSemanas = false;
 
     ingresos: IngresoVehiculo[];
+    myDatePickerOptions: IMyDpOptions;
 
     // lineChart
     public lineChartData: Array<any> = [
@@ -43,10 +45,34 @@ export class Reporte1Component implements OnInit {
     ];
     public lineChartLegend = true;
     public lineChartType = 'line';
+    public today = new Date();
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+      this.myDatePickerOptions = {
+          // other options...
+          dateFormat: 'dd/mm/yyyy',
+          dayLabels: {su: 'Dom', mo: 'Lun', tu: 'Mar', we: 'Mié', th: 'Jue', fr: 'Vie', sa: 'Sáb'},
+          monthLabels: {1: 'Ene', 2: 'Feb', 3: 'Mar', 4: 'Abr', 5: 'May', 6: 'Jun',
+              7: 'Jul', 8: 'Ago', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dic'},
+          todayBtnTxt: 'Hoy',
+          showClearDateBtn: false,
+          editableDateField: false,
+          openSelectorOnInputClick: true,
+          alignSelectorRight: true,
+      };
+
+      const options = JSON.parse(JSON.stringify(this.myDatePickerOptions));
+      const fecha = new Date(this.today.getTime() + 86400000);
+      console.log(fecha);
+      options.disableSince = {
+          year: fecha.getFullYear(),
+          month: (fecha.getMonth() + 1),
+          day: fecha.getDate()
+      };
+      console.log(options);
+      this.myDatePickerOptions = options;
 
   }
 
@@ -57,11 +83,10 @@ export class Reporte1Component implements OnInit {
     chartClicked(event: Event ) {
 
     }
-    onChanceDesde(fecha) {
-        console.log(fecha);
+    onChanceDesde() {
+
     }
-    onChanceHasta(fecha) {
-        console.log(fecha);
+    onChanceHasta() {
     }
 
     onSelectClick(value) {
