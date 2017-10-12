@@ -4,7 +4,7 @@ import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
 import {ParametroReporte} from '../../shared/domain/parametroReporte';
 import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
 import {IMyDpOptions} from 'mydatepicker';
-import {DateserviceService} from "../../shared/services/dateservice.service";
+import {DateserviceService} from '../../shared/services/dateservice.service';
 
 @Component({
   selector: 'app-reporte-1',
@@ -14,7 +14,7 @@ import {DateserviceService} from "../../shared/services/dateservice.service";
 export class Reporte1Component implements OnInit {
     modelDesde: any;
     modelHasta: any;
-    modelIntervalo = 'Horas';
+    modelIntervalo = '';
     disableAnos = true;
     disableMes = true;
     disableHoras = true;
@@ -47,6 +47,7 @@ export class Reporte1Component implements OnInit {
     public lineChartLegend = true;
     public lineChartType = 'line';
     public today = new Date();
+    public showAlert = false;
 
   constructor(private apiService: ApiService, private dateService: DateserviceService) { }
 
@@ -91,8 +92,40 @@ export class Reporte1Component implements OnInit {
     }
 
     onSelectClick(value) {
-        const difDays = this.dateService.dateDif(this.modelDesde, this.modelHasta);
-        console.log(difDays);
+      if (!this.modelDesde && !this.modelHasta){
+          this.showAlert = true;
+          return;
+      } else {
+          const difDays = this.dateService.dateDif(this.modelDesde, this.modelHasta);
+          this.setSelect(difDays)
+      }
+    }
+
+    onGenerateClick() {
+      const fechaDesde =
+          ('0' + this.modelDesde.day).slice(-2) + '/' +
+          ('0' + this.modelDesde.month).slice(-2) + '/' +
+          this.modelDesde.year;
+      const fechaHasta =
+            ('0' + this.modelHasta.day).slice(-2) + '/' +
+            ('0' + this.modelHasta.month).slice(-2) + '/' +
+            this.modelHasta.year;
+      const parametro = new ParametroReporte();
+      let parque = new ParqueEstacionamiento;
+      parametro.fechaFinal = fechaHasta;
+      parametro.fechaInicial = fechaDesde;
+      parque =  JSON.parse(localStorage.getItem('currentParking'));
+      parametro.idEstacionamiento = parque.idEstacionamiento;
+
+      this.apiService.post('ingreso/ingresoVehiculo/allByFechas', parametro).subscribe(
+          (data) => {
+              this.ingresos = data;
+              this.generateChar();
+          }
+      );
+    }
+
+    private setSelect(difDays: number) {
         if (difDays < 32 && difDays > 7) {
             this.disableHoras = true;
             this.disableDias = false;
@@ -120,28 +153,7 @@ export class Reporte1Component implements OnInit {
         }
     }
 
-    onGenerateClick() {
-      const fechaDesde =
-          ('0' + this.modelDesde.day).slice(-2) + '/' +
-          ('0' + this.modelDesde.month).slice(-2) + '/' +
-          this.modelDesde.year;
-      const fechaHasta =
-            ('0' + this.modelHasta.day).slice(-2) + '/' +
-            ('0' + this.modelHasta.month).slice(-2) + '/' +
-            this.modelHasta.year;
-      const parametro = new ParametroReporte();
-      let parque = new ParqueEstacionamiento;
-      parametro.fechaFinal = fechaHasta;
-      parametro.fechaInicial = fechaDesde;
-      parque =  JSON.parse(localStorage.getItem('currentParking'));
-      parametro.idEstacionamiento = parque.idEstacionamiento;
-
-      this.apiService.post('ingreso/ingresoVehiculo/allByFechas', parametro).subscribe(
-          (data) => {
-              this.ingresos = data;
-          }
-      );
-
+    private generateChar() {
 
     }
 }

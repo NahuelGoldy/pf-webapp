@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <h2>Grafico estadistico</h2>
+        <h2>Grafico estadistico de Ingresos</h2>
         <hr>
         <br>
     </div>
@@ -35,11 +35,14 @@
         </div>
     </div>
     <div class="col-md-2">
-        <button (click)="onGenerateClick()" class="btn btn-success" >Generar Grafico</button>
+        <button (click)="onGenerateClick()" class="btn btn-success alineado" >Generar Grafico</button>
     </div>
     <br>
     <br>
 </div>
+<ngb-alert class="alert-warning" (close)="showAlert = false" *ngIf="showAlert" >
+    <strong>Datos incompletos.</strong> Por favor seleccione un rango de fechas.
+</ngb-alert>
 <div class="row">
     <div class="col col-md-12">
         <div class="card mb-3">
