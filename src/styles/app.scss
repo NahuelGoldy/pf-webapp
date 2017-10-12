@@ -4,3 +4,24 @@
 @import "utils";
 @import "rtl";
 @import "responsive";
+
+
+@media screen and (min-width : 320px) {}
+@media screen and (min-width: 770px) {
+    .img-responsive {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    }
+}
+
+@media creen and (min-width: 1024px) {}
+@media screen and (max-width: 440px) {
+    .img-responsive {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+@media screen and (max-width: 680px) {}
+@media screen and (max-width: 1024px) {}
