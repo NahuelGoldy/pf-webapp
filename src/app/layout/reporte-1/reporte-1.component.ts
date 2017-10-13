@@ -22,7 +22,8 @@ export class Reporte1Component implements OnInit {
     disableSemanas = true;
 
     ingresos: IngresoVehiculo[];
-    myDatePickerOptions: IMyDpOptions;
+    myDatePickerOptionsDesde: IMyDpOptions;
+    myDatePickerOptionsHasta: IMyDpOptions;
 
     // lineChart
     public lineChartData: Array<any> = [
@@ -52,7 +53,7 @@ export class Reporte1Component implements OnInit {
   constructor(private apiService: ApiService, private dateService: DateserviceService) { }
 
   ngOnInit() {
-      this.myDatePickerOptions = {
+      this.myDatePickerOptionsDesde = {
           // other options...
           dateFormat: 'dd/mm/yyyy',
           dayLabels: {su: 'Dom', mo: 'Lun', tu: 'Mar', we: 'Mié', th: 'Jue', fr: 'Vie', sa: 'Sáb'},
@@ -65,7 +66,7 @@ export class Reporte1Component implements OnInit {
           alignSelectorRight: true,
       };
 
-      const options = JSON.parse(JSON.stringify(this.myDatePickerOptions));
+      const options = JSON.parse(JSON.stringify(this.myDatePickerOptionsDesde));
       const fecha = new Date(this.today.getTime() + 86400000);
       console.log(fecha);
       options.disableSince = {
@@ -74,8 +75,8 @@ export class Reporte1Component implements OnInit {
           day: fecha.getDate()
       };
       console.log(options);
-      this.myDatePickerOptions = options;
-
+      this.myDatePickerOptionsDesde = options;
+      this.myDatePickerOptionsHasta = options;
   }
 
     chartHovered(event: Event) {
@@ -84,15 +85,24 @@ export class Reporte1Component implements OnInit {
 
     chartClicked(event: Event ) {
     }
-    onChanceDesde() {
 
+    onChangeDesde() {
+        const options = JSON.parse(JSON.stringify(this.myDatePickerOptionsHasta));
+        console.log(this.modelDesde);
+        options.disableUntil = {
+            year: this.modelDesde.year,
+            month: (this.modelDesde.month + 1),
+            day: this.modelDesde.day
+        };
+        console.log(options);
+        this.myDatePickerOptionsHasta = options;
     }
-    onChanceHasta() {
+    onChangeHasta() {
 
     }
 
     onSelectClick(value) {
-      if (!this.modelDesde && !this.modelHasta){
+      if (!this.modelDesde && !this.modelHasta) {
           this.showAlert = true;
           return;
       } else {

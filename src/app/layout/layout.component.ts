@@ -23,7 +23,7 @@ export class LayoutComponent implements OnInit {
 
     ngOnInit() {
         if (this.router.url === '/') {
-            this.router.navigate(['/reportes/reporte-anual']);
+            this.router.navigate(['/reportes/reporte-ingresos']);
         }
     }
 }

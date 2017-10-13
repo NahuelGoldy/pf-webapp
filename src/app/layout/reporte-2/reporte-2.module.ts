@@ -8,20 +8,17 @@ import {Reporte2Component} from './reporte-2.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MyDatePickerModule} from 'mydatepicker';
-import {Reporte1RoutingModule} from '../reporte-1/reporte-1-routing.module';
 
 @NgModule({
     imports: [
         CommonModule,
         Ng2Charts,
         Reporte2RoutingModule,
-        PageHeaderModule, CommonModule,
+        PageHeaderModule,
         FormsModule,
         ReactiveFormsModule,
         NgbModule.forRoot(),
-        MyDatePickerModule,
-        Reporte1RoutingModule,
-        PageHeaderModule
+        MyDatePickerModule
     ],
     declarations: [Reporte2Component]
 })
