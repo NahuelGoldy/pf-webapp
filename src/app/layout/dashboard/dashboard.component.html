@@ -1,6 +1,6 @@
 <div [@routerTransition]>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-xs-12 col-lg-12">
             <ngb-carousel>
                 <ng-template ngbSlide *ngFor="let slider of sliders">
                     <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="First slide" width="100%">
@@ -14,17 +14,25 @@
     <hr>
     <div class="row">
         <!-- TODO cambiar links /login a donde corresponda -->
-        <a class="col-xl-3 col-lg-6 dashboard-item" [routerLink]="['/ingreso-egreso/ingreso']">
-            <app-stat [bgClass]="'card-success'" [icon2]="'fa-car'" [icon]="'fa-sign-in'" [data]="'INGRESO VEHÍCULO'" ></app-stat>
+        <a class="col-xs-6 col-lg-3 dashboard-item" [routerLink]="['/ingreso-egreso/ingreso']">
+            <app-stat [bgClass]="'card-success'"
+                      [icon2]="'fa-car'" [icon]="'fa-sign-in'"
+                      [data]="'INGRESO VEHÍCULO'"></app-stat>
         </a>
-        <a class="col-xl-3 col-lg-6 dashboard-item" [routerLink]="['/ingreso-egreso/egreso']">
-            <app-stat [bgClass]="'card-danger'" [icon]="'fa-car'" [icon2]="'fa-sign-out'" [data]="'SALIDA VEHÍCULO'"></app-stat>
+        <a class="col-xs-6 col-lg-3 dashboard-item" [routerLink]="['/ingreso-egreso/egreso']">
+            <app-stat [bgClass]="'card-danger'"
+                      [icon]="'fa-car'" [icon2]="'fa-sign-out'"
+                      [data]="'SALIDA VEHÍCULO'"></app-stat>
         </a>
-        <a class="col-xl-3 col-lg-6 dashboard-item" [routerLink]="['/login']">
-            <app-stat [bgClass]="'card-primary'" [icon]="'fa-money'" [count]="4" [label]="'nuevas reservas!'" [data]="'VER RESERVAS'" ></app-stat>
+        <a class="col-xs-6 col-lg-3 dashboard-item" [routerLink]="['/login']">
+            <app-stat [bgClass]="'card-primary'"
+                      [icon]="'fa-money'" [count]="4" [label]="'nuevas reservas!'"
+                      [data]="'VER RESERVAS'" ></app-stat>
         </a>
-        <a class="col-xl-3 col-lg-6 dashboard-item" [routerLink]="['/login']">
-            <app-stat [bgClass]="'card-info'" [icon]="'fa-bar-chart'" [count]="21" [label]="'vehículos ingresados'" [data]="'ESTADÍSTICAS'" ></app-stat>
+        <a class="col-xs-6 col-lg-3 dashboard-item" [routerLink]="['/login']">
+            <app-stat [bgClass]="'card-info'" [icon]="'fa-bar-chart'"
+                      [count]="21" [label]="'vehículos ingresados'"
+                      [data]="'ESTADÍSTICAS'" ></app-stat>
         </a>
     </div>
     <hr />
@@ -44,7 +52,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-xs-4 col-lg-4">
             <div class="card card-default dashboard-table">
                 <div class="card-header card-success">
                     <i class="fa fa-sign-in fa-car"></i> Últimos ingresos
@@ -71,7 +79,7 @@
             </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-xs-4 col-lg-4">
             <div class="card card-default dashboard-table">
                 <div class="card-header card-danger">
                     <i class="fa fa-dollar"></i> Últimos egresos
@@ -100,7 +108,7 @@
             </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-lg-4">
             <div class="card card-default dashboard-table">
                 <div class="card-header card-info">
                     <i class="fa fa-info-circle"></i> Información general

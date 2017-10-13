@@ -17,7 +17,7 @@ export class DateserviceService {
           const difDays = difMilisecons / 86400000;
           return difDays;
       } else {
-          return 1;
+          return 0;
       }
 
   }

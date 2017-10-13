@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../../shared/services/api.service';
 import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
 import {ParametroReporte} from '../../shared/domain/parametroReporte';
 import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
-import {IMyDpOptions} from 'mydatepicker';
+import {IMyDate, IMyDpOptions} from 'mydatepicker';
 import {DateserviceService} from '../../shared/services/dateservice.service';
 
 @Component({
@@ -11,7 +11,7 @@ import {DateserviceService} from '../../shared/services/dateservice.service';
   templateUrl: './reporte-1.component.html',
   styleUrls: ['./reporte-1.component.scss']
 })
-export class Reporte1Component implements OnInit {
+export class Reporte1Component implements OnInit{
     modelDesde: any;
     modelHasta: any;
     modelIntervalo = '';
@@ -20,21 +20,21 @@ export class Reporte1Component implements OnInit {
     disableHoras = true;
     disableDias = true;
     disableSemanas = true;
+    difDays: number;
 
     ingresos: IngresoVehiculo[];
     myDatePickerOptionsDesde: IMyDpOptions;
     myDatePickerOptionsHasta: IMyDpOptions;
 
     // lineChart
+    public linearChartDataAux: Array<any> = [0, 0, 0];
     public lineChartData: Array<any> = [
         // TODO (harcodeado para estetica), refactorizar
-        { data: [87, 61, 40, 55, 23, 0, 5, 5, 64], label: '% ocupación' }
+        { data: this.linearChartDataAux , label: 'Ingresos' }
     ];
-    public chartLabels: Array<any> = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'];
-    public lineChartLabels: Array<any> = [];
-    public lineChartOptions: any = {
-        responsive: true
-    };
+    public chartLabels: Array<any> = [];
+    public lineChartLabels: Array<any> = ['*', '*'];
+    public lineChartOptions: any = {  responsive: true    };
     public lineChartColors: Array<any> = [
         {
             backgroundColor: 'rgba(77,83,96,0.2)',
@@ -86,40 +86,40 @@ export class Reporte1Component implements OnInit {
     chartClicked(event: Event ) {
     }
 
-    onChangeDesde() {
+    onChangeDesde(data) {
         const options = JSON.parse(JSON.stringify(this.myDatePickerOptionsHasta));
-        console.log(this.modelDesde);
+        this.modelDesde = data;
+        const fecha = new Date(this.modelDesde.epoc * 1000 - 86400000);
         options.disableUntil = {
-            year: this.modelDesde.year,
-            month: (this.modelDesde.month + 1),
-            day: this.modelDesde.day
+            year: fecha.getFullYear(),
+            month: (fecha.getMonth() + 1) ,
+            day: fecha.getDate()
         };
-        console.log(options);
         this.myDatePickerOptionsHasta = options;
     }
-    onChangeHasta() {
-
+    onChangeHasta(data) {
+        this.modelHasta = data;
+        this.difDays = this.dateService.dateDif(this.modelDesde, this.modelHasta);
+        this.setSelect(this.difDays);
     }
 
     onSelectClick(value) {
       if (!this.modelDesde && !this.modelHasta) {
           this.showAlert = true;
-          return;
       } else {
-          const difDays = this.dateService.dateDif(this.modelDesde, this.modelHasta);
-          this.setSelect(difDays)
+          this.showAlert = false;
       }
     }
 
     onGenerateClick() {
       const fechaDesde =
-          ('0' + this.modelDesde.day).slice(-2) + '/' +
-          ('0' + this.modelDesde.month).slice(-2) + '/' +
-          this.modelDesde.year;
+          ('0' + this.modelDesde.date.day).slice(-2) + '/' +
+          ('0' + this.modelDesde.date.month).slice(-2) + '/' +
+          this.modelDesde.date.year;
       const fechaHasta =
-            ('0' + this.modelHasta.day).slice(-2) + '/' +
-            ('0' + this.modelHasta.month).slice(-2) + '/' +
-            this.modelHasta.year;
+            ('0' + this.modelHasta.date.day).slice(-2) + '/' +
+            ('0' + this.modelHasta.date.month).slice(-2) + '/' +
+            this.modelHasta.date.year;
       const parametro = new ParametroReporte();
       let parque = new ParqueEstacionamiento;
       parametro.fechaFinal = fechaHasta;
@@ -164,6 +164,68 @@ export class Reporte1Component implements OnInit {
     }
 
     private generateChar() {
+        if (this.modelIntervalo === 'Horas') {
+            let rangeHs = 1;
+            let hs = 0;
+            if (this.difDays < 4 && this.difDays > 1) { rangeHs = 2}
+                else { if (this.difDays < 6 && this.difDays > 3) { rangeHs = 4}
+                    else {if (this.difDays < 8 && this.difDays > 5) { rangeHs = 8}}
+                }
 
+            const linearCharData: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) , 'number' , this.linearChartDataAux );
+            const linearCharLabels: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) , 'string', this.lineChartLabels );
+
+            for (let ingreso of this.ingresos) {
+                // Tomo la hora de ingreso
+                const hora = +ingreso.fechaIngreso.slice(-8).substr(0, 2 );
+                // Si es el primero seteo la primer hora de filtro
+                if ( !hs ) {
+                    hs = hora;
+                    linearCharData[hs] = 1;
+                    console.log(linearCharData);
+                } else {
+                    if ( (hs + rangeHs) >= hora ) {hs = hs + rangeHs; }
+                        if (!linearCharData[hs]) {
+                            linearCharData[hs] = 1;
+                        } else {
+                            linearCharData[hs] = linearCharData[hs]++;
+                        }
+                }
+
+            }
+            this.lineChartData = [
+                { data: linearCharData, label: 'Ingresos' }
+            ];
+            this.lineChartLabels = linearCharLabels;
+
+        } else if (this.modelIntervalo === 'Dias') {
+
+        } else if (this.modelIntervalo === 'Semanas') {
+
+        } else if (this.modelIntervalo === 'Mes') {
+
+        }
+    }
+
+    arrayGenerator (length: number, type: string, array: Array<any>) {
+      console.log('Lenght: ' + length);
+      for (let i = 0; i < length; i++) {
+          if (type === 'string') {
+              if (!array[i]) {
+                  array.push(i);
+              } else {
+                  array[i] = '-';
+              }
+          }
+          if (type === 'number' ) {
+              if (!array[i]) {
+                  array.push(i);
+              } else {
+                  array[i] = 0;
+              };
+          }
+      }
+      if (array.length > length) {array.splice(length , array.length - length + 1)}
+      return array;
     }
 }

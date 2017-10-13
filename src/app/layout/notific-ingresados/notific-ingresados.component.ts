@@ -84,12 +84,18 @@ export class NotificIngresadosComponent implements OnInit, AfterViewChecked {
           dom: 'Bfrti',
           buttons: [
               {
+
+              },
+              {
                   text: 'Emitir notificaciones',
                   key: '1',
                   className: 'btn btn-success a-override',
                   action: () => {
                       NotifDialogComponent.mostrarModal();
                   }
+              },
+              {
+
               }
           ]
       };
