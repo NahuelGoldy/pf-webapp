@@ -40,8 +40,8 @@ export class Reporte1Component implements OnInit{
             backgroundColor: 'rgba(77,83,96,0.2)',
             borderColor: 'rgba(77,83,96,1)',
             pointBackgroundColor: 'rgba(77,83,96,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
+            pointBorderColor: '#4f79af',
+            pointHoverBackgroundColor: '#44a354',
             pointHoverBorderColor: 'rgba(77,83,96,1)'
         }
     ];
@@ -80,7 +80,6 @@ export class Reporte1Component implements OnInit{
   }
 
     chartHovered(event: Event) {
-
     }
 
     chartClicked(event: Event ) {
@@ -165,50 +164,17 @@ export class Reporte1Component implements OnInit{
 
     private generateChar() {
         if (this.modelIntervalo === 'Horas') {
-            let rangeHs = 1;
-            let hs = 0;
-            if (this.difDays < 4 && this.difDays > 1) { rangeHs = 2}
-                else { if (this.difDays < 6 && this.difDays > 3) { rangeHs = 4}
-                    else {if (this.difDays < 8 && this.difDays > 5) { rangeHs = 8}}
-                }
-
-            const linearCharData: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) , 'number' , this.linearChartDataAux );
-            const linearCharLabels: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) , 'string', this.lineChartLabels );
-
-            for (let ingreso of this.ingresos) {
-                // Tomo la hora de ingreso
-                const hora = +ingreso.fechaIngreso.slice(-8).substr(0, 2 );
-                // Si es el primero seteo la primer hora de filtro
-                if ( !hs ) {
-                    hs = hora;
-                    linearCharData[hs] = 1;
-                    console.log(linearCharData);
-                } else {
-                    if ( (hs + rangeHs) >= hora ) {hs = hs + rangeHs; }
-                        if (!linearCharData[hs]) {
-                            linearCharData[hs] = 1;
-                        } else {
-                            linearCharData[hs] = linearCharData[hs]++;
-                        }
-                }
-
-            }
-            this.lineChartData = [
-                { data: linearCharData, label: 'Ingresos' }
-            ];
-            this.lineChartLabels = linearCharLabels;
-
+            this.graficoHoras();
         } else if (this.modelIntervalo === 'Dias') {
-
+            this.graficoDias()
         } else if (this.modelIntervalo === 'Semanas') {
-
+            this.graficoSem()
         } else if (this.modelIntervalo === 'Mes') {
-
+            this.graficoMeses()
         }
     }
 
     arrayGenerator (length: number, type: string, array: Array<any>) {
-      console.log('Lenght: ' + length);
       for (let i = 0; i < length; i++) {
           if (type === 'string') {
               if (!array[i]) {
@@ -227,5 +193,79 @@ export class Reporte1Component implements OnInit{
       }
       if (array.length > length) {array.splice(length , array.length - length + 1)}
       return array;
+    }
+
+    graficoSem() {
+        const linearCharData: Array<any> = this.arrayGenerator(this.difDays / 7 ,
+            'number' , this.linearChartDataAux );
+        const linearCharLabels: Array<any> = this.arrayGenerator(this.difDays / 7 ,
+            'string', this.lineChartLabels );
+
+        for (let ingreso of this.ingresos) {
+            // Tomo el dia de ingreso yyyy-mm-dd
+            console.log(new Date(ingreso.fechaIngreso).getDay());
+            let dia: number = +ingreso.fechaIngreso.substr(0, 10 ).slice(-2);
+
+            // Bugea si se llega a dar que quedan dos dias con el mismo numero en el rango
+            linearCharData[dia]++;
+        }
+
+        this.lineChartData = [ { data: this.linearChartDataAux, label: 'Ingresos' } ];
+        this.lineChartLabels = linearCharLabels;
+    }
+    graficoMeses() {
+
+    }
+
+    graficoDias() {
+        const linearCharData: Array<any> = this.arrayGenerator(this.difDays ,
+            'number' , this.linearChartDataAux );
+        const linearCharLabels: Array<any> = this.arrayGenerator(this.difDays ,
+            'string', this.lineChartLabels );
+
+        for (let ingreso of this.ingresos) {
+            // Tomo el dia de ingreso yyyy-mm-dd
+            let dia: number = +ingreso.fechaIngreso.substr(0, 10 ).slice(-2);
+            dia = dia - (+this.modelDesde.date.day);
+            // Bugea si se llega a dar que quedan dos dias con el mismo numero en el rango
+            this.linearChartDataAux[dia]++;
+        }
+
+        this.lineChartData = [ { data: this.linearChartDataAux, label: 'Ingresos' } ];
+        this.lineChartLabels = linearCharLabels;
+
+    }
+
+    graficoHoras() {
+        let rangeHs = 1;
+        let hs = 0;
+        if (this.difDays < 4 && this.difDays > 1) { rangeHs = 2}
+            else { if (this.difDays < 6 && this.difDays > 3) { rangeHs = 4}
+                else {if (this.difDays < 8 && this.difDays > 5) { rangeHs = 8}}
+        }
+
+        const linearCharData: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) , 'number' , this.linearChartDataAux );
+        const linearCharLabels: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) , 'string', this.lineChartLabels );
+
+        for (let ingreso of this.ingresos) {
+            // Tomo la hora de ingreso
+            const hora = +ingreso.fechaIngreso.slice(-8).substr(0, 2 );
+            // Si es el primero seteo la primer hora de filtro
+            if ( !hs ) {
+                hs = hora / rangeHs;
+                linearCharData[hs] = 1;
+            } else {
+                if ( (hs + rangeHs) >= hora ) {hs = hs + rangeHs; }
+                if (!linearCharData[hs]) {
+                    linearCharData[hs] = 1;
+                } else {
+                    linearCharData[hs]++;
+                }
+            }
+        }
+        this.lineChartData = [
+            { data: linearCharData, label: 'Ingresos' }
+        ];
+        this.lineChartLabels = linearCharLabels;
     }
 }
