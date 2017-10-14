@@ -105,11 +105,13 @@ export class Reporte2Component implements OnInit {
         const fechaDesde =
             ('0' + this.modelDesde.day).slice(-2) + '/' +
             ('0' + this.modelDesde.month).slice(-2) + '/' +
-            this.modelDesde.year;
+            this.modelDesde.year +
+            ' 00:00:00';
         const fechaHasta =
             ('0' + this.modelHasta.day).slice(-2) + '/' +
             ('0' + this.modelHasta.month).slice(-2) + '/' +
-            this.modelHasta.year;
+            this.modelHasta.year +
+            ' 00:00:00';
         const parametro = new ParametroReporte();
         let parque = new ParqueEstacionamiento;
         parametro.fechaFinal = fechaHasta;

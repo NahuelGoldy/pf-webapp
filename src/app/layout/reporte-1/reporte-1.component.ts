@@ -112,13 +112,15 @@ export class Reporte1Component implements OnInit {
 
     onGenerateClick() {
       const fechaDesde =
-          ('0' + this.modelDesde.date.day).slice(-2) + '/' +
-          ('0' + this.modelDesde.date.month).slice(-2) + '/' +
-          this.modelDesde.date.year;
+            ('0' + this.modelDesde.date.day).slice(-2) + '/' +
+            ('0' + this.modelDesde.date.month).slice(-2) + '/' +
+            this.modelDesde.date.year +
+            ' 00:00:00';
       const fechaHasta =
             ('0' + this.modelHasta.date.day).slice(-2) + '/' +
             ('0' + this.modelHasta.date.month).slice(-2) + '/' +
-            this.modelHasta.date.year;
+            this.modelHasta.date.year +
+            ' 00:00:00';
       const parametro = new ParametroReporte();
       let parque = new ParqueEstacionamiento;
       parametro.fechaFinal = fechaHasta;

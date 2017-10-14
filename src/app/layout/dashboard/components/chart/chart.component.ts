@@ -58,11 +58,17 @@ export class ChartComponent implements OnInit {
         const fechaHasta =
             ('0' + tomorrow.getDate()).slice(-2) + '/' +
             ('0' + (tomorrow.getMonth() + 1)).slice(-2) + '/' +
-            tomorrow.getFullYear();
+            tomorrow.getFullYear() + ' ' +
+            tomorrow.getHours() + ':' +
+            tomorrow.getMinutes() + ':' +
+            tomorrow.getSeconds();
         const fechaDesde =
             ('0' + yesterday.getDate()).slice(-2) + '/' +
             ('0' + (yesterday.getMonth() + 1)).slice(-2) + '/' +
-            yesterday.getFullYear();
+            yesterday.getFullYear() + ' ' +
+            yesterday.getHours() + ':' +
+            yesterday.getMinutes() + ':' +
+            yesterday.getSeconds();
 
         parametro.fechaFinal = fechaDesde;
         parametro.fechaInicial = fechaHasta;
