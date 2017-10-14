@@ -11,7 +11,7 @@ import {DateserviceService} from '../../shared/services/dateservice.service';
   templateUrl: './reporte-1.component.html',
   styleUrls: ['./reporte-1.component.scss']
 })
-export class Reporte1Component implements OnInit{
+export class Reporte1Component implements OnInit {
     modelDesde: any;
     modelHasta: any;
     modelIntervalo = '';
@@ -201,10 +201,10 @@ export class Reporte1Component implements OnInit{
         const linearCharLabels: Array<any> = this.arrayGenerator(this.difDays / 7 ,
             'string', this.lineChartLabels );
 
-        for (let ingreso of this.ingresos) {
+        for (const ingreso of this.ingresos) {
             // Tomo el dia de ingreso yyyy-mm-dd
             console.log(new Date(ingreso.fechaIngreso).getDay());
-            let dia: number = +ingreso.fechaIngreso.substr(0, 10 ).slice(-2);
+            const dia: number = +ingreso.fechaIngreso.substr(0, 10 ).slice(-2);
 
             // Bugea si se llega a dar que quedan dos dias con el mismo numero en el rango
             linearCharData[dia]++;
@@ -223,7 +223,7 @@ export class Reporte1Component implements OnInit{
         const linearCharLabels: Array<any> = this.arrayGenerator(this.difDays ,
             'string', this.lineChartLabels );
 
-        for (let ingreso of this.ingresos) {
+        for (const ingreso of this.ingresos) {
             // Tomo el dia de ingreso yyyy-mm-dd
             let dia: number = +ingreso.fechaIngreso.substr(0, 10 ).slice(-2);
             dia = dia - (+this.modelDesde.date.day);
@@ -239,15 +239,19 @@ export class Reporte1Component implements OnInit{
     graficoHoras() {
         let rangeHs = 1;
         let hs = 0;
-        if (this.difDays < 4 && this.difDays > 1) { rangeHs = 2}
-            else { if (this.difDays < 6 && this.difDays > 3) { rangeHs = 4}
-                else {if (this.difDays < 8 && this.difDays > 5) { rangeHs = 8}}
+        if (this.difDays < 4 && this.difDays > 1) {
+            rangeHs = 2
+        } else {
+            if (this.difDays < 6 && this.difDays > 3) {
+                rangeHs = 4
+            } else {
+                if (this.difDays < 8 && this.difDays > 5) { rangeHs = 8}}
         }
 
         const linearCharData: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) , 'number' , this.linearChartDataAux );
         const linearCharLabels: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) , 'string', this.lineChartLabels );
 
-        for (let ingreso of this.ingresos) {
+        for (const ingreso of this.ingresos) {
             // Tomo la hora de ingreso
             const hora = +ingreso.fechaIngreso.slice(-8).substr(0, 2 );
             // Si es el primero seteo la primer hora de filtro

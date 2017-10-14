@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ApiService} from '../../../../shared/services/api.service';
+import {ParametroReporte} from '../../../../shared/domain/parametroReporte';
+import {IngresoVehiculo} from '../../../../shared/domain/ingresoVehiculo';
 
 @Component({
     selector: 'app-chart',
@@ -6,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements OnInit {
+
+    ingresos: IngresoVehiculo[];
 
     // Doughnut
     public doughnutChartLabels: string[] = ['Pago electrónico', 'Reserva', 'Usuario no registrado'];
@@ -44,7 +49,29 @@ export class ChartComponent implements OnInit {
         // console.log(e);
     }
 
-    constructor() {
+    constructor(private apiService: ApiService) {
+        const today = new Date();
+        const yesterday = new Date(new Date().getMilliseconds() - 86400000);
+        const parametro = new ParametroReporte();
+        const parque =  JSON.parse(localStorage.getItem('currentParking'));
+        const fechaDesde =
+            ('0' + today.getDay()).slice(-2) + '/' +
+            ('0' + today.getMonth()).slice(-2) + '/' +
+            today.getFullYear();
+        const fechaHasta =
+            ('0' + yesterday.getDay()).slice(-2) + '/' +
+            ('0' + yesterday.getMonth()).slice(-2) + '/' +
+            yesterday.getFullYear();
+
+        parametro.fechaFinal = fechaDesde;
+        parametro.fechaInicial = fechaHasta;
+        parametro.idEstacionamiento = parque.idEstacionamiento;
+
+        this.apiService.post('ingreso/ingresoVehiculo/allByFechas', parametro).subscribe(
+            (data) => {
+                this.ingresos = data;
+            }
+        );
     }
 
     ngOnInit() {
@@ -68,5 +95,7 @@ export class ChartComponent implements OnInit {
         posteriores.forEach( x => this.lineChartLabels.push(x));
         anteriores.forEach( x => this.lineChartLabels.push(x));
         this.lineChartLabels.push(horaActual);
+
+        // TODO llenar el array DATA con los ingresos
     }
 }
