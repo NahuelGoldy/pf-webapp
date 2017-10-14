@@ -51,16 +51,17 @@ export class ChartComponent implements OnInit {
 
     constructor(private apiService: ApiService) {
         const today = new Date();
-        const yesterday = new Date(new Date().getMilliseconds() - 86400000);
+        const tomorrow = new Date(today.getTime() + 86400000);
+        const yesterday = new Date(today.getTime() - 86400000);
         const parametro = new ParametroReporte();
         const parque =  JSON.parse(localStorage.getItem('currentParking'));
-        const fechaDesde =
-            ('0' + today.getDay()).slice(-2) + '/' +
-            ('0' + today.getMonth()).slice(-2) + '/' +
-            today.getFullYear();
         const fechaHasta =
-            ('0' + yesterday.getDay()).slice(-2) + '/' +
-            ('0' + yesterday.getMonth()).slice(-2) + '/' +
+            ('0' + tomorrow.getDate()).slice(-2) + '/' +
+            ('0' + (tomorrow.getMonth() + 1)).slice(-2) + '/' +
+            tomorrow.getFullYear();
+        const fechaDesde =
+            ('0' + yesterday.getDate()).slice(-2) + '/' +
+            ('0' + (yesterday.getMonth() + 1)).slice(-2) + '/' +
             yesterday.getFullYear();
 
         parametro.fechaFinal = fechaDesde;
