@@ -1,7 +1,7 @@
 <div>
     <div class="card mb-3">
         <div class="card-header custom-card-header-main">
-            <i class="fa fa-line-chart  fa-fw"></i> Ocupación del Parque (últimas 24hs)
+            <i class="fa fa-line-chart  fa-fw"></i> Ingresos al Parque (últimas 24hs)
         </div>
         <div class="card-block">
             <canvas baseChart height="127" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">

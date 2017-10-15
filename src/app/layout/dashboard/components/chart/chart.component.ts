@@ -10,7 +10,8 @@ import {IngresoVehiculo} from '../../../../shared/domain/ingresoVehiculo';
 })
 export class ChartComponent implements OnInit {
 
-    ingresos: IngresoVehiculo[];
+    ingresos: IngresoVehiculo[] = [];
+    data: Map<string, number> = new Map();
 
     // Doughnut
     public doughnutChartLabels: string[] = ['Pago electrónico', 'Reserva', 'Usuario no registrado'];
@@ -19,8 +20,7 @@ export class ChartComponent implements OnInit {
 
     // lineChart
     public lineChartData: Array<any> = [
-        // TODO (harcodeado para estetica), refactorizar
-        { data: [87, 61, 40, 55, 23, 0, 5, 100, 64], label: '% ocupación' }
+        { data: [] , label: 'Ingresos' }
     ];
     public chartLabels: Array<any> = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'];
     public lineChartLabels: Array<any> = [];
@@ -70,13 +70,15 @@ export class ChartComponent implements OnInit {
             yesterday.getMinutes() + ':' +
             yesterday.getSeconds();
 
-        parametro.fechaFinal = fechaDesde;
-        parametro.fechaInicial = fechaHasta;
+        parametro.fechaFinal = fechaHasta;
+        parametro.fechaInicial = fechaDesde;
         parametro.idEstacionamiento = parque.idEstacionamiento;
 
         this.apiService.post('ingreso/ingresoVehiculo/allByFechas', parametro).subscribe(
             (data) => {
                 this.ingresos = data;
+
+                this.poblarMapIngresos();
             }
         );
     }
@@ -98,11 +100,34 @@ export class ChartComponent implements OnInit {
                 }
             }
         });
-        this.lineChartLabels.push(horaActual);
-        posteriores.forEach( x => this.lineChartLabels.push(x));
-        anteriores.forEach( x => this.lineChartLabels.push(x));
-        this.lineChartLabels.push(horaActual);
 
-        // TODO llenar el array DATA con los ingresos
+        posteriores.forEach( x => {
+            this.lineChartLabels.push(x);
+            this.data.set(x, 0);
+        });
+        anteriores.forEach( x => {
+            this.lineChartLabels.push(x);
+            this.data.set(x, 0);
+        });
+        this.lineChartLabels.push(horaActual);
+        this.data.set(horaActual, 0);
+    }
+
+    poblarMapIngresos() {
+        this.ingresos.forEach( i => {
+            const key = (+i.fechaIngreso.slice(11, 13)) - (+i.fechaIngreso.slice(11, 13) % 3);
+            const key_str = ('0' + key).slice(-2) + ':00';
+            this.data.set(key_str, this.data.get(key_str) + 1);
+        });
+
+        const chartData = [];
+        this.data.forEach((value: number, key: string) => {
+            chartData.push(value);
+            console.log(key, value);
+        });
+
+        this.lineChartData = [
+            { data: chartData, label: 'Ingresos' }
+        ];
     }
 }
