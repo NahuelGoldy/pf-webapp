@@ -37,8 +37,8 @@ export class Reporte1Component implements OnInit {
     public lineChartOptions: any = {  responsive: true    };
     public lineChartColors: Array<any> = [
         {
-            backgroundColor: 'rgba(77,83,96,0.2)',
-            borderColor: 'rgba(77,83,96,1)',
+            backgroundColor: 'rgba(154, 247, 150, 0.4)',
+            borderColor: 'rgba(77,83,96, 0.7)',
             pointBackgroundColor: 'rgba(77,83,96,1)',
             pointBorderColor: '#4f79af',
             pointHoverBackgroundColor: '#44a354',
@@ -95,7 +95,12 @@ export class Reporte1Component implements OnInit {
             day: fecha.getDate()
         };
         this.myDatePickerOptionsHasta = options;
+    if (this.modelHasta){
+        this.difDays = this.dateService.dateDif(this.modelDesde, this.modelHasta);
+        this.setSelect(this.difDays);
     }
+    }
+
     onChangeHasta(data) {
         this.modelHasta = data;
         this.difDays = this.dateService.dateDif(this.modelDesde, this.modelHasta);
@@ -103,6 +108,8 @@ export class Reporte1Component implements OnInit {
     }
 
     onSelectClick(value) {
+    this.difDays = this.dateService.dateDif(this.modelDesde, this.modelHasta);
+    this.setSelect(this.difDays);
       if (!this.modelDesde && !this.modelHasta) {
           this.showAlert = true;
       } else {
@@ -180,14 +187,14 @@ export class Reporte1Component implements OnInit {
       for (let i = 0; i < length; i++) {
           if (type === 'string') {
               if (!array[i]) {
-                  array.push(i);
+                  array.push('+');
               } else {
                   array[i] = '-';
               }
           }
           if (type === 'number' ) {
               if (!array[i]) {
-                  array.push(i);
+                  array.push(0);
               } else {
                   array[i] = 0;
               };
@@ -213,6 +220,7 @@ export class Reporte1Component implements OnInit {
         }
 
         this.lineChartData = [ { data: this.linearChartDataAux, label: 'Ingresos' } ];
+        this.chartLabelsGenerator('Sem', 1, linearCharLabels);
         this.lineChartLabels = linearCharLabels;
     }
     graficoMeses() {
@@ -234,6 +242,7 @@ export class Reporte1Component implements OnInit {
         }
 
         this.lineChartData = [ { data: this.linearChartDataAux, label: 'Ingresos' } ];
+        this.chartLabelsGenerator('Dias', 1, linearCharLabels);
         this.lineChartLabels = linearCharLabels;
 
     }
@@ -269,9 +278,50 @@ export class Reporte1Component implements OnInit {
                 }
             }
         }
-        this.lineChartData = [
-            { data: linearCharData, label: 'Ingresos' }
-        ];
+        this.lineChartData = [    { data: linearCharData, label: 'Ingresos' }        ];
+        this.chartLabelsGenerator('Horas', rangeHs, linearCharLabels);
         this.lineChartLabels = linearCharLabels;
+    }
+
+    public chartLabelsGenerator(type: String, intervalo: number, array: Array<any>) {
+        switch (type) {
+            case 'Horas': {
+                let horas = 0;
+                for (let i = 0; i < array.length; i++) {
+                    array[i] = (
+                        ('0' + horas).slice(-2) + ':00');
+                    horas += intervalo;
+                    if (horas >= 24) {
+                        horas = 0;
+                    }
+                }
+                break;
+            }
+            case 'Dias': {
+                let dias = 0;
+                for (let i = 0; i < array.length; i++) {
+                    array[i] = ('Dia ' + dias);
+                    dias += intervalo;
+                }
+                break;
+            }
+            case 'Sem': {
+                let sem = 0;
+                for (let i = 0; i < array.length; i++) {
+                    array[i] = ('Sem. ' + sem);
+                    sem += intervalo;
+                }
+                break;
+            }
+            case 'Mes': {
+                let mes = 0;
+                for (let i = 0; i < array.length; i++) {
+                    array[i] = ('Mes ' + mes);
+                    mes += intervalo;
+                }
+                break;
+            }
+        }
+        return array;
     }
 }
