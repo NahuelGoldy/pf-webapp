@@ -25,6 +25,9 @@ export class ChartComponent implements OnInit {
     public chartLabels: Array<any> = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'];
     public lineChartLabels: Array<any> = [];
     public lineChartOptions: any = {
+        scales: {
+            yAxes: [{ticks: { beginAtZero: true } }]
+        },
         responsive: true
     };
     public lineChartColors: Array<any> = [
@@ -70,8 +73,10 @@ export class ChartComponent implements OnInit {
             yesterday.getMinutes() + ':' +
             yesterday.getSeconds();
 
-        parametro.fechaFinal = fechaHasta;
-        parametro.fechaInicial = fechaDesde;
+        /*parametro.fechaFinal = fechaHasta;
+        parametro.fechaInicial = fechaDesde;*/
+        parametro.fechaFinal = '15/10/2017 00:00:00';
+        parametro.fechaInicial = '13/10/2017 00:00:00';
         parametro.idEstacionamiento = parque.idEstacionamiento;
 
         this.apiService.post('ingreso/ingresoVehiculo/allByFechas', parametro).subscribe(

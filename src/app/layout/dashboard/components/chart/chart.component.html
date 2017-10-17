@@ -4,7 +4,11 @@
             <i class="fa fa-line-chart  fa-fw"></i> Ingresos al Parque (últimas 24hs)
         </div>
         <div class="card-block">
-            <canvas baseChart height="127" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            <canvas baseChart height="127" [datasets]="lineChartData"
+                    [labels]="lineChartLabels" [options]="lineChartOptions"
+                    [colors]="lineChartColors" [legend]="lineChartLegend"
+                    [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
             </canvas>
         </div>
     </div>
