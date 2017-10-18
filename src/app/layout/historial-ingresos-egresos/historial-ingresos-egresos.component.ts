@@ -82,7 +82,7 @@ export class HistorialIngresosEgresosComponent implements OnInit, AfterViewCheck
               'searchable': true,
               'orderable': true
           } ],
-          dom: 'Bfrti',
+          dom: 'Bfrt',
           buttons: [
               {
                   text: 'Filtros',

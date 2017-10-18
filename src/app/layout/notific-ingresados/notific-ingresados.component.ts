@@ -81,7 +81,7 @@ export class NotificIngresadosComponent implements OnInit, AfterViewChecked {
               'searchable': true,
               'orderable': true
           } ],
-          dom: 'Bfrti',
+          dom: 'Bfrt',
           buttons: [
               {
 
