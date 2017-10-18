@@ -21,6 +21,10 @@ export class Reporte1Component implements OnInit {
     disableDias = true;
     disableSemanas = true;
     difDays: number;
+    promedioHora = '-';
+    promedioDia = '-';
+    promedioSemana = '-';
+    promedioMes = '-';
 
     ingresos: IngresoVehiculo[];
     myDatePickerOptionsDesde: IMyDpOptions;
@@ -95,7 +99,7 @@ export class Reporte1Component implements OnInit {
             day: fecha.getDate()
         };
         this.myDatePickerOptionsHasta = options;
-    if (this.modelHasta){
+    if (this.modelHasta) {
         this.difDays = this.dateService.dateDif(this.modelDesde, this.modelHasta);
         this.setSelect(this.difDays);
     }
@@ -141,6 +145,11 @@ export class Reporte1Component implements OnInit {
               this.generateChar();
           }
       );
+
+      this.promedioHora = '3';
+      this.promedioDia = '42';
+      this.promedioSemana = '210';
+      this.promedioMes = '769';
     }
 
     private setSelect(difDays: number) {
