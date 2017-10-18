@@ -73,10 +73,10 @@ export class ChartComponent implements OnInit {
             yesterday.getMinutes() + ':' +
             yesterday.getSeconds();
 
-        /*parametro.fechaFinal = fechaHasta;
-        parametro.fechaInicial = fechaDesde;*/
-        parametro.fechaFinal = '15/10/2017 00:00:00';
-        parametro.fechaInicial = '13/10/2017 00:00:00';
+        parametro.fechaFinal = fechaHasta;
+        parametro.fechaInicial = fechaDesde;
+        /*parametro.fechaFinal = '15/10/2017 00:00:00';
+        parametro.fechaInicial = '13/10/2017 00:00:00';*/
         parametro.idEstacionamiento = parque.idEstacionamiento;
 
         this.apiService.post('ingreso/ingresoVehiculo/allByFechas', parametro).subscribe(
@@ -128,7 +128,6 @@ export class ChartComponent implements OnInit {
         const chartData = [];
         this.data.forEach((value: number, key: string) => {
             chartData.push(value);
-            console.log(key, value);
         });
 
         this.lineChartData = [
