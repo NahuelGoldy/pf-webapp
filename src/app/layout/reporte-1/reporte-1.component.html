@@ -1,7 +1,7 @@
 <app-page-header [heading]="'Reporte estadístico de ingresos'" [icon]="'fa-pie-chart'"></app-page-header>
 <div class="row">
     <div class="col-md-12">
-        <h2>Grafico estadistico de Ingresos</h2>
+        <h2>Reporte estadístico de Ingresos</h2>
         <hr>
         <br>
     </div>
@@ -44,11 +44,9 @@
     <strong>Datos incompletos.</strong> Por favor seleccione un rango de fechas.
 </ngb-alert>
 <div class="row">
-    <div class="col col-md-12">
+    <div class="col col-md-8">
         <div class="card mb-3">
-            <div class="card-header">
-                Line Chart
-            </div>
+            <div class="card-header">Vehículos ingresados</div>
             <div class="card-block">
                 <canvas baseChart height="130" [datasets]="lineChartData"
                         [labels]="lineChartLabels" [options]="lineChartOptions"
@@ -57,6 +55,35 @@
                         (chartHover)="chartHovered($event)"
                         (chartClick)="chartClicked($event)">
                 </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col col-md-4">
+        <div class="card mb-3">
+            <div class="card-header">
+                Ingresos promedio de vehículos
+            </div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="tile tile-yellow col-md-5">
+                        <label>3</label>
+                        <p>Ingresos por hora</p>
+                    </div>
+                    <div class="tile tile-orange col-md-5">
+                        <label>16</label>
+                        <p>Ingresos por día</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="tile tile-lightbrown col-md-5">
+                        <label>186</label>
+                        <p>Ingresos por semana</p>
+                    </div>
+                    <div class="tile tile-darkbrown col-md-5">
+                        <label>564</label>
+                        <p>Ingresos por mes</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
