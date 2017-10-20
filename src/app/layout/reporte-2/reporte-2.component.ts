@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ParametroReporte} from '../../shared/domain/parametroReporte';
 import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
 import {ApiService} from '../../shared/services/api.service';
-import {DateserviceService} from '../../shared/services/dateservice.service';
+import {DateService} from '../../shared/services/date.service';
 import {IMyDpOptions} from 'mydatepicker';
 import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
 
@@ -23,8 +23,8 @@ export class Reporte2Component implements OnInit {
     difDays: number;
     promedioHora = '-';
     promedioDia = '-';
-    promedioSemana = '-';
-    promedioMes = '-';
+    promedioTiempo = '-';
+    promedioCosto = '-';
 
     ingresos: IngresoVehiculo[];
     myDatePickerOptionsDesde: IMyDpOptions;
@@ -54,7 +54,7 @@ export class Reporte2Component implements OnInit {
     public today = new Date();
     public showAlert = false;
 
-    constructor(private apiService: ApiService, private dateService: DateserviceService) { }
+    constructor(private apiService: ApiService, private dateService: DateService) { }
 
     ngOnInit() {
         this.myDatePickerOptionsDesde = {
@@ -144,6 +144,7 @@ export class Reporte2Component implements OnInit {
             (data) => {
                 this.ingresos = data;
                 this.generateChar();
+                this.generateAverages();
             }
         );
     }
@@ -186,6 +187,26 @@ export class Reporte2Component implements OnInit {
         } else if (this.modelIntervalo === 'Mes') {
             this.graficoMeses()
         }
+    }
+
+    private generateAverages() {
+        const diffHoras = this.dateService.diffHours(this.modelDesde, this.modelHasta);
+        const diffDias = this.dateService.diffDays(this.modelDesde, this.modelHasta);
+
+        this.promedioHora = (this.ingresos.length / diffHoras).toFixed(2);
+        diffDias < 3 ? this.promedioDia = '-' : this.promedioDia = (this.ingresos.length / diffDias).toFixed(2);
+
+        this.calcularPromedioEstadias();
+    }
+
+    calcularPromedioEstadias() {
+        let horas = 0;
+        this.ingresos.forEach( egr => {
+            horas += this.dateService.diffHours(egr.fechaIngreso, egr.fechaEgreso);
+        });
+        this.promedioTiempo = Math.ceil(horas / this.ingresos.length).toFixed(0);
+        const parque: ParqueEstacionamiento = JSON.parse(localStorage.getItem('currentParking'));
+        this.promedioCosto = (Math.ceil(horas / this.ingresos.length) * parque.precioPorHora).toFixed(0);
     }
 
     arrayGenerator (length: number, type: string, array: Array<any>) {

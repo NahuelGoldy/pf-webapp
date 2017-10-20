@@ -8,7 +8,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-import {DateserviceService} from "./shared/services/dateservice.service";
+import {DateService} from "./shared/services/date.service";
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
     // for development
@@ -34,7 +34,7 @@ export function HttpLoaderFactory(http: Http) {
         })
     ],
     providers: [AuthGuard,
-                DateserviceService],
+                DateService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

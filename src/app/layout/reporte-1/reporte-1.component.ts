@@ -4,7 +4,7 @@ import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
 import {ParametroReporte} from '../../shared/domain/parametroReporte';
 import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
 import {IMyDate, IMyDpOptions} from 'mydatepicker';
-import {DateserviceService} from '../../shared/services/dateservice.service';
+import {DateService} from '../../shared/services/date.service';
 
 @Component({
   selector: 'app-reporte-1',
@@ -54,7 +54,7 @@ export class Reporte1Component implements OnInit {
     public today = new Date();
     public showAlert = false;
 
-  constructor(private apiService: ApiService, private dateService: DateserviceService) { }
+  constructor(private apiService: ApiService, private dateService: DateService) { }
 
   ngOnInit() {
       this.myDatePickerOptionsDesde = {
@@ -189,11 +189,10 @@ export class Reporte1Component implements OnInit {
     }
 
     private generateAverages() {
-      const diffMilliseconds = this.dateService.dateDif(this.modelDesde, this.modelHasta) * 86400000;
-      const diffHoras = (diffMilliseconds / 60000) / 60;
-      const diffDias = ((diffMilliseconds / 60000) / 60) / 24;
-      const diffSemanas = (((diffMilliseconds / 60000) / 60) / 24) / 7;
-      const diffMeses = (((diffMilliseconds / 60000) / 60) / 24) / 30;
+      const diffHoras = this.dateService.diffHours(this.modelDesde, this.modelHasta);
+      const diffDias = this.dateService.diffDays(this.modelDesde, this.modelHasta);
+      const diffSemanas = this.dateService.diffWeeks(this.modelDesde, this.modelHasta);
+      const diffMeses = this.dateService.diffMonths(this.modelDesde, this.modelHasta);
 
       this.promedioHora = (this.ingresos.length / diffHoras).toFixed(2);
       diffDias < 3 ? this.promedioDia = '-' : this.promedioDia = (this.ingresos.length / diffDias).toFixed(2);

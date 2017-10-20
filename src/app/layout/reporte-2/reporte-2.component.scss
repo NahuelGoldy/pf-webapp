@@ -1,0 +1,37 @@
+.btn.btn-success.alineado {
+    position: relative;
+    left: 50%;
+    top: 35%;
+}
+
+.tile {
+    margin: 3% 4%;
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Segoe UI Light';
+}
+
+.tile-yellow {
+    background-color: #d2a800;
+}
+
+.tile-orange {
+    background-color: #e67300;
+}
+
+.tile-lightbrown {
+    background-color: rosybrown;
+}
+
+.tile-darkbrown {
+    background-color: #695747;
+}
+
+.tile p {
+    font-size: 0.85em;
+}
+
+.tile label {
+    font-size: 3.25em;
+    font-weight: bold;
+}
