@@ -143,13 +143,9 @@ export class Reporte1Component implements OnInit {
           (data) => {
               this.ingresos = data;
               this.generateChar();
+              this.generateAverages();
           }
       );
-
-      this.promedioHora = '3';
-      this.promedioDia = '42';
-      this.promedioSemana = '210';
-      this.promedioMes = '769';
     }
 
     private setSelect(difDays: number) {
@@ -190,6 +186,19 @@ export class Reporte1Component implements OnInit {
         } else if (this.modelIntervalo === 'Mes') {
             this.graficoMeses()
         }
+    }
+
+    private generateAverages() {
+      const diffMilliseconds = this.dateService.dateDif(this.modelDesde, this.modelHasta) * 86400000;
+      const diffHoras = (diffMilliseconds / 60000) / 60;
+      const diffDias = ((diffMilliseconds / 60000) / 60) / 24;
+      const diffSemanas = (((diffMilliseconds / 60000) / 60) / 24) / 7;
+      const diffMeses = (((diffMilliseconds / 60000) / 60) / 24) / 30;
+
+      this.promedioHora = (this.ingresos.length / diffHoras).toFixed(2);
+      diffDias < 3 ? this.promedioDia = '-' : this.promedioDia = (this.ingresos.length / diffDias).toFixed(2);
+      diffSemanas < 1 ? this.promedioSemana = '-' : this.promedioSemana = Math.round(this.ingresos.length / diffSemanas).toString();
+      diffMeses < 1 ? this.promedioMes = '-' : this.promedioMes = Math.round(this.ingresos.length / diffMeses).toString();
     }
 
     arrayGenerator (length: number, type: string, array: Array<any>) {
