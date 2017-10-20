@@ -50,7 +50,7 @@ export class HistorialIngresosEgresosComponent implements OnInit, AfterViewCheck
       this.dtOptions = {
           pagingType: 'full_numbers',
           autoWidth: true,
-          paging : false,
+          paging : true,
           aaSorting: [0, 'DESC'],
           sScrollX: '100%',
           language: {
@@ -82,7 +82,7 @@ export class HistorialIngresosEgresosComponent implements OnInit, AfterViewCheck
               'searchable': true,
               'orderable': true
           } ],
-          dom: 'Bfrt',
+          dom: 'Bfrtp',
           buttons: [
               {
                   text: 'Filtros',

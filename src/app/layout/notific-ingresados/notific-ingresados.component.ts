@@ -49,7 +49,7 @@ export class NotificIngresadosComponent implements OnInit, AfterViewChecked {
       this.dtOptions = {
           pagingType: 'full_numbers',
           autoWidth: true,
-          paging : false,
+          paging : true,
           sScrollX: '100%',
           // aaSorting: [0, 'ASC'],
           language: {
@@ -81,7 +81,7 @@ export class NotificIngresadosComponent implements OnInit, AfterViewChecked {
               'searchable': true,
               'orderable': true
           } ],
-          dom: 'Bfrt',
+          dom: 'Bfrtp',
           buttons: [
               {
 

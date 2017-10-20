@@ -87,3 +87,10 @@ table tr td {
     overflow-x: scroll;
     display: block;
 }
+
+div.dataTables_paginate {
+    background-color: red !important;
+}
+.paginate_button {
+    color: white !important;
+}
