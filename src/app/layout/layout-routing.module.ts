@@ -23,6 +23,8 @@ const routes: Routes = [
             { path: 'admin-panel', loadChildren: './admin-panel/admin-panel.module#AdminPanelModule' },
             { path: 'reportes/reporte-ingresos', loadChildren: './reporte-1/reporte-1.module#Reporte1Module' },
             { path: 'reportes/reporte-egresos', loadChildren: './reporte-2/reporte-2.module#Reporte2Module' },
+            { path: 'reservas/activas', loadChildren: './reservas-activas/reservas-activas.module#ReservasActivasModule' },
+            { path: 'reservas/historial', loadChildren: './historial-reservas/historial-reservas.module#HistorialReservasModule' },
         ]
     }
 ];

@@ -86,12 +86,12 @@
             <li class="nested" [class.expand]="showMenu === 'reservas'">
                 <ul class="submenu">
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/reservas/activas']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-money"></i>&nbsp;{{ 'Reservas activas' | translate }}
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a [routerLink]="['/reservas/historial']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-bars"></i>&nbsp;{{ 'Historial' | translate }}
                         </a>
                     </li>
