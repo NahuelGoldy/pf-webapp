@@ -280,25 +280,28 @@ export class Reporte1Component implements OnInit {
             'number' , this.linearChartDataAux );*/
         const linearCharLabels: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) ,
             'string', this.lineChartLabels );
-        this.chartLabelsGenerator('Horas', rangeHs, linearCharLabels);
+        // this.chartLabelsGenerator('Horas', rangeHs, linearCharLabels);
 
         const data: Map<string, number> = new Map();
 
-            linearCharLabels.forEach( x => {
-                data.set(x, 0);
-            });
-
             this.ingresos.forEach( i => {
+                const keyFecha = i.fechaIngreso.slice(0, 11);
                 const key = (+i.fechaIngreso.slice(11, 13)) - (+i.fechaIngreso.slice(11, 13) % rangeHs);
                 const key_str = ('0' + key).slice(-2) + ':00';
-                data.set(key_str, data.get(key_str) + 1);
+                if ((data.get(keyFecha + key_str)) == null) {
+                    data.set(keyFecha + key_str, 0);
+                } else {
+                    data.set(keyFecha + key_str, data.get(keyFecha + key_str) + 1);
+                }
             });
 
             const chartData = [];
+            this.lineChartLabels = [];
             console.log(data);
             data.forEach((value: number, key: string) => {
+                this.lineChartLabels.push(key.slice(11, 13));
                 chartData.push(value);
-                console.log('-- push --' + value);
+                console.log(key + '-- push --' + value);
             });
 
             this.lineChartData = [
@@ -306,7 +309,7 @@ export class Reporte1Component implements OnInit {
             ];
 
        /* this.lineChartData = [    { data: linearCharData, label: 'Ingresos' }        ];*/
-        this.lineChartLabels = linearCharLabels;
+       // this.lineChartLabels = linearCharLabels;
     }
 
     public chartLabelsGenerator(type: String, intervalo: number, array: Array<any>) {
