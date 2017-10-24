@@ -276,27 +276,36 @@ export class Reporte1Component implements OnInit {
                 if (this.difDays < 8 && this.difDays > 5) { rangeHs = 8}}
         }
 
-        const linearCharData: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) , 'number' , this.linearChartDataAux );
-        const linearCharLabels: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) , 'string', this.lineChartLabels );
-
-        for (const ingreso of this.ingresos) {
-            // Tomo la hora de ingreso
-            const hora = +ingreso.fechaIngreso.slice(-8).substr(0, 2 );
-            // Si es el primero seteo la primer hora de filtro
-            if ( !hs ) {
-                hs = hora / rangeHs;
-                linearCharData[hs] = 1;
-            } else {
-                if ( (hs + rangeHs) >= hora ) {hs = hs + rangeHs; }
-                if (!linearCharData[hs]) {
-                    linearCharData[hs] = 1;
-                } else {
-                    linearCharData[hs]++;
-                }
-            }
-        }
-        this.lineChartData = [    { data: linearCharData, label: 'Ingresos' }        ];
+        /*const linearCharData: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) ,
+            'number' , this.linearChartDataAux );*/
+        const linearCharLabels: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) ,
+            'string', this.lineChartLabels );
         this.chartLabelsGenerator('Horas', rangeHs, linearCharLabels);
+
+        const data: Map<string, number> = new Map();
+
+            linearCharLabels.forEach( x => {
+                data.set(x, 0);
+            });
+
+            this.ingresos.forEach( i => {
+                const key = (+i.fechaIngreso.slice(11, 13)) - (+i.fechaIngreso.slice(11, 13) % rangeHs);
+                const key_str = ('0' + key).slice(-2) + ':00';
+                data.set(key_str, data.get(key_str) + 1);
+            });
+
+            const chartData = [];
+            console.log(data);
+            data.forEach((value: number, key: string) => {
+                chartData.push(value);
+                console.log('-- push --' + value);
+            });
+
+            this.lineChartData = [
+                { data: chartData, label: 'Ingresos' }
+            ];
+
+       /* this.lineChartData = [    { data: linearCharData, label: 'Ingresos' }        ];*/
         this.lineChartLabels = linearCharLabels;
     }
 
