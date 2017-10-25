@@ -266,7 +266,7 @@ export class Reporte1Component implements OnInit {
 
     graficoHoras() {
         let rangeHs = 1;
-        let hs = 0;
+        const hs = 0;
         if (this.difDays < 4 && this.difDays > 1) {
             rangeHs = 2
         } else {
@@ -278,8 +278,8 @@ export class Reporte1Component implements OnInit {
 
         /*const linearCharData: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) ,
             'number' , this.linearChartDataAux );*/
-        const linearCharLabels: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) ,
-            'string', this.lineChartLabels );
+        // const linearCharLabels: Array<any> = this.arrayGenerator( ((this.difDays * 24 ) / rangeHs) ,
+        //     'string', this.lineChartLabels );
         // this.chartLabelsGenerator('Horas', rangeHs, linearCharLabels);
 
         const data: Map<string, number> = new Map();
@@ -296,13 +296,29 @@ export class Reporte1Component implements OnInit {
             });
 
             const chartData = [];
-            this.lineChartLabels = [];
-            console.log(data);
+            this.lineChartLabels.splice(0);
             data.forEach((value: number, key: string) => {
-                this.lineChartLabels.push(key.slice(11, 13));
-                chartData.push(value);
-                console.log(key + '-- push --' + value);
+                this.lineChartLabels.push(key);
+                // chartData.push(value);
             });
+
+            this.lineChartLabels.sort();
+
+            this.lineChartLabels.forEach(x => {
+                chartData.push(data.get(x));
+            });
+
+            for (let i = 0; i < this.lineChartLabels.length; i++) {
+                const hora = +(this.lineChartLabels[i].slice(11, 13));
+                if (hora === 0) {
+                    const mes = this.lineChartLabels[i].slice(5, 7);
+                    const dia = this.lineChartLabels[i].slice(8, 10);
+                    const hsDia = this.lineChartLabels[i].slice(11, 13);
+                    this.lineChartLabels[i] = dia + '/' + mes + ' ' + hsDia + ':00';
+                } else {
+                    this.lineChartLabels[i] = this.lineChartLabels[i].slice(11, 13) + ':00';
+                }
+            }
 
             this.lineChartData = [
                 { data: chartData, label: 'Ingresos' }
@@ -327,10 +343,13 @@ export class Reporte1Component implements OnInit {
                 break;
             }
             case 'Dias': {
-                let dias = 0;
+                let day = this.modelDesde.date.day;
+                let month = this.modelDesde.date.month;
                 for (let i = 0; i < array.length; i++) {
-                    array[i] = ('Dia ' + dias);
-                    dias += intervalo;
+                    array[i] = (day + '/' + month);
+                    const nextDayMillis = this.modelDesde.epoc * 1000 + (86400000 * (i + 1));
+                    day = new Date(nextDayMillis).getDate();
+                    month = new Date(nextDayMillis).getMonth() + 1;
                 }
                 break;
             }
@@ -343,10 +362,13 @@ export class Reporte1Component implements OnInit {
                 break;
             }
             case 'Mes': {
-                let mes = 0;
+                let anio = this.modelDesde.date.year;
+                let month = this.modelDesde.date.month;
                 for (let i = 0; i < array.length; i++) {
-                    array[i] = ('Mes ' + mes);
-                    mes += intervalo;
+                    array[i] = (month + '/' + anio);
+                    const nextDayMillis = this.modelDesde.epoc * 1000 + (86400000 * (i + 1));
+                    anio = new Date(nextDayMillis).getFullYear();
+                    month = new Date(nextDayMillis).getMonth() + 1;
                 }
                 break;
             }
