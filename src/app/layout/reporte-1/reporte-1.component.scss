@@ -1,7 +1,24 @@
-.btn.btn-success.alineado {
-    position: relative;
-    left: 50%;
-    top: 35%;
+
+@media screen and (min-width: 768px) {
+    .btn.btn-success.alineado {
+        position: relative;
+        left: 50%;
+        top: 35%;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 401px) {
+    .btn.btn-success.alineado {
+        position: relative;
+        left: 35%;
+    }
+}
+
+@media screen and (max-width: 400px) and (min-width: 0px) {
+    .btn.btn-success.alineado {
+        position: relative;
+        left: 25%;
+    }
 }
 
 .tile {

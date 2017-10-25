@@ -74,13 +74,11 @@ export class Reporte1Component implements OnInit {
 
       const options = JSON.parse(JSON.stringify(this.myDatePickerOptionsDesde));
       const fecha = new Date(this.today.getTime() + 86400000);
-      console.log(fecha);
       options.disableSince = {
           year: fecha.getFullYear(),
           month: (fecha.getMonth() + 1),
           day: fecha.getDate()
       };
-      console.log(options);
       this.myDatePickerOptionsDesde = options;
       this.myDatePickerOptionsHasta = options;
   }
@@ -197,7 +195,7 @@ export class Reporte1Component implements OnInit {
       const diffMeses = this.dateService.diffMonths(this.modelDesde, this.modelHasta);
 
       this.promedioHora = (this.ingresos.length / diffHoras).toFixed(2);
-      diffDias < 3 ? this.promedioDia = '-' : this.promedioDia = (this.ingresos.length / diffDias).toFixed(2);
+      diffDias < 2 ? this.promedioDia = '-' : this.promedioDia = (this.ingresos.length / diffDias).toFixed(2);
       diffSemanas < 1 ? this.promedioSemana = '-' : this.promedioSemana = Math.round(this.ingresos.length / diffSemanas).toString();
       diffMeses < 1 ? this.promedioMes = '-' : this.promedioMes = Math.round(this.ingresos.length / diffMeses).toString();
     }
@@ -231,7 +229,6 @@ export class Reporte1Component implements OnInit {
 
         for (const ingreso of this.ingresos) {
             // Tomo el dia de ingreso yyyy-mm-dd
-            console.log(new Date(ingreso.fechaIngreso).getDay());
             const dia: number = +ingreso.fechaIngreso.substr(0, 10 ).slice(-2);
 
             // Bugea si se llega a dar que quedan dos dias con el mismo numero en el rango
