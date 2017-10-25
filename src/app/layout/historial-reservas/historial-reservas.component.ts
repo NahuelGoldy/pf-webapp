@@ -4,11 +4,13 @@ import {Subject} from 'rxjs/Subject';
 import {DataTableDirective} from 'angular-datatables';
 import {ApiService} from '../../shared/services/api.service';
 import {Reserva} from '../../shared/domain/reserva';
+import {routerTransition} from '../../router.animations';
 
 @Component({
   selector: 'app-historial-reservas',
   templateUrl: './historial-reservas.component.html',
-  styleUrls: ['./historial-reservas.component.scss']
+  styleUrls: ['./historial-reservas.component.scss'],
+  animations: [routerTransition()]
 })
 export class HistorialReservasComponent implements OnInit {
 

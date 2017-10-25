@@ -1,90 +1,93 @@
 <app-page-header [heading]="'Reporte estadístico de egresos'" [icon]="'fa-line-chart'"></app-page-header>
-<div class="row">
-    <div class="col-md-12">
-        <h2>Reporte estadístico de Egresos</h2>
-        <hr>
+
+<div [@routerTransition]>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Reporte estadístico de Egresos</h2>
+            <hr>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label class="control-label">Desde</label>
+            <form class="form-inline mb-3">
+                <my-date-picker name="mydateDesde" [options]="myDatePickerOptionsDesde"
+                                (dateChanged) ="onChangeDesde($event)"
+                                [(ngModel)]="modelDesde" required></my-date-picker>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <label class="control-label">Hasta</label>
+            <form class="form-inline mb-3">
+                <my-date-picker name="mydateHasta" [options]="myDatePickerOptionsHasta"
+                                (dateChanged) ="onChangeHasta($event)"
+                                [(ngModel)]="modelHasta" required></my-date-picker>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <label class="control-label">Intervalo</label>
+            <div class="form-group">
+                <select [(ngModel)]="modelIntervalo" class="form-control" (click)="onSelectClick($event.target.value)">
+                    <option [disabled]="disableHoras" class="active">Horas</option>
+                    <option [disabled]="disableDias" >Dias</option>
+                    <option [disabled]="disableSemanas" >Semanas</option>
+                    <option [disabled]="disableMes" >Meses</option>
+                    <option [disabled]="disableAnos" >Años</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button (click)="onGenerateClick()" class="btn btn-success alineado" >Generar Grafico</button>
+        </div>
+        <br>
         <br>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-3">
-        <label class="control-label">Desde</label>
-        <form class="form-inline mb-3">
-            <my-date-picker name="mydateDesde" [options]="myDatePickerOptionsDesde"
-                            (dateChanged) ="onChangeDesde($event)"
-                            [(ngModel)]="modelDesde" required></my-date-picker>
-        </form>
-    </div>
-    <div class="col-md-3">
-        <label class="control-label">Hasta</label>
-        <form class="form-inline mb-3">
-            <my-date-picker name="mydateHasta" [options]="myDatePickerOptionsHasta"
-                            (dateChanged) ="onChangeHasta($event)"
-                            [(ngModel)]="modelHasta" required></my-date-picker>
-        </form>
-    </div>
-    <div class="col-md-2">
-        <label class="control-label">Intervalo</label>
-        <div class="form-group">
-            <select [(ngModel)]="modelIntervalo" class="form-control" (click)="onSelectClick($event.target.value)">
-                <option [disabled]="disableHoras" class="active">Horas</option>
-                <option [disabled]="disableDias" >Dias</option>
-                <option [disabled]="disableSemanas" >Semanas</option>
-                <option [disabled]="disableMes" >Meses</option>
-                <option [disabled]="disableAnos" >Años</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-md-2">
-        <button (click)="onGenerateClick()" class="btn btn-success alineado" >Generar Grafico</button>
-    </div>
-    <br>
-    <br>
-</div>
-<ngb-alert class="alert-warning" (close)="showAlert = false" *ngIf="showAlert" >
-    <strong>Datos incompletos.</strong> Por favor seleccione un rango de fechas.
-</ngb-alert>
-<div class="row">
-    <div class="col col-md-4">
-        <div class="card mb-3">
-            <div class="card-header">
-                Información sobre Egresos
-            </div>
-            <div class="card-block">
-                <div class="row">
-                    <div class="tile tile-darkbrown col-md-5">
-                        <label>{{promedioHora}}</label>
-                        <p>Egresos por hora</p>
-                    </div>
-                    <div class="tile tile-lightbrown col-md-5">
-                        <label>{{promedioDia}}</label>
-                        <p>Egresos por día</p>
-                    </div>
+    <ngb-alert class="alert-warning" (close)="showAlert = false" *ngIf="showAlert" >
+        <strong>Datos incompletos.</strong> Por favor seleccione un rango de fechas.
+    </ngb-alert>
+    <div class="row">
+        <div class="col col-md-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Información sobre Egresos
                 </div>
-                <div class="row">
-                    <div class="tile tile-orange col-md-5">
-                        <label>{{promedioTiempo}} hs</label>
-                        <p>Tiempo promedio</p>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="tile tile-darkbrown col-md-5">
+                            <label>{{promedioHora}}</label>
+                            <p>Egresos por hora</p>
+                        </div>
+                        <div class="tile tile-lightbrown col-md-5">
+                            <label>{{promedioDia}}</label>
+                            <p>Egresos por día</p>
+                        </div>
                     </div>
-                    <div class="tile tile-yellow col-md-5">
-                        <label>${{promedioCosto}}</label>
-                        <p>Costo promedio</p>
+                    <div class="row">
+                        <div class="tile tile-orange col-md-5">
+                            <label>{{promedioTiempo}} hs</label>
+                            <p>Tiempo promedio</p>
+                        </div>
+                        <div class="tile tile-yellow col-md-5">
+                            <label>${{promedioCosto}}</label>
+                            <p>Costo promedio</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col col-md-8">
-        <div class="card mb-3">
-            <div class="card-header">Vehículos egresados</div>
-            <div class="card-block">
-                <canvas baseChart height="130" [datasets]="lineChartData"
-                        [labels]="lineChartLabels" [options]="lineChartOptions"
-                        [colors]="lineChartColors" [legend]="lineChartLegend"
-                        [chartType]="lineChartType"
-                        (chartHover)="chartHovered($event)"
-                        (chartClick)="chartClicked($event)">
-                </canvas>
+        <div class="col col-md-8">
+            <div class="card mb-3">
+                <div class="card-header">Vehículos egresados</div>
+                <div class="card-block">
+                    <canvas baseChart height="130" [datasets]="lineChartData"
+                            [labels]="lineChartLabels" [options]="lineChartOptions"
+                            [colors]="lineChartColors" [legend]="lineChartLegend"
+                            [chartType]="lineChartType"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)">
+                    </canvas>
+                </div>
             </div>
         </div>
     </div>

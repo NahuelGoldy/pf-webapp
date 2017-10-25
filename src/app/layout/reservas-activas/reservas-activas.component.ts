@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../shared/services/api.service';
 import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
 import {Reserva} from '../../shared/domain/reserva';
+import {routerTransition} from '../../router.animations';
 
 @Component({
   selector: 'app-reservas-activas',
   templateUrl: './reservas-activas.component.html',
-  styleUrls: ['./reservas-activas.component.scss']
+  styleUrls: ['./reservas-activas.component.scss'],
+  animations: [routerTransition()]
 })
 export class ReservasActivasComponent implements OnInit {
 

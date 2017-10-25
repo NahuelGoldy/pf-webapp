@@ -1,7 +1,12 @@
 <app-page-header [heading]="'Historial de Reservas'" [icon]="'fa-bars'"></app-page-header>
 
-<div class="progress" *ngIf="ocultarTabla">
-    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-        <span>Cargando<span class="dotdotdot"></span></span>
+<div [@routerTransition]>
+    <div class="progress" *ngIf="ocultarTabla">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            <span>Cargando<span class="dotdotdot"></span></span>
+        </div>
     </div>
+
+    <!-- PONER LA TABLA -->
+
 </div>

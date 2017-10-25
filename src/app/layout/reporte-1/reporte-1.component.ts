@@ -5,11 +5,13 @@ import {ParametroReporte} from '../../shared/domain/parametroReporte';
 import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
 import {IMyDate, IMyDpOptions} from 'mydatepicker';
 import {DateService} from '../../shared/services/date.service';
+import {routerTransition} from '../../router.animations';
 
 @Component({
   selector: 'app-reporte-1',
   templateUrl: './reporte-1.component.html',
-  styleUrls: ['./reporte-1.component.scss']
+  styleUrls: ['./reporte-1.component.scss'],
+  animations: [routerTransition()]
 })
 export class Reporte1Component implements OnInit {
     modelDesde: any;

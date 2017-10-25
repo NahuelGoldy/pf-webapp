@@ -1,42 +1,45 @@
 <app-page-header [heading]="'Reservas activas'" [icon]="'fa-money'"></app-page-header>
-<div class="col-xs-12">
-    <div class="container">
-        <div class="card" *ngFor="let reserva of reservasActivas">
-            <div class="card-block">
-                <h4 class="card-title">
-                    Reserva con la patente: -Insertar Patente- </h4>
-                <h6 class="card-subtitle mb-2 text-muted">
-                    Dueño: {{reserva.usuario.nombre}}, {{reserva.usuario.apellido}}</h6>
-                <p class="card-text">
-                    La reservar fue creada a las {{reserva.horaCreacionReserva}} y expira a las {{reserva.horaExpiracion}}</p>
-                <button class="card-link btn btn-success">
-                    Confirmar <span class="fa fa-arrow-circle-up"></span></button>
-                <button class="card-link btn btn-danger">
-                    Cancelar <span class="fa-trash fa"></span></button>
-            </div>
-        </div>
-        <div class="card" *ngIf="showLoading">
-            <div class="card-block">
-                <div style="text-align: center">
-                    <div class="loader"></div>
-                    <p>Cargando registro de reservas..</p>
-                </div>
-            </div>
-        </div>
-        <div class="card" *ngIf="!showLoading && (reservasActivas.length < 1)">
-            <div class="card text-center">
-                <div class="card-header">
-                    Atención
-                </div>
+
+<div [@routerTransition]>
+    <div class="col-xs-12">
+        <div class="container">
+            <div class="card" *ngFor="let reserva of reservasActivas">
                 <div class="card-block">
-                    <h4 class="card-title">No tiene reservas, por el momento.</h4>
+                    <h4 class="card-title">
+                        Reserva con la patente: -Insertar Patente- </h4>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        Dueño: {{reserva.usuario.nombre}}, {{reserva.usuario.apellido}}</h6>
                     <p class="card-text">
-                        Contacte a nuestro equipo, consiga promocionar su estacionamiento para que más gente lo vea
-                        y asi poder aumentar su cantidad de clientes. Los primeros 3 meses bonificados.</p>
-                    <button class="btn btn-info">Solicitar asesoramiento.</button>
+                        La reservar fue creada a las {{reserva.horaCreacionReserva}} y expira a las {{reserva.horaExpiracion}}</p>
+                    <button class="card-link btn btn-success">
+                        Confirmar <span class="fa fa-arrow-circle-up"></span></button>
+                    <button class="card-link btn btn-danger">
+                        Cancelar <span class="fa-trash fa"></span></button>
                 </div>
-                <div class="card-footer text-muted">
-                    El equipo de ¿Donde Estaciono?
+            </div>
+            <div class="card" *ngIf="showLoading">
+                <div class="card-block">
+                    <div style="text-align: center">
+                        <div class="loader"></div>
+                        <p>Cargando registro de reservas..</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card" *ngIf="!showLoading && (reservasActivas.length < 1)">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Atención
+                    </div>
+                    <div class="card-block">
+                        <h4 class="card-title">No tiene reservas, por el momento.</h4>
+                        <p class="card-text">
+                            Contacte a nuestro equipo, consiga promocionar su estacionamiento para que más gente lo vea
+                            y asi poder aumentar su cantidad de clientes. Los primeros 3 meses bonificados.</p>
+                        <button class="btn btn-info">Solicitar asesoramiento.</button>
+                    </div>
+                    <div class="card-footer text-muted">
+                        El equipo de ¿Donde Estaciono?
+                    </div>
                 </div>
             </div>
         </div>

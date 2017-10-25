@@ -5,11 +5,13 @@ import {ApiService} from '../../shared/services/api.service';
 import {DateService} from '../../shared/services/date.service';
 import {IMyDpOptions} from 'mydatepicker';
 import {IngresoVehiculo} from '../../shared/domain/ingresoVehiculo';
+import {routerTransition} from '../../router.animations';
 
 @Component({
   selector: 'app-reporte-2',
   templateUrl: './reporte-2.component.html',
-  styleUrls: ['./reporte-2.component.scss']
+  styleUrls: ['./reporte-2.component.scss'],
+  animations: [routerTransition()]
 })
 export class Reporte2Component implements OnInit {
     modelDesde: any;
