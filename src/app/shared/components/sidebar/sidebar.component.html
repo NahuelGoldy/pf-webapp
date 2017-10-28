@@ -123,7 +123,7 @@
                 <ul class="submenu">
                     <li>
                         <a [routerLink]="['/reportes/reporte-ingresos']" [routerLinkActive]="['router-link-active']">
-                            <i class="fa fa-pie-chart"></i>&nbsp;
+                            <i class="fa fa-area-chart"></i>&nbsp;
                             {{ 'Reporte: ingresos' | translate }}
                         </a>
                     </li>
@@ -134,9 +134,15 @@
                         </a>
                     </li>
                     <li>
+                        <a [routerLink]="['/reportes/reporte-reservas']" [routerLinkActive]="['router-link-active']">
+                            <i class="fa fa-pie-chart"></i>&nbsp;
+                            {{ 'Reporte: reservas' | translate }}
+                        </a>
+                    </li>
+                    <li>
                         <a [routerLink]="['/reportes/reporte-egresos']" [routerLinkActive]="['router-link-active']">
                             <i class="fa fa-address-card"></i>
-                            Solicitar reporte personalizado
+                            Solicitar reporte
                         </a>
                     </li>
                 </ul>

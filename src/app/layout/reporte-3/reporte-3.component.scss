@@ -1,0 +1,50 @@
+
+@media screen and (min-width: 768px) {
+    .btn.btn-success.alineado {
+        position: relative;
+        left: 50%;
+        top: 35%;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 401px) {
+    .btn.btn-success.alineado {
+        position: relative;
+        left: 35%;
+    }
+}
+
+@media screen and (max-width: 400px) and (min-width: 0px) {
+    .btn.btn-success.alineado {
+        position: relative;
+        left: 25%;
+    }
+}
+
+.tile {
+    margin: 3% 4%;
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Segoe UI Light';
+    font-weight: bold;
+}
+
+.tile-yellow {
+    background-color: rgba(225, 200, 0, 0.6);
+}
+
+.tile-orange {
+    background-color: rgba(255, 0, 0, 0.4);
+}
+
+.tile-blue {
+    background-color: rgba(0, 119, 255, 0.6);
+}
+
+.tile-green {
+    background-color: rgba(0, 132, 9, 0.6);
+}
+
+.tile label {
+    font-size: 3.25em;
+}

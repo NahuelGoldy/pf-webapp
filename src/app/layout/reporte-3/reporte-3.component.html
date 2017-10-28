@@ -1,9 +1,9 @@
-<app-page-header [heading]="'Reporte estadístico de ingresos'" [icon]="'fa-area-chart'"></app-page-header>
+<app-page-header [heading]="'Reporte estadístico de reservas'" [icon]="'fa-pie-chart'"></app-page-header>
 
 <div [@routerTransition]>
     <div class="row">
         <div class="col-md-12">
-            <h2>Reporte estadístico de Ingresos</h2>
+            <h2>Reporte estadístico de Reservas</h2>
             <hr>
             <br>
         </div>
@@ -13,15 +13,15 @@
             <label class="control-label">Desde</label>
             <form class="form-inline mb-3">
                 <my-date-picker name="mydateDesde" [(ngModel)]="modelDesde" [options]="myDatePickerOptionsDesde"
-                                 (dateChanged) ="onChangeDesde($event)" required></my-date-picker>
+                                (dateChanged) ="onChangeDesde($event)" required></my-date-picker>
             </form>
         </div>
         <div class="col-md-3">
             <label class="control-label">Hasta</label>
             <form class="form-inline mb-3">
                 <my-date-picker name="mydateHasta" [(ngModel)]="modelHasta" [options]="myDatePickerOptionsHasta"
-                                 (dateChanged) ="onChangeHasta($event)"
-                                 required></my-date-picker>
+                                (dateChanged) ="onChangeHasta($event)"
+                                required></my-date-picker>
             </form>
         </div>
         <div class="col-md-2">
@@ -45,15 +45,16 @@
     <ngb-alert class="alert-warning" (close)="showAlert = false" *ngIf="showAlert" >
         <strong>Datos incompletos.</strong> Por favor seleccione un rango de fechas.
     </ngb-alert>
+
     <div class="row">
         <div class="col col-md-8">
             <div class="card mb-3">
-                <div class="card-header">Vehículos ingresados</div>
+                <div class="card-header">Reservas según su tipo</div>
                 <div class="card-block">
-                    <canvas baseChart height="130" [datasets]="lineChartData"
-                            [labels]="lineChartLabels" [options]="lineChartOptions"
-                            [colors]="lineChartColors" [legend]="lineChartLegend"
-                            [chartType]="lineChartType"
+                    <canvas baseChart height="130px"
+                            [data]="pieChartData"
+                            [labels]="pieChartLabels"
+                            [chartType]="pieChartType"
                             (chartHover)="chartHovered($event)"
                             (chartClick)="chartClicked($event)">
                     </canvas>
@@ -63,27 +64,27 @@
         <div class="col col-md-4">
             <div class="card mb-3">
                 <div class="card-header">
-                    Ingresos promedio de vehículos
+                    Estadísticas porcentuales
                 </div>
                 <div class="card-block">
                     <div class="row">
-                        <div class="tile tile-yellow col-md-5">
-                            <label>{{promedioHora}}</label>
-                            <p>Ingresos por hora</p>
+                        <div class="tile tile-green col-md-5">
+                            <label>{{totalReservas}}</label>
+                            <p>TOTAL</p>
                         </div>
-                        <div class="tile tile-orange col-md-5">
-                            <label>{{promedioDia}}</label>
-                            <p>Ingresos por día</p>
+                        <div class="tile tile-blue col-md-5">
+                            <label>{{porcentajeAceptadas}}%</label>
+                            <p>Aceptadas</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="tile tile-lightbrown col-md-5">
-                            <label>{{promedioSemana}}</label>
-                            <p>Ingresos por semana</p>
+                        <div class="tile tile-orange col-md-5">
+                            <label>{{porcentajeExpiradas}}%</label>
+                            <p>Expiradas</p>
                         </div>
-                        <div class="tile tile-darkbrown col-md-5">
-                            <label>{{promedioMes}}</label>
-                            <p>Ingresos por mes</p>
+                        <div class="tile tile-yellow col-md-5">
+                            <label>{{porcentajeCanceladas}}%</label>
+                            <p>Canceladas</p>
                         </div>
                     </div>
                 </div>
