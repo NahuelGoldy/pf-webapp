@@ -43,11 +43,11 @@ export class Reporte2Component implements OnInit {
     public lineChartOptions: any = {  responsive: true    };
     public lineChartColors: Array<any> = [
         {
-            backgroundColor: 'rgba(255,69,0, 0.4)',
+            backgroundColor: 'rgba(0,50,255, 0.4)',
             borderColor: 'rgba(77,83,96, 0.7)',
             pointBackgroundColor: 'rgba(77,83,96,1)',
-            pointBorderColor: '#4f79af',
-            pointHoverBackgroundColor: '#44a354',
+            pointBorderColor: '#000',
+            pointHoverBackgroundColor: '#4f79af',
             pointHoverBorderColor: 'rgba(77,83,96,1)'
         }
     ];

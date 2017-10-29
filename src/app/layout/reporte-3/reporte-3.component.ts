@@ -103,33 +103,33 @@ export class Reporte3Component implements OnInit {
     }
 
     onGenerateClick() {
-        // const fechaDesde =
-        //     ('0' + this.modelDesde.date.day).slice(-2) + '/' +
-        //     ('0' + this.modelDesde.date.month).slice(-2) + '/' +
-        //     this.modelDesde.date.year +
-        //     ' 00:00:00';
-        // const fechaHasta =
-        //     ('0' + this.modelHasta.date.day).slice(-2) + '/' +
-        //     ('0' + this.modelHasta.date.month).slice(-2) + '/' +
-        //     this.modelHasta.date.year +
-        //     ' 00:00:00';
+        const fechaDesde =
+            this.modelDesde.date.year + '-' +
+            ('0' + this.modelDesde.date.month).slice(-2) + '-' +
+            ('0' + this.modelDesde.date.day).slice(-2);
+            // ' 00:00:00';
+        const fechaHasta =
+            this.modelHasta.date.year + '-' +
+            ('0' + this.modelHasta.date.month).slice(-2) + '-' +
+            ('0' + this.modelHasta.date.day).slice(-2);
+            // ' 00:00:00';
 
         const parque =  JSON.parse(localStorage.getItem('currentParking'));
 
         this.apiService.get('/reserva/all/parque/' + parque.idEstacionamiento).subscribe(
             (data) => {
                 this.reservas = data;
-                // TODO this.generateChar();
+                this.generateChar(fechaDesde, fechaHasta);
                 // this.generateAverages();
             }
         );
 
         // TODO borrar, harcodeado!
-        this.pieChartData = [250, 450, 100];
-        this.pieChartData.forEach(d => this.totalReservas += d);
-        this.porcentajeCanceladas = Math.round((this.pieChartData[2] / this.totalReservas) * 100).toString();
-        this.porcentajeAceptadas = Math.round((this.pieChartData[1] / this.totalReservas) * 100).toString();
-        this.porcentajeExpiradas = Math.round((this.pieChartData[0] / this.totalReservas) * 100).toString();
+        // this.pieChartData = [250, 450, 100];
+        // this.pieChartData.forEach(d => this.totalReservas += d);
+        // this.porcentajeCanceladas = Math.round((this.pieChartData[2] / this.totalReservas) * 100).toString();
+        // this.porcentajeAceptadas = Math.round((this.pieChartData[1] / this.totalReservas) * 100).toString();
+        // this.porcentajeExpiradas = Math.round((this.pieChartData[0] / this.totalReservas) * 100).toString();
     }
 
     private setSelect(difDays: number) {
@@ -158,5 +158,33 @@ export class Reporte3Component implements OnInit {
             this.disableSemanas = true;
             this.disableMes = true;
         }
+    }
+
+    private generateChar(fechaDesde: string, fechaHasta: string) {
+        let confirmadas = 0, canceladas = 0, expiradas = 0;
+        this.reservas.forEach(r => {
+            if (r.horaCreacionReserva.slice(0, 10).localeCompare(fechaDesde) >= 0
+                && r.horaCreacionReserva.slice(0, 10).localeCompare(fechaHasta) <= 0) {
+                if (r.cancelada) {
+                    canceladas++;
+                }
+                if (r.confirmada) {
+                    confirmadas++;
+                }
+                if (r.expirada) {
+                    expiradas++;
+                }
+            }
+        });
+        const data = [];
+        data.push(expiradas);
+        data.push(confirmadas);
+        data.push(canceladas);
+        this.pieChartData = data;
+        this.totalReservas = 0;
+        this.pieChartData.forEach(d => this.totalReservas += d);
+        this.porcentajeCanceladas = Math.round((this.pieChartData[2] / this.totalReservas) * 100).toString();
+        this.porcentajeAceptadas = Math.round((this.pieChartData[1] / this.totalReservas) * 100).toString();
+        this.porcentajeExpiradas = Math.round((this.pieChartData[0] / this.totalReservas) * 100).toString();
     }
 }
