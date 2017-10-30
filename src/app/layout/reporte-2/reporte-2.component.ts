@@ -55,6 +55,7 @@ export class Reporte2Component implements OnInit {
     public lineChartType = 'line';
     public today = new Date();
     public showAlert = false;
+    showLoading = false;
 
     constructor(private apiService: ApiService, private dateService: DateService) { }
 
@@ -142,6 +143,7 @@ export class Reporte2Component implements OnInit {
         parque =  JSON.parse(localStorage.getItem('currentParking'));
         parametro.idEstacionamiento = parque.idEstacionamiento;
 
+        this.showLoading = true;
         this.apiService.post('ingreso/egresoVehiculo/allByFechas', parametro).subscribe(
             (data) => {
                 this.ingresos = data;
@@ -189,6 +191,7 @@ export class Reporte2Component implements OnInit {
         } else if (this.modelIntervalo === 'Mes') {
             this.graficoMeses()
         }
+        this.showLoading = false;
     }
 
     private generateAverages() {
@@ -247,7 +250,7 @@ export class Reporte2Component implements OnInit {
             linearCharData[dia]++;
         }
 
-        this.lineChartData = [ { data: this.linearChartDataAux, label: 'Ingresos' } ];
+        this.lineChartData = [ { data: this.linearChartDataAux, label: 'Egresos' } ];
         this.chartLabelsGenerator('Sem', 1, linearCharLabels);
         this.lineChartLabels = linearCharLabels;
     }
@@ -269,7 +272,7 @@ export class Reporte2Component implements OnInit {
             this.linearChartDataAux[dia]++;
         }
 
-        this.lineChartData = [ { data: this.linearChartDataAux, label: 'Ingresos' } ];
+        this.lineChartData = [ { data: this.linearChartDataAux, label: 'Egresos' } ];
         this.chartLabelsGenerator('Dias', 1, linearCharLabels);
         this.lineChartLabels = linearCharLabels;
 
@@ -325,7 +328,7 @@ export class Reporte2Component implements OnInit {
         }
 
         this.lineChartData = [
-            { data: chartData, label: 'Ingresos' }
+            { data: chartData, label: 'Egresos' }
         ];
     }
 

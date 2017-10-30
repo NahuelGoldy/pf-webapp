@@ -14,6 +14,8 @@ import {routerTransition} from '../../router.animations';
   animations: [routerTransition()]
 })
 export class Reporte1Component implements OnInit {
+
+    showLoading = false;
     modelDesde: any;
     modelHasta: any;
     modelIntervalo = '';
@@ -139,6 +141,7 @@ export class Reporte1Component implements OnInit {
       parque =  JSON.parse(localStorage.getItem('currentParking'));
       parametro.idEstacionamiento = parque.idEstacionamiento;
 
+      this.showLoading = true;
       this.apiService.post('ingreso/ingresoVehiculo/allByFechas', parametro).subscribe(
           (data) => {
               this.ingresos = data;
@@ -186,6 +189,7 @@ export class Reporte1Component implements OnInit {
         } else if (this.modelIntervalo === 'Mes') {
             this.graficoMeses()
         }
+        this.showLoading = false;
     }
 
     private generateAverages() {

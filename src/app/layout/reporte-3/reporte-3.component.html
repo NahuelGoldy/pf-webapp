@@ -8,83 +8,93 @@
             <br>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-3">
-            <label class="control-label">Desde</label>
-            <form class="form-inline mb-3">
-                <my-date-picker name="mydateDesde" [(ngModel)]="modelDesde" [options]="myDatePickerOptionsDesde"
-                                (dateChanged) ="onChangeDesde($event)" required></my-date-picker>
-            </form>
-        </div>
-        <div class="col-md-3">
-            <label class="control-label">Hasta</label>
-            <form class="form-inline mb-3">
-                <my-date-picker name="mydateHasta" [(ngModel)]="modelHasta" [options]="myDatePickerOptionsHasta"
-                                (dateChanged) ="onChangeHasta($event)"
-                                required></my-date-picker>
-            </form>
-        </div>
-        <div class="col-md-2">
-            <label class="control-label">Intervalo</label>
-            <div class="form-group">
-                <select [(ngModel)]="modelIntervalo" class="form-control" (click)="onSelectClick($event.target.value)">
-                    <option [disabled]="disableHoras" class="active">Horas</option>
-                    <option [disabled]="disableDias" >Dias</option>
-                    <option [disabled]="disableSemanas" >Semanas</option>
-                    <option [disabled]="disableMes" >Meses</option>
-                    <option [disabled]="disableAnos" >Años</option>
-                </select>
+    <div class="card" *ngIf="showLoading">
+        <div class="card-block">
+            <div style="text-align: center">
+                <div class="loader"></div>
+                <p>Cargando reservas..</p>
             </div>
         </div>
-        <div class="col-md-2">
-            <button (click)="onGenerateClick()" class="btn btn-success alineado" >Generar gráfico</button>
-        </div>
-        <br>
-        <br>
     </div>
-    <ngb-alert class="alert-warning" (close)="showAlert = false" *ngIf="showAlert" >
-        <strong>Datos incompletos.</strong> Por favor seleccione un rango de fechas.
-    </ngb-alert>
-
-    <div class="row">
-        <div class="col col-md-8">
-            <div class="card mb-3">
-                <div class="card-header">Reservas según su tipo</div>
-                <div class="card-block">
-                    <canvas baseChart height="130px"
-                            [data]="pieChartData"
-                            [labels]="pieChartLabels"
-                            [chartType]="pieChartType"
-                            (chartHover)="chartHovered($event)"
-                            (chartClick)="chartClicked($event)">
-                    </canvas>
+    <div *ngIf="!showLoading">
+        <div class="row">
+            <div class="col-md-3">
+                <label class="control-label">Desde</label>
+                <form class="form-inline mb-3">
+                    <my-date-picker name="mydateDesde" [(ngModel)]="modelDesde" [options]="myDatePickerOptionsDesde"
+                                    (dateChanged) ="onChangeDesde($event)" required></my-date-picker>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <label class="control-label">Hasta</label>
+                <form class="form-inline mb-3">
+                    <my-date-picker name="mydateHasta" [(ngModel)]="modelHasta" [options]="myDatePickerOptionsHasta"
+                                    (dateChanged) ="onChangeHasta($event)"
+                                    required></my-date-picker>
+                </form>
+            </div>
+            <div class="col-md-2">
+                <label class="control-label">Intervalo</label>
+                <div class="form-group">
+                    <select [(ngModel)]="modelIntervalo" class="form-control" (click)="onSelectClick($event.target.value)">
+                        <option [disabled]="disableHoras" class="active">Horas</option>
+                        <option [disabled]="disableDias" >Dias</option>
+                        <option [disabled]="disableSemanas" >Semanas</option>
+                        <option [disabled]="disableMes" >Meses</option>
+                        <option [disabled]="disableAnos" >Años</option>
+                    </select>
                 </div>
             </div>
+            <div class="col-md-2">
+                <button (click)="onGenerateClick()" class="btn btn-success alineado" >Generar gráfico</button>
+            </div>
+            <br>
+            <br>
         </div>
-        <div class="col col-md-4">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Estadísticas porcentuales
-                </div>
-                <div class="card-block">
-                    <div class="row">
-                        <div class="tile tile-green col-md-5">
-                            <label>{{totalReservas}}</label>
-                            <p>Reservas en total</p>
-                        </div>
-                        <div class="tile tile-blue col-md-5">
-                            <label>{{porcentajeAceptadas}}%</label>
-                            <p>Aceptadas</p>
-                        </div>
+        <ngb-alert class="alert-warning" (close)="showAlert = false" *ngIf="showAlert" >
+            <strong>Datos incompletos.</strong> Por favor seleccione un rango de fechas.
+        </ngb-alert>
+
+        <div class="row">
+            <div class="col col-md-8">
+                <div class="card mb-3">
+                    <div class="card-header">Reservas según su tipo</div>
+                    <div class="card-block">
+                        <canvas baseChart height="130px"
+                                [data]="pieChartData"
+                                [labels]="pieChartLabels"
+                                [chartType]="pieChartType"
+                                (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)">
+                        </canvas>
                     </div>
-                    <div class="row">
-                        <div class="tile tile-orange col-md-5">
-                            <label>{{porcentajeExpiradas}}%</label>
-                            <p>Expiradas</p>
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Estadísticas porcentuales
+                    </div>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="tile tile-green col-md-5">
+                                <label>{{totalReservas}}</label>
+                                <p>Reservas en total</p>
+                            </div>
+                            <div class="tile tile-blue col-md-5">
+                                <label>{{porcentajeAceptadas}}%</label>
+                                <p>Aceptadas</p>
+                            </div>
                         </div>
-                        <div class="tile tile-yellow col-md-5">
-                            <label>{{porcentajeCanceladas}}%</label>
-                            <p>Canceladas</p>
+                        <div class="row">
+                            <div class="tile tile-orange col-md-5">
+                                <label>{{porcentajeExpiradas}}%</label>
+                                <p>Expiradas</p>
+                            </div>
+                            <div class="tile tile-yellow col-md-5">
+                                <label>{{porcentajeCanceladas}}%</label>
+                                <p>Canceladas</p>
+                            </div>
                         </div>
                     </div>
                 </div>

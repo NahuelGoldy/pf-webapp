@@ -14,6 +14,7 @@ import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
 })
 export class Reporte3Component implements OnInit {
 
+    showLoading = false;
     modelDesde: any;
     modelHasta: any;
     modelIntervalo = '';
@@ -116,6 +117,7 @@ export class Reporte3Component implements OnInit {
 
         const parque =  JSON.parse(localStorage.getItem('currentParking'));
 
+        this.showLoading = true;
         this.apiService.get('/reserva/all/parque/' + parque.idEstacionamiento).subscribe(
             (data) => {
                 this.reservas = data;
@@ -123,13 +125,6 @@ export class Reporte3Component implements OnInit {
                 // this.generateAverages();
             }
         );
-
-        // TODO borrar, harcodeado!
-        // this.pieChartData = [250, 450, 100];
-        // this.pieChartData.forEach(d => this.totalReservas += d);
-        // this.porcentajeCanceladas = Math.round((this.pieChartData[2] / this.totalReservas) * 100).toString();
-        // this.porcentajeAceptadas = Math.round((this.pieChartData[1] / this.totalReservas) * 100).toString();
-        // this.porcentajeExpiradas = Math.round((this.pieChartData[0] / this.totalReservas) * 100).toString();
     }
 
     private setSelect(difDays: number) {
@@ -186,5 +181,6 @@ export class Reporte3Component implements OnInit {
         this.porcentajeCanceladas = Math.round((this.pieChartData[2] / this.totalReservas) * 100).toString();
         this.porcentajeAceptadas = Math.round((this.pieChartData[1] / this.totalReservas) * 100).toString();
         this.porcentajeExpiradas = Math.round((this.pieChartData[0] / this.totalReservas) * 100).toString();
+        this.showLoading = false;
     }
 }
