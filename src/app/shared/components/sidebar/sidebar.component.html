@@ -1,55 +1,55 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
 
-    <ul class="list-group">
+    <!--<ul class="list-group">-->
 
-        <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandClass('pages')">
-                <span><i class="fa fa-plus"></i>&nbsp;
-                    {{ 'A BORRAR' }}</span>
-            </a>
-            <li class="nested" [class.expand]="showMenu === 'pages'">
-                <ul class="submenu">
-                    <li>
-                        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-fw fa-dashboard"></i>&nbsp;
-                            {{ 'dashboard' | translate }}
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
-                            {{ 'charts' | translate }}
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-fw fa-table"></i>&nbsp;
-                            {{ 'tables' | translate }}
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-fw fa-edit"></i>&nbsp;
-                            {{ 'forms' | translate }}
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-fw fa-desktop"></i>&nbsp;
-                            {{ 'boostrapElement' | translate }}
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/grid']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-fw fa-wrench"></i>&nbsp;
-                            {{ 'boostrapGrid' | translate }}
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </div>
+        <!--<div class="nested-menu">-->
+            <!--<a class="list-group-item" (click)="addExpandClass('pages')">-->
+                <!--<span><i class="fa fa-plus"></i>&nbsp;-->
+                    <!--{{ 'A BORRAR' }}</span>-->
+            <!--</a>-->
+            <!--<li class="nested" [class.expand]="showMenu === 'pages'">-->
+                <!--<ul class="submenu">-->
+                    <!--<li>-->
+                        <!--<a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">-->
+                            <!--<i class="fa fa-fw fa-dashboard"></i>&nbsp;-->
+                            <!--{{ 'dashboard' | translate }}-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">-->
+                            <!--<i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;-->
+                            <!--{{ 'charts' | translate }}-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">-->
+                            <!--<i class="fa fa-fw fa-table"></i>&nbsp;-->
+                            <!--{{ 'tables' | translate }}-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">-->
+                            <!--<i class="fa fa-fw fa-edit"></i>&nbsp;-->
+                            <!--{{ 'forms' | translate }}-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a [routerLink]="['/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item">-->
+                            <!--<i class="fa fa-fw fa-desktop"></i>&nbsp;-->
+                            <!--{{ 'boostrapElement' | translate }}-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a [routerLink]="['/grid']" [routerLinkActive]="['router-link-active']" class="list-group-item">-->
+                            <!--<i class="fa fa-fw fa-wrench"></i>&nbsp;-->
+                            <!--{{ 'boostrapGrid' | translate }}-->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+        <!--</div>-->
 
-    </ul>
+    <!--</ul>-->
 
     <!-- lo anterior a esto se tiene que borrar en un futuro, es solo para tener a mano los componentes -->
 

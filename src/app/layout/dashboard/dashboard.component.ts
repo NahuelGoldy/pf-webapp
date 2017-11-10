@@ -35,8 +35,9 @@ export class DashboardComponent implements OnInit {
             label: 'Incrementa tus ganancias!'
         });
 
-        const id = JSON.parse(localStorage.getItem('currentParking')).idEstacionamiento;
-        this.apiService.get('ingreso/' + id).subscribe( json => {
+        const parque  = JSON.parse(localStorage.getItem('currentParking'));
+        console.log(parque);
+        this.apiService.get('ingreso/' + parque.idEstacionamiento).subscribe( json => {
             json.reverse();
             json.forEach(i => {
                 if (i.marcoSalidaDelParque) {
