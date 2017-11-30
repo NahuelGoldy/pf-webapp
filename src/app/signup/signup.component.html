@@ -1,7 +1,7 @@
 <div class="login-page" [@routerTransition]>
     <div class="row">
         <div class="col-md-4 push-md-4 signup-page-content">
-            <img class="" src="assets/images/logo.png" width="150px" />
+            <img class="img-logo" src="assets/images/logo.png" style="max-height: 35px" />
             <form role="form" name="signup-form" #f="ngForm">
                 <div class="form-content">
                     <div class="form-group">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <a class="btn rounded-btn" [routerLink]="['/dashboard']"> Registrarse </a>&nbsp;
-                <a class="btn rounded-btn" [routerLink]="['/login']"> Ingresar </a>
+                <a class="btn rounded-btn" [routerLink]="['/login']"> Volver </a>
             </form>
         </div>
     </div>
