@@ -31,7 +31,7 @@ export class IngresoVehiculosComponent implements OnInit {
            this.ing.apellidoCliente = reservaConfimada.usuario.apellido;
            this.ing.nombreCliente = reservaConfimada.usuario.nombre;
            this.ing.mailCliente = reservaConfimada.usuario.email;
-           this.ing.nroPatente = 'AAA898';
+           this.ing.nroPatente = reservaConfimada.nroPatente;
            localStorage.removeItem('confirmarReserva');
       }
   }

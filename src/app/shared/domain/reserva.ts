@@ -10,5 +10,6 @@ export class Reserva {
     usuario: User;
     parque: ParqueEstacionamiento;
     expirada: boolean;
+    nroPatente?: string;
 }
 
