@@ -6,7 +6,7 @@
             <div class="card" *ngFor="let reserva of reservasActivas; let i = index">
                 <div class="card-block">
                     <h4 class="card-title">
-                        Reserva con la patente: {{item.nroPatente}} </h4>
+                        Reserva con la patente: {{reserva.nroPatente}} </h4>
                     <h6 class="card-subtitle mb-2 text-muted">
                         Dueño: {{reserva.usuario.nombre}}, {{reserva.usuario.apellido}}</h6>
                     <p class="card-text">

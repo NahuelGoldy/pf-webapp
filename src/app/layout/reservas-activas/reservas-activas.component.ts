@@ -25,6 +25,8 @@ export class ReservasActivasComponent implements OnInit {
           this.showLoading = false;
           this.reservasActivas = json;
       });*/
+      const date = new Date();
+      const dateExpiracion =  new Date(date.getTime() + 15 * 60000);
 
       const reservaCode = new Reserva();
       reservaCode.usuario = new User();
@@ -32,21 +34,24 @@ export class ReservasActivasComponent implements OnInit {
       reservaCode.usuario.apellido = 'Goldy';
       reservaCode.usuario.email = 'nahuel_elMVP@gmail.com';
       reservaCode.nroPatente = 'KGB856';
-      reservaCode.horaCreacionReserva = new Date().getUTCHours().toLocaleString();
+      reservaCode.horaCreacionReserva = (date.getHours() + ':' + date.getMinutes()) ;
+      reservaCode.horaExpiracion = (dateExpiracion.getHours() + ':' + dateExpiracion.getMinutes());
       const reservaCode2 = new Reserva();
       reservaCode2.usuario = new User();
       reservaCode2.usuario.nombre = 'Federico';
       reservaCode2.usuario.apellido = 'Madoery';
       reservaCode2.nroPatente = 'SSS874';
       reservaCode2.usuario.email = 'fede_madoery@gmail.com';
-      reservaCode2.horaCreacionReserva = new Date().getUTCHours().toLocaleString();
+      reservaCode2.horaCreacionReserva = (date.getHours() + ':' + date.getMinutes());
+      reservaCode2.horaExpiracion = (dateExpiracion.getHours() + ':' + dateExpiracion.getMinutes());
       const reservaCode3 = new Reserva();
       reservaCode3.usuario = new User();
       reservaCode3.usuario.nombre = 'Agustin';
       reservaCode3.usuario.apellido = 'Pane';
       reservaCode3.nroPatente = 'RDF635';
       reservaCode3.usuario.email = 'Pane_elaleman@gmail.com';
-      reservaCode3.horaCreacionReserva = new Date().getUTCHours().toLocaleString();
+      reservaCode3.horaCreacionReserva = (date.getHours() + ':' + date.getMinutes());
+      reservaCode3.horaExpiracion = (dateExpiracion.getHours() + ':' + dateExpiracion.getMinutes());
       this.reservasActivas.push(reservaCode);
       this.reservasActivas.push(reservaCode2);
       this.reservasActivas.push(reservaCode3);
