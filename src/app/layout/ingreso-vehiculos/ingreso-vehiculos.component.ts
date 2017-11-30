@@ -3,6 +3,7 @@ import {ParqueEstacionamiento} from '../../shared/domain/parqueEstacionamiento';
 import {ApiService} from '../../shared/services/api.service';
 import {Ingreso} from '../../shared/domain/ingreso';
 import {routerTransition} from '../../router.animations';
+import {Reserva} from "../../shared/domain/reserva";
 
 @Component({
   selector: 'app-ingreso-vehiculos',
@@ -24,6 +25,15 @@ export class IngresoVehiculosComponent implements OnInit {
   }
 
   ngOnInit() {
+      const reservaString = localStorage.getItem('confirmarReserva');
+      if (reservaString) {
+           const reservaConfimada: Reserva = JSON.parse(reservaString);
+           this.ing.apellidoCliente = reservaConfimada.usuario.apellido;
+           this.ing.nombreCliente = reservaConfimada.usuario.nombre;
+           this.ing.mailCliente = reservaConfimada.usuario.email;
+           this.ing.nroPatente = 'AAA898';
+           localStorage.removeItem('confirmarReserva');
+      }
   }
 
   toggleShowOptional() {

@@ -3,7 +3,7 @@
 <div [@routerTransition]>
     <div class="col-xs-12">
         <div class="container">
-            <div class="card" *ngFor="let reserva of reservasActivas">
+            <div class="card" *ngFor="let reserva of reservasActivas; let i = index">
                 <div class="card-block">
                     <h4 class="card-title">
                         Reserva con la patente: -Insertar Patente- </h4>
@@ -11,9 +11,11 @@
                         Dueño: {{reserva.usuario.nombre}}, {{reserva.usuario.apellido}}</h6>
                     <p class="card-text">
                         La reservar fue creada a las {{reserva.horaCreacionReserva}} y expira a las {{reserva.horaExpiracion}}</p>
-                    <button class="card-link btn btn-success">
+                    <button class="card-link btn btn-success"
+                            (click)="confirmarReserva(reserva)">
                         Confirmar <span class="fa fa-arrow-circle-up"></span></button>
-                    <button class="card-link btn btn-danger">
+                    <button class="card-link btn btn-danger"
+                            (click)="removeReserva(i)">
                         Cancelar <span class="fa-trash fa"></span></button>
                 </div>
             </div>
