@@ -49,10 +49,10 @@ export class HistorialIngresosEgresosComponent implements OnInit, AfterViewCheck
   ngOnInit() {
       this.dtOptions = {
           pagingType: 'full_numbers',
-          autoWidth: true,
+          // autoWidth: true,
           paging : true,
           aaSorting: [0, 'DESC'],
-          sScrollX: '100%',
+          // sScrollX: '100%',
           language: {
               'processing':     'Procesando...',
               'lengthMenu':     'Mostrar _MENU_ registros',
@@ -87,7 +87,7 @@ export class HistorialIngresosEgresosComponent implements OnInit, AfterViewCheck
               {
                   text: 'Filtros',
                   key: '1',
-                  className: 'btn btn-success a-override',
+                  className: 'btn btn-success a-override myfilterbutton',
                   action: () => {
                   }
               }

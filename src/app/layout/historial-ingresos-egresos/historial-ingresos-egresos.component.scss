@@ -84,13 +84,20 @@ table tr td {
 }
 
 #mytable {
-    overflow-x: scroll;
+    // overflow-x: scroll;
     display: block;
+}
+
+div.dt-buttons.btn-group {
+    margin-right: 60% !important;
 }
 
 div.dataTables_paginate {
     background-color: red !important;
 }
+
 .paginate_button {
     color: white !important;
+    background-color: #3498db !important;
+    padding-right: 10%;
 }
